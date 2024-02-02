@@ -4,8 +4,7 @@ from datetime import date as dt
 from datetime import datetime as dtt
 from datetime import timedelta
 import re
-
-from .cspt.config import repo
+from .config import BASE_URL
 
 cur_days_off = [(dt(2024,3,10),dt(2024,3,16)),
                     (dt(2024,2,19))]
@@ -169,7 +168,7 @@ def fetch_to_checklist(date, assignment_type = 'prepare'):
     '''
 
 
-    path = base_url +assignment_type + '/' + date +'.md'
+    path = BASE_URL +assignment_type + '/' + date +'.md'
     # get and convert to checklist from enumerated
     fetched_instructions = requests.get(path).text
     check_list = re.sub('[0-9]\. ', '- [ ] ', fetched_instructions)
