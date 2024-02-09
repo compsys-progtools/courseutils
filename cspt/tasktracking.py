@@ -73,6 +73,10 @@ def calculate_badge_date(assignment_type,today=None):
         # if auto in the morning use past
         if dtt.today().hour < 12:
             today -= timedelta(days=1)
+    
+    # make date object from string
+    if type(today)==str:
+        today = dt.fromisoformat(today)
 
     last_class = today- day_adj[today.weekday()]
     # 
