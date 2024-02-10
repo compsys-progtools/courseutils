@@ -15,7 +15,8 @@ setup(
             'sysgetbadgedate = cspt.tasktracking:get_badge_date',
             'kwlcsv = cspt.sitetools:kwl_csv',
             'cleandate = cspt.tasktracking:parse_date',
-            'sysprocessexport = cspt.notes:process_export'
+            'sysprocessexport = cspt.notes:process_export',
+            'syscreatetoyfiles = cspt.activities:create_toy_files'
         ],
     },
 )

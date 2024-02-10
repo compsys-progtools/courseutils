@@ -1,15 +1,9 @@
 # Checking Course Standing
 
+
 ## Badges 
 
-### Check a single badge
 
-```{click} badges:verify_badge
----
-prog: verifybadge
-nested: full
----
-```
 
 ### Get a report
 

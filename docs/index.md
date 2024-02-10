@@ -1,4 +1,4 @@
-<!-- .. Computer Systems and Programming Tools utils documentation master file, created by
+<!-- .. Computer Systems and Programming Tools utils documentation primary file, created by
    sphinx-quickstart on Fri Dec 23 10:42:13 2022.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive. -->
@@ -10,7 +10,7 @@
 
 
 ```
-git clone https://github.com/introcompsys/courseutils.git
+git clone https://github.com/compsys-progtools/courseutils.git
 pip install courseutils
 ```
 
@@ -22,6 +22,8 @@ pip install courseutils
 
 tasktracking.md
 standing.md
+genindex
+modindex
 ```
 
 <!-- 
