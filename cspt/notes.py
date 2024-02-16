@@ -22,26 +22,7 @@ kernelspec:
 ---
 '''
 
-@click.command()
-@click.option('-d','--date-in')
-@click.option('-p','--base-path')
-
-def process_export(date_in = None,base_path = '../../spring2024'):
-    if not(date_in):
-        date_in =date.today().isoformat()
-
-    #  read in base notes as export
-    notes_file = os.path.join(base_path,'notes',date_in+'.md')
-    with open(notes_file,'r') as f:
-        export = f.read()
-
-    # header 
-    
-    # transform export to notes base
-    md_notes_starter = re.sub(r'\(base\) brownsarahm.*\$ (?P<line>.*\n)',
-            '```\n\n+++\n\n```{code-cell} bash\n:tags: ["skip-execution"]\n\g<line>```\n\n+++\n\n```{code-block} console\n',export)
-
-    badge_string = ("\n\n## Prepare for this class \n\n"+
+badge_string = ("\n\n## Prepare for this class \n\n"+
             "```{{include}} ../_prepare/{date}.md\n```\n\n" +
             "## Badges\n\n"+
             '`````{{tab-set}}\n'+
@@ -50,22 +31,32 @@ def process_export(date_in = None,base_path = '../../spring2024'):
             '````{{tab-item}} Practice\n' +
             "```{{include}} ../_practice/{date}.md\n```\n\n")
     
-    # footer
-    footer_string = ('\n\n## Experience Report Evidence' + 
+
+footer_string = ('\n\n## Experience Report Evidence' + 
                     "\n\n## Questions After Today's Class ")
+
+activity_dirs = ['_prepare','_review','_practice']
+
+def process_export(export,date_in):
+    '''
+    '''
+
+    # transform export to notes base
+    md_notes_starter = re.sub(r'\(base\) brownsarahm.*\$ (?P<line>.*\n)',
+            '```\n\n+++\n\n```{code-cell} bash\n:tags: ["skip-execution"]\n\g<line>```\n\n+++\n\n```{code-block} console\n',export)
     
-    # make actitivy section 
+    # TODO: rm extra parts at top and bottom 
+    
     date_activity = badge_string.format(date=date_in)
 
-    with open(notes_file,'w') as f:
-        f.write(header)
-        f.write(md_notes_starter)
-        f.write(date_activity)
-        f.write(footer_string)
+    note_parts = [header,md_notes_starter,date_activity,footer_string]
+    notes = '\n\n'.join(note_parts)
+    return notes
 
-    activity_dirs = ['_prepare','_review','_practice']
-
-    # TODO: use date calculation from courseutils
+def init_activity_files(base_path,date_in):
+    '''
+    create blanks and link
+    '''
 
     for ac_dir in activity_dirs:
         ac = ac_dir[1:]
@@ -74,6 +65,7 @@ def process_export(date_in = None,base_path = '../../spring2024'):
         with open(os.path.join(base_path,ac_dir,badge_date+'.md'),'w') as f:
             f.write('```{index} \n```')
         
+
         # add to summary page
         with open(os.path.join(base_path,'activities',ac_dir[1:]+'.md'),'a') as f:
             f.write(activitypage_entry.format(date=badge_date,ac= ac_dir,
@@ -86,7 +78,7 @@ def process_export(date_in = None,base_path = '../../spring2024'):
 #                                     ])
 # print(ac_fix)
 
-@click.command()
+
 
 def link_activities():
     '''

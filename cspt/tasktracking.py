@@ -93,64 +93,6 @@ def calculate_badge_date(assignment_type,today=None):
     # 
     return badge_date
 
-@click.command()
-@click.option('--type', 'assignment_type', default=None,
-                help='type can be prepare, review, or practice')
-@click.option('--prepare',is_flag=True)
-@click.option('--review',is_flag=True)
-@click.option('--practice',is_flag=True)
-def get_badge_date(assignment_type=None,prepare=False,review=False,practice=False):
-    '''
-    cli for calculate badge date
-    '''
-    # set assignment date from flags if not passed
-    if not(assignment_type):
-        if prepare:
-            assignment_type='prepare'
-        
-        if review:
-            assignment_type ='review'
-        
-        if practice:
-            assignment_type='practice'
-    
-    click.echo(calculate_badge_date(assignment_type))
-
-
-@click.command()
-@click.argument('passed_date')
-
-def parse_date(passed_date):
-    '''
-    process select non dates
-    '''
-    passed_date_clean = passed_date.strip().lower()
-
-    if passed_date_clean == "today":
-        click.echo(dt.today().isoformat())
-    else:
-        click.echo(passed_date_clean)
-
-
-
-@click.command()
-@click.option('--type', 'assignment_type', default='prepare',
-                help='type can be prepare, review, or practice')
-@click.option('--date', default=None,
-                help='date should be YYYY-MM-DD of the tasks you want')
-
-def get_assignment(date, assignment_type = 'prepare'):
-    '''
-    get the assignment text formatted
-    (CLI entrypoint)
-    '''
-
-    if not(date):
-        date = calculate_badge_date(assignment_type)
-
-    
-    md_activity = fetch_to_checklist(date, assignment_type)
-    click.echo( md_activity)
 
 
 

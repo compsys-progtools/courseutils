@@ -101,37 +101,16 @@ def parse_soln_file(filename,strip=True, ):
     return new_verion
 
 
-@click.command()
-@click.argument('filename')
-@click.option('-d','--date-out')
-def prepare_prismia(filename,date_out):
-    '''
-    strip solutions from activity file and echo result
-    
-    parameter
-    ---------
-    file: path
-    '''
-    if not ('.' in filename):
-        filename += '.md'
-
+def parse_lesson_file(file_in, format_out = 'prismia'):
     # load lesson 
-    with open(os.path.join('lessons',filename), 'r') as f:
+    with open(file_in, 'r') as f:
         lesson_text = f.read()
 
-    # for prismia convert +++ to --- 
+    #  read in to useful data stucture
+        
+    # for prismia convert output with ---
+        
 
 
 
     
-    # get activities 
-    for ac in ['prepare', 'review', 'practice']:
-        with open(os.path.join('_soln_'+_ac, filename), 'r') as f:
-            ac_text = f.read()
-
-        stripped_ac = ''.join([t for t in ac_text if not (t[0] == '>')])
-
-        lesson_text += "\n\n## " + ac.title + '\n\n' 
-
-
-    click.echo(lesson_text)

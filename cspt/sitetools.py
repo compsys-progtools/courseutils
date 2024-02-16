@@ -1,45 +1,65 @@
-import click
 import os
 import pandas as pd
 import re
 
-@click.command()
-@click.argument('tldpath')
 
-def kwl_csv(tldpath = '.'):
+
+def generate_csv_from_index(path_list,sub_re,file_out=None,
+                            path_meaning = {'dir':'type','file':'date','result':'file'},
+                            dir_cleaner = lambda s:s.strip('_.'),
+                            file_cleaner = lambda f:f.split('.')[0]):
     '''
-    generate the activity file csv file for the site building from site located at the TLDPATH
+    parse a set of files for `{index}` elements
 
     Parameters
     ----------
-    tldpath : string or path
-        directory of the top level of the course site
-    '''
-    activity_types = ['review','prepare','practice']
+    path_list : list of strings or buffers
+        paths to search
+    sub_re : string
+        regex excerpt to be search for literal matches of after searchign for {index}
+    file_out : string or buffer
+        path to write file, default none, returns the dataFrame
+    path_meaning : dict
+        dict with keys [dir,file,result] and values to be used as column names in output
+    dir_cleaner : function
+        how to clean dir names for use in final result (default strips '._')
+    file_cleaner : function
+        how to clean file names (default drops . to end)
 
+
+    '''
     all_file_df_list = []
     # iterate types 
-    for ac_type in activity_types:
-        ac_dir = '_'+ac_type
-        ac_files = os.listdir(os.path.join(tldpath,ac_dir))
+    file_list = [(p,f) for p in path_list for f in os.listdir(p) ]
 
-        # iterate dates within type
-        for datefile in ac_files:
-            date = datefile[:-3]
+    # iterate dates within type
+    for dir,file in file_list:
+        file_clean = file_cleaner(file)
+        dir_clean = dir_cleaner(dir)
 
-            date_path = os.path.join(ac_dir,datefile)
-            with open(date_path,'r') as f:
-                filetext = f.read()
-
-            #  the "first" result will be the only one. 
-            # first 8 characters & last are not the file name
-            dated_files = [[date,a[0][8:-2],ac_type ] 
-                            for a in re.finditer('{index}`.*\.md` ', filetext)]
-
-            all_file_df_list.append(pd.DataFrame(dated_files,
-                                        columns = ['date','file','type']))
+        cur_file_path = os.path.join(dir,file)
+        with open(cur_file_path,'r') as f:
+            filetext = f.read()
 
 
+        complete_re = '{index}`'+sub_re+'` '
+        #  the "first" result will be the only one. 
+        # TODO check that this is true 
+        # first 8 characters & last 2 are not the file name
+        # iterate the regex results, make list of list for df
+        result_list = [[file_clean, a[0][8:-2], dir_clean ] 
+                        for a in re.finditer(complete_re, filetext)]
+
+        all_file_df_list.append(pd.DataFrame(result_list,
+                                    columns = [path_meaning['dir'],
+                                               path_meaning['result'],
+                                               path_meaning['type']]))
+    # combine 
     all_file_df = pd.concat(all_file_df_list)
-    all_file_df.to_csv('kwl.csv',index=False)
+
+    if file_out:
+        all_file_df.to_csv(file_out,index=False)
+        return True
+    else:
+        return all_file_df
 
