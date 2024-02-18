@@ -1,45 +1,54 @@
-# Checking Course Standing
+# Standing
 
 
-## Badges 
-
-
-
-### Get a report
+## Get a Progress Report
 
 First, get your PR info: 
 ```
 gh pr list --state all --json title,latestReviews >> badges.json
 ```
 
-If you have more than 30 total PRs use the `-limit` option with a number >= your total number of PRs.
+Notes: 
+- `--state all` is important to get both open and closed PRs
+- `--json` is requires and `title, latestReviews` are the two requied attributes to that parameter, you can add additional ones though and for some features, additional ones are requires. 
+- if you have more than 30 total PRs(PRs only, not issues) use the `--limit`/`-L` option with a number >= your total number of PRs.
 
-Then use the package to verify and make a list of all: 
+Then use `cspt progressreport` to check which have been approved by a valid approver and have a badge keyword in them.
 
-```{click} badges:process_badges
----
-prog: verifyjson
-nested: full
----
+```
+cspt progressreport badges.json
 ```
 
+ Options allow you to control the format of the report. 
 
-## KWL repo contents 
+```{eval-rst}
+.. click:: cspt.cli:progressreport
+   :prog: cspt progressreport
+   :nested: full
+   :commands:
 
-```{warning}
-this may not be applicable in sp23
 ```
 
-```{click} kwltracking:get_file_list
----
-prog: kwlfilecheck
-nested: full
----
+## Check PR Titles
+
+This can check which titles will work with the grading calculation functions. 
+
+```{eval-rst}
+.. click:: cspt.cli:prfixlist
+   :prog: cspt prfixlist
+   :nested: full
+   :commands:
+
 ```
 
-```{click} kwltracking:count_files
----
-prog: kwlfilecount
-nested: full
----
+## Check if Early bonus is met
+
+
+```{eval-rst}
+.. click:: cspt.cli:earlybonus
+   :prog: cspt earlybonus
+   :nested: full
+   :commands:
+
 ```
+

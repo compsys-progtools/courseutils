@@ -46,9 +46,9 @@ def getbadgedate(assignment_type=None,prepare=False,review=False,practice=False)
 
 @cspt_cli.command()
 @click.option('--type', 'assignment_type', default='prepare',
-                help='type can be prepare, review, or practice')
+                help='type can be {prepare, review, or practice}; default prepare')
 @click.option('--date', default=None,
-                help='date should be YYYY-MM-DD of the tasks you want')
+                help='date should be YYYY-MM-DD of the tasks you want; default most recently posted')
 
 def getassignment(date, assignment_type = 'prepare'):
     '''
@@ -255,22 +255,18 @@ def exportprismia(lesson_file):
 
 
 @cspt_cli.command
-@click.argument('source-file',)
-@click.option('-n','--add-newline',is_flag=True,default=False)
+@click.argument('source-yaml',)
+@click.option('-n','--add-newline',is_flag=True,default=False,
+              help='add new line as last character')
 
-def createtoyfiles(source_file,add_newline):
+def createtoyfiles(source_yaml,add_newline):
     '''
     from a source file create a set of toy files
-
-    Parameters
-    ----------
-    source_file : path
-        path to a yaml file
 
     '''
     # TODO: check file type and use different readers to accepts files other than yaml
     # read file 
-    files_to_create = yaml.safe_load(source_file)
+    files_to_create = yaml.safe_load(source_yaml)
 
     # call creator
     files_from_dict(files_to_create,add_newline)
