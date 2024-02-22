@@ -53,7 +53,7 @@ def getbadgedate(assignment_type=None,prepare=False,review=False,practice=False)
 def getassignment(date, assignment_type = 'prepare'):
     '''
     get the assignment text formatted
-    (CLI entrypoint)
+    
     '''
 
     if not(date):

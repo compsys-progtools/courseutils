@@ -26,8 +26,9 @@ def wrap(s,marker,newline=False):
         joiner = ''
     return joiner.join([marker ,s , marker])
 
+
 class Lesson():
-    # TODO add processing and save methods
+    # TODO add processing 
     def __init__(self,text):
         # pull out header  marked by ---
         _,header,body = text.split('---')
@@ -42,11 +43,23 @@ class Lesson():
     
     def save(self,file_out):
         '''
-        write out lesson file
-        '''
-        # yamlify metadata
+        write out lesson to file_out 
 
+        Parameters
+        ----------
+        file_out : string or file buffer
+            where to write file
+        '''
+        text_out = '---\n'
+        # yamlify metadata
+        text_out += yaml.dump(self.metadata)
+        text_out += '\n---\n'
         #  get blocks in output version
+        text_out += '\n\n+++'.join(['']+[b.export() for b in self.blocks ])
+
+        with open(file_out,'w') as f:
+            f.write(text_out)
+
     
     def get_prismia(self):
         '''
@@ -86,7 +99,16 @@ class Lesson():
     def create_ac_file(self,ac_type,
                         file_out,base_site_path):
         '''
-        exgtract activityinstructions from lesson plan and write to file
+        extract activity instructions from lesson plan and write to file
+
+        Parameters
+        ----------
+        ac_type : str
+            prepare, practice, or review
+        base_site_path : str or path
+            site path
+        file_out : str
+            file nam to sace the file
         '''
         
         # find blocks for ac 
@@ -94,8 +116,8 @@ class Lesson():
         ac_text = ''.join([b.body for b in self.activities 
                            if b.labels['ac_type'] == ac_type])
         
-        file_out = os.path.join(base_site_path, '_'+ac_type, file_out +'.md')
-        with open(file_out,'w') as f:
+        path_out = os.path.join(base_site_path, '_'+ac_type, file_out +'.md')
+        with open(path_out,'w') as f:
             f.write(ac_text)
 
     
@@ -132,13 +154,39 @@ class Block():
             self.labels = DEFAULT_BLOCK_META
             self.body = text.strip()
 
-    def save(self):
+    def export(self):
         '''
         export back to srting
         '''
-        text_parts = ['+++' + json.dumps(self.labels) ,
-                        self.body]
-        return '\n\n'.join(text_parts)
+        text_out = json.dumps(self.labels) 
+        text_out += '\n\n' + self.body
+        return text_out
+    
+    def add_label(self,label,value):
+        '''
+        add an additional key value pair, label:value
+        to the labels for the block
+
+        Parameters
+        ----------
+        label : string
+            key to add to label attribute of block
+        value : string or string-like
+            value to store
+        '''
+        self.labels.update({label:value})
+
+    def add_labels(self,label_dict):
+        '''
+        add an additional key value pair, label:value
+        to the labels for the block
+
+        Parameters
+        ----------
+        label_dict : dict 
+            key, value pairs to add
+        '''
+        self.labels.update(label_dict)
 
     def is_labeled(self,label,values):
         '''
