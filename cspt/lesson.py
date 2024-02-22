@@ -66,10 +66,10 @@ class Lesson():
         get prismia version
 
         '''
-        prismia_subset = self.filter_blocks('lesson_parts',['prismia','main'])
+        prismia_subset = self.filter_blocks('lesson_part',['prismia','main'])
         # format each block
         prismia_blocks = [b.get_prismia() for b in prismia_subset]
-        return '---'.join(prismia_blocks)
+        return '\n\n---\n\n'.join(prismia_blocks)
     
     def get_site(self):
         # process each block
@@ -210,7 +210,7 @@ class Block():
         stripping admonitions and empty after filter
         '''
         body_prismia = ''
-        re.search('```{.*}', b).group().replace('`','').strip('{}')
+        # re.search('```{.*}', b).group().replace('`','').strip('{}')
         code_blocks = ['code-cell', 'code-block']
         last_end = 0
 
