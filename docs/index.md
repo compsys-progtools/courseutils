@@ -34,8 +34,6 @@ tasktracking.md
 standing.md
 instructor.md
 library.md
-genindex
-modindex
 ```
 
 <!-- 
