@@ -3,7 +3,7 @@ from datetime import datetime
 import re
 from numpy import prod as npprod
 
-from .config import GH_APPROVERS ,EARLY_BIRD_DEADLINE
+from .config import GH_APPROVERS, EARLY_BIRD_DEADLINE
 badge_types = ['experience','review','practice','explore','build','lab','community','prepare']
 dated_types = ['experience','review','practice']
 date_re = re.compile('20[2-][0-9]-[0-1][0-9]-[0-3][0-9]')
