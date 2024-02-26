@@ -3,91 +3,109 @@
   "title": "overview",
   "steps": [
     {
+      "title": "Where to start",
       "file": "setup.py",
       "description": "setuptools is a Python package for installing programs. This file `setup.py` is special that `pip` will look for. ",
       "line": 1
     },
     {
+      "title": "how it finds modules",
       "file": "setup.py",
       "description": "here it defines what to be installed, each of these refers to a folder with an `__init__.py` or a `.py` file. ",
       "line": 6
     },
     {
+      "title": "dependencies",
       "file": "setup.py",
       "description": "and here it defines the dependencies to install first",
       "line": 10
     },
     {
+      "title": "Console entry points, aka terminal commands",
       "file": "setup.py",
       "description": "this is what makes it have CLI programs available this says that the `cspt` command will be found in the `cspt/cli.py` file in the `cspt_cli` function. let's go look at that function next.",
       "line": 13
     },
     {
+      "title": "top group function",
       "file": "cspt/cli.py",
       "description": "This funciton is not very interesting, but it defines the entrypoint that uses the [click package](https://click.palletsprojects.com/en/8.1.x/commands/)",
       "line": 15
     },
     {
+      "title": "first subcommand",
       "file": "cspt/cli.py",
       "description": "these lines make the following function a sub command of the `cspt_cli` function's command (`cspt`)",
       "line": 23
     },
     {
+      "title": "another subcommand",
       "file": "cspt/cli.py",
       "description": "here in this function, it calls other functions provided in the library with a little bit of logic to parse the options. \n\nthen it uses `click`'s `echo` method to print the info to the terminal. ",
       "line": 59
     },
     {
+      "title": "tracing a function",
       "file": "cspt/cli.py",
       "description": "here it is not clear where this function comes from, but if we go to the top of the file, we can learn more. We will go there next. ",
       "line": 63
     },
     {
+      "title": "imported functions",
       "file": "cspt/cli.py",
       "description": "From here we see that the `fetch_to_checklist` is defined in the `tasktracking.py`  let's go there next",
       "line": 10
     },
     {
+      "title": "a core function",
       "file": "cspt/tasktracking.py",
       "description": "here it is, this function takes in the date and assignment type",
       "line": 105
     },
     {
+      "title": "docstring",
       "file": "cspt/tasktracking.py",
       "description": "here you can see that this line is incomplete.  If no one has yet, you could make a suggestion on the PR to fix it. ",
       "line": 113
     },
     {
+      "title": "requests",
       "file": "cspt/tasktracking.py",
       "description": "here is that line we talked about in class that fetches the course website. ",
       "line": 119
     },
     {
+      "title": "regex",
       "file": "cspt/tasktracking.py",
       "description": "the majority of the work this function does is use regular expressions do clean up the text",
       "line": 123
     },
     {
+      "title": "return",
       "file": "cspt/tasktracking.py",
-      "description": "then it returns thea ctual text",
+      "description": "then it returns the actual text",
       "line": 126
     },
     {
+      "title": "shared variable",
       "file": "cspt/tasktracking.py",
       "description": "this main URL is used in a lot of places, so I made it a variable",
       "line": 117
     },
     {
+      "title": "imported variable",
       "file": "cspt/tasktracking.py",
       "description": "this variable is stored in the config.py file so that I only have to change it in one place, despite using it in many. ",
       "line": 7
     },
     {
+      "title": "variables to update each semester",
       "file": "cspt/config.py",
       "description": "This is what I have to update each semester",
       "line": 4
     },
     {
+      "title": "exampl options",
       "file": "cspt/cli.py",
       "description": "for this function, I wanted the options to be flags. ",
       "line": 26
