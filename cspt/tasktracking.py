@@ -126,17 +126,4 @@ def fetch_to_checklist(date, assignment_type = 'prepare'):
     return cleaned_lists
 
 
-@click.command()
-@click.option('--type', 'assignment_type', default='prepare',
-                help='type can be prepare, review, or practice')
-@click.option('--date', default=None)
-def get_all(date):
-    '''
-    '''
-    type_list = ['prepare','review','practice']
-    activities = []
-    for assignment_type in type_list:
-        try:
-            activities.append(get_assignment(date,assignment_type))
-        except:
-            print('no ' + assignment_type + ' currently posted for this date')
+
