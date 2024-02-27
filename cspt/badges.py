@@ -44,7 +44,6 @@ def is_title_gradeable(pr_title,errortype=False):
         date_included = True
 
     good = badge_type_included and date_included
-    #print(f"{pr_title}: badgetype({badge_type_included}), dateincluded({date_included})")
 
     if errortype:
         if good:
