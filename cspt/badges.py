@@ -16,7 +16,9 @@ supported_dates_re = [
 
 def is_title_gradeable(pr_title,errortype=False):
     '''
-    this defines if a pr title is good, it contains exactly one badge type word
+    this defines if a pr title is good, it contains exactly one badge type word and
+    a well date if experience, review or practice, in ISO (YYYY-MM-DD, YYYY MM DD) or 
+    M/DD/YY, MM-DD-YY or M-DD-YY
 
     Parameters
     ----------
