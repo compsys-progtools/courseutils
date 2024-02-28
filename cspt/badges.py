@@ -6,11 +6,19 @@ from numpy import prod as npprod
 from .config import GH_APPROVERS, EARLY_BIRD_DEADLINE
 badge_types = ['experience','review','practice','explore','build','lab','community','prepare']
 dated_types = ['experience','review','practice']
-date_re = re.compile('20[2-][0-9]-[0-1][0-9]-[0-3][0-9]')
+supported_dates_re = [
+    re.compile('20[2-9][0-9]-[0-1][0-9]-[0-3][0-9]'), # YYYY-DD-MM
+    re.compile('(\d{1,2})-(\d{1,2})-(\d{2})'), # MM-DD-YY and M-DD-YY
+    re.compile('(\d{4})\s(\d{2})\s(\d{2})'), # YYYY MM DD (Space separated)
+    re.compile('(\d{1,2})/(\d{1,2})/(\d{2})') # M/DD/YY
+    # Add other regex expressions as needed
+]
 
 def is_title_gradeable(pr_title,errortype=False):
     '''
-    this defines if a pr title is good, it contains exactly one badge type word
+    this defines if a pr title is good, it contains exactly one badge type word and
+    a well date if experience, review or practice, in ISO (YYYY-MM-DD, YYYY MM DD) or 
+    M/DD/YY, MM-DD-YY or M-DD-YY
 
     Parameters
     ----------
@@ -30,7 +38,8 @@ def is_title_gradeable(pr_title,errortype=False):
     dated_type = sum([bt in pr_title.lower() for bt in dated_types])>0
     
     if dated_type:
-        date_included = bool(date_re.search(pr_title))
+        # Search for supported dates in PR title
+        date_included = any(date_regex.search(pr_title) for date_regex in supported_dates_re)
     else:
         date_included = True
 
