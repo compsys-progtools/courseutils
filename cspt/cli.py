@@ -111,11 +111,11 @@ def kwlcsv(tldpath = '.'):
 @click.argument('json-output', type =click.File('r'))
 @click.option('-f','--file-out',default=None,
                 help='to write to a file, otherwise will use stdout')
-@click.option('-r','--fmt-report',is_flag=True,
-              help ='process approved badges to a list')
+@click.option('-r','--report',is_flag=True,
+              help ='process approved badges  by type to a more descriptive report')
 @click.option('-s','--soft',is_flag= True,
               help = 'soft check, skip title check')
-def progressreport(json_output,file_out, fmt_report,soft):
+def progressreport(json_output,file_out, report,soft):
     '''
     list PR titles from json or - to use std in  that have been approved by an official approver 
     
@@ -131,7 +131,7 @@ def progressreport(json_output,file_out, fmt_report,soft):
 
     approved_prs = process_pr_json(json_output,titles_only=True,filter_list=selected_filters)
 
-    if fmt_report:
+    if report:
         report = generate_report(approved_prs)
     else:
         report = '\n'.join(approved_prs)
@@ -145,11 +145,23 @@ def progressreport(json_output,file_out, fmt_report,soft):
 
 
 @cspt_cli.command()
-@click.option('-t','--pr-title', )
-@click.option('-g','--ghpr',type =click.File('r'))
+@click.option('-t','--pr-title', default = None,
+              help = 'title to check as string')
+@click.option('-g','--ghpr',type =click.File('r'),
+              help = 'pass title as file, or gh pr view output through pipe')
 def titlecheck(pr_title,ghpr):
     '''
+    check a single title
     '''
+    if not(ghpr) and not(pr_title):
+        click.echo('a title to test is required, see --help')
+        return
+
+    if ghpr:
+        text_in = ghpr.read_lines()
+        # drop from the last # to end (there is probably a better way, to do this)
+        pr_title = ''.join(text_in[0].split('#')[:-1])
+
     good, error_text = is_title_gradeable(pr_title,errortype=True)
 
     if good:
@@ -221,20 +233,21 @@ def earlybonus(json_output):
     '''
     check if early bonus is met from output of 
     `gh pr list -s all --json title,latestReviews,createdAt` and return 
-    a message
+    a message. input from  either a file or -for stdin
 
     '''
+    json_output = json.load(json_output)
     approved_submitted_early = process_pr_json(json_output,titles_only=True,
-                                               filter_list= ['approved','early'])
+                                               filter_list= ['early'])
     
     eligble_by_type = badges_by_type(approved_submitted_early)
 
-    earned = eligble_by_type['review'] + eligble_by_type['practice'] >=6
+    earned = len(eligble_by_type['review']) + len(eligble_by_type['practice']) >=6
 
     earned_text = {True:'was',False:'was not'}
     message = 'early bird bonus ' + earned_text[earned] + ' earned'
     click.echo(message)
-    click.echo()
+    # click.echo()
 
 # --------------------------------------------------------------
 #           Instructor commands
