@@ -146,9 +146,13 @@ class Block():
         meta_candidate = text[:first_linebreak]
         # empty string will eval to false
         if meta_candidate and meta_candidate[0] =='{':
-
-            self.labels = json.loads(meta_candidate)
-            self.body = text[first_linebreak:].strip()
+            try: 
+                self.labels = json.loads(meta_candidate)
+                self.body = text[first_linebreak:].strip()
+            except:
+                # TODO: clean this up, make it process better
+                print(meta_candidate)
+                self.labels = json.loads(meta_candidate)
             
         else: 
             self.labels = DEFAULT_BLOCK_META
