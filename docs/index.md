@@ -50,7 +50,7 @@ if you clone in order to develop, you may want to install with pip's `-e` option
 pip install -e courseutils
 ```
 
-Then to update, pull and instll again. 
+To update, pull and install again. 
 
 
 ### Direct install 

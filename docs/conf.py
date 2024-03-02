@@ -111,7 +111,6 @@ myst_enable_extensions = [
     "smartquotes",
     "strikethrough",
     "substitution",
-    "design"
     # "tasklist",
 ]
 
