@@ -22,8 +22,8 @@ kernelspec:
 ---
 '''
 
-badge_string = ("\n\n## Prepare for this class \n\n"+
-            "```{{include}} ../_prepare/{date}.md\n```\n\n" +
+badge_string = ("\n\n## Prepare for Next Class \n\n"+
+            "```{{include}} ../_prepare/{prepdate}.md\n```\n\n" +
             "## Badges\n\n"+
             '`````{{tab-set}}\n'+
             '````{{tab-item}} Review\n' +
@@ -46,8 +46,8 @@ def process_export(export,date_in):
             '```\n\n+++{"lesson_part": "main"}\n\n```{code-cell} bash\n:tags: ["skip-execution"]\n\g<line>```\n\n+++{"lesson_part": "main","type":"output"}\n\n```{code-block} console\n',export)
     
     # TODO: rm extra parts at top and bottom 
-    
-    date_activity = badge_string.format(date=date_in)
+    prepdate = calculate_badge_date('prepare',date_in)
+    date_activity = badge_string.format(date=date_in,prepdate=prepdate)
 
     note_parts = [header,md_notes_starter,date_activity,footer_string]
     notes = '\n\n'.join(note_parts)
