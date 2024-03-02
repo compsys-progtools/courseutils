@@ -8,5 +8,5 @@ myst-nb
 myst-parser
 seaborn
 sphinx-click
-sphinx-panels
+sphinx-design
 pydata_sphinx_theme
