@@ -2,24 +2,17 @@ from setuptools import setup
 
 setup(
     name='syscourseutils',
-    version='0.4.0',
-    py_modules=['kwltracking','tasktracking','sitetools','badges'],
+    version='1.0.2',
+    py_modules=['cspt','cspt.activities','cspt.badges','cspt.cli',
+                'cspt.config','cspt.lesson','cspt.notes','cspt.prep',
+                'cspt.sitetools','cspt.tasktracking'
+                ],
     install_requires=[
         'Click', 'pandas', 'lxml', 'numpy','requests','html5lib'
     ],
     entry_points={
         'console_scripts': [
-            'kwlfilecheck = kwltracking:get_file_list',
-            'kwlfilecount = kwltracking:count_files',
-            'kwlextracount = kwltracking:count_extra_files',
-            'sysgetassignment = tasktracking:get_assignment',
-            'sysfmtassignment = tasktracking:fetch_to_checklist',
-            'sysgetbadgedate = tasktracking:get_badge_date',
-            'kwlcsv = sitetools:kwl_csv',
-            'verifybadge = badges:verify_badge',
-            'verifyjson = badges:process_badges',
-            'sysapprovedbadges = badges:cli_get_approved_titles',
-            'cleandate = tasktracking:parse_date'
+            'cspt = cspt.cli:cspt_cli',
         ],
     },
 )

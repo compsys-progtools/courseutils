@@ -4,8 +4,7 @@ from datetime import date as dt
 from datetime import datetime as dtt
 from datetime import timedelta
 import re
-# UPDATE: update this each semester
-base_url = 'https://raw.githubusercontent.com/compsys-progtools/spring2024/main/_'
+from .config import BASE_URL
 
 cur_days_off = [(dt(2024,3,10),dt(2024,3,16)),
                     (dt(2024,2,19))]
@@ -74,6 +73,10 @@ def calculate_badge_date(assignment_type,today=None):
         # if auto in the morning use past
         if dtt.today().hour < 12:
             today -= timedelta(days=1)
+    
+    # make date object from string
+    if type(today)==str:
+        today = dt.fromisoformat(today)
 
     last_class = today- day_adj[today.weekday()]
     # 
@@ -90,64 +93,6 @@ def calculate_badge_date(assignment_type,today=None):
     # 
     return badge_date
 
-@click.command()
-@click.option('--type', 'assignment_type', default=None,
-                help='type can be prepare, review, or practice')
-@click.option('--prepare',is_flag=True)
-@click.option('--review',is_flag=True)
-@click.option('--practice',is_flag=True)
-def get_badge_date(assignment_type=None,prepare=False,review=False,practice=False):
-    '''
-    cli for calculate badge date
-    '''
-    # set assignment date from flags if not passed
-    if not(assignment_type):
-        if prepare:
-            assignment_type='prepare'
-        
-        if review:
-            assignment_type ='review'
-        
-        if practice:
-            assignment_type='practice'
-    
-    click.echo(calculate_badge_date(assignment_type))
-
-
-@click.command()
-@click.argument('passed_date')
-
-def parse_date(passed_date):
-    '''
-    process select non dates
-    '''
-    passed_date_clean = passed_date.strip().lower()
-
-    if passed_date_clean == "today":
-        click.echo(dt.today().isoformat())
-    else:
-        click.echo(passed_date_clean)
-
-
-
-@click.command()
-@click.option('--type', 'assignment_type', default='prepare',
-                help='type can be prepare, review, or practice')
-@click.option('--date', default=None,
-                help='date should be YYYY-MM-DD of the tasks you want')
-
-def get_assignment(date, assignment_type = 'prepare'):
-    '''
-    get the assignment text formatted
-    (CLI entrypoint)
-    '''
-
-    if not(date):
-        date = calculate_badge_date(assignment_type)
-
-    
-    md_activity = fetch_to_checklist(date, assignment_type)
-    click.echo( md_activity)
 
 
 
@@ -169,7 +114,7 @@ def fetch_to_checklist(date, assignment_type = 'prepare'):
     '''
 
 
-    path = base_url +assignment_type + '/' + date +'.md'
+    path = BASE_URL +assignment_type + '/' + date +'.md'
     # get and convert to checklist from enumerated
     fetched_instructions = requests.get(path).text
     check_list = re.sub('[0-9]\. ', '- [ ] ', fetched_instructions)
@@ -181,17 +126,4 @@ def fetch_to_checklist(date, assignment_type = 'prepare'):
     return cleaned_lists
 
 
-@click.command()
-@click.option('--type', 'assignment_type', default='prepare',
-                help='type can be prepare, review, or practice')
-@click.option('--date', default=None)
-def get_all(date):
-    '''
-    '''
-    type_list = ['prepare','review','practice']
-    activities = []
-    for assignment_type in type_list:
-        try:
-            activities.append(get_assignment(date,assignment_type))
-        except:
-            print('no ' + assignment_type + ' currently posted for this date')
+
