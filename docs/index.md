@@ -3,17 +3,46 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive. -->
 
-# Welcome to Computer Systems and Programming Tools courseutils's documentation!
+#  Computer Systems and Programming Tools courseutils
 
 These are a set of tools for managing tasks and managing the markdown lesson plans. 
 
-## Setup
+## Install 
 
+### By clone
 
+You can clone first
 ```
 git clone https://github.com/compsys-progtools/courseutils.git
+```
+
+and then install 
+```
 pip install courseutils
 ```
+(possibly `pip3`)
+
+if you clone in order to develop, you may want to install with pip's `-e` option
+
+```
+pip install -e courseutils
+```
+
+Then to update, pull and instll again. 
+
+
+### Direct install 
+
+you can also install without cloning first with 
+
+```
+pip install git+https://github.com/compsys-progtools/courseutils.git
+```
+
+Optionally, you can specify a branch to install, by default it installs main. 
+
+To update in this case, use the same command
+
 
 ## Usage 
 

@@ -49,6 +49,16 @@ html_theme = 'pydata_sphinx_theme'
 html_theme_options = {
   "search_bar_text": "Search this site...",
   "navbar_end": ["search-field.html"],
+    "header_links_before_dropdown": 6,
+  "icon_links": [ 
+        {
+            "name": "GitHub",
+            "url": "https://github.com/compsys-progtools/courseutils",
+            "icon": "fa-brands fa-github",
+        },],
+  "secondary_sidebar_items": {
+        "**/*": ["page-toc", "edit-this-page", "sourcelink"],
+    }
 }
 
 # html_favicon = "_static/favicon.ico"

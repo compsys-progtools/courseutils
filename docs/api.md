@@ -1,4 +1,4 @@
-# Library
+# API
 
 The primary way to use  `courseutils` is through the CLI as outlined through, but it can also be used as a Python library. 
 
