@@ -127,17 +127,20 @@ def progressreport(json_output,file_out, report,soft):
 
     approved_prs = process_pr_json(json_output,titles_only=True,filter_list=selected_filters)
 
-    if report:
-        report = generate_report(approved_prs)
-    else:
-        report = '\n'.join(approved_prs)
-    
+    if approved_prs: # not empty
+        if report:
+            report = generate_report(approved_prs)
+        else:
+            report = '\n'.join(approved_prs)
+        
 
-    if file_out: 
-        with open(file_out,'w') as f:
-            f.write(report)
+        if file_out: 
+            with open(file_out,'w') as f:
+                f.write(report)
+        else:
+            click.echo(report)
     else:
-        click.echo(report)
+        click.echo('There are no approved badges')
 
 
 @cspt_cli.command()
@@ -155,7 +158,7 @@ def titlecheck(pr_title,ghpr):
 
     if ghpr:
         text_in = ghpr.read_lines()
-        # drop from the last # to end (there is probably a better way, to do this)
+        # drop from the last # to end of the first line(there is probably a better way, to do this)
         pr_title = ''.join(text_in[0].split('#')[:-1])
 
     good, error_text = is_title_gradeable(pr_title,errortype=True)
@@ -172,27 +175,31 @@ def titlecheck(pr_title,ghpr):
 @click.argument('json-output', type =click.File('r'),)
 
 def prfixlist(json_output,):
-     '''
-     check json output for titles that will not be counted as a badge
-     this will include `gh pr list -s all --json title,latestReviews` 
+    '''
+    check json output for titles that will not be counted as a badge
+    this will include `gh pr list -s all --json title,latestReviews` 
 
-     '''
-     gh_dict = json.load(json_output)
+    '''
+    gh_dict = json.load(json_output)
 
-     nums_avail = 'number' in gh_dict[0].keys()
+    nums_avail = 'number' in gh_dict[0].keys()
 
-     bad_pr_titles = process_pr_json(gh_dict,numbered=nums_avail,
-                     titles_only=True,
-                        filter_list = ['bad_title'],
-                        custom_field_parser = {},
-                        custom_filters = {},
-                        filter_mode = 'filter')
-     
-     if nums_avail:
-        #   make list of strings
-        bad_pr_titles = [str(k) + ' ' + v for k,v in bad_pr_titles.items()]
-     
-     click.echo('\n'.join(bad_pr_titles))
+    bad_pr_titles = process_pr_json(gh_dict,numbered=nums_avail,
+                    titles_only=True,
+                    filter_list = ['bad_title'],
+                    custom_field_parser = {},
+                    custom_filters = {},
+                    filter_mode = 'filter')
+    
+    # do nothing if there are none to fix
+    if bad_pr_titles:
+        if nums_avail:
+            #   make list of strings
+            bad_pr_titles = [str(k) + ' ' + v for k,v in bad_pr_titles.items()]
+
+        click.echo('\n'.join(bad_pr_titles))
+    
+
 
 
     
@@ -234,16 +241,19 @@ def earlybonus(json_output):
     '''
     json_output = json.load(json_output)
     approved_submitted_early = process_pr_json(json_output,titles_only=True,
-                                               filter_list= ['early'])
+                                               filter_list= ['approved','early'])
     
-    eligble_by_type = badges_by_type(approved_submitted_early)
+    if approved_submitted_early:
+        eligble_by_type = badges_by_type(approved_submitted_early)
 
-    earned = len(eligble_by_type['review']) + len(eligble_by_type['practice']) >=6
+        earned = len(eligble_by_type['review']) + len(eligble_by_type['practice']) >=6
 
-    earned_text = {True:'was',False:'was not'}
-    message = 'early bird bonus ' + earned_text[earned] + ' earned'
-    click.echo(message)
-    # click.echo()
+        earned_text = {True:'was',False:'was not'}
+        message = 'early bird bonus ' + earned_text[earned] + ' earned'
+        click.echo(message)
+    else:
+        
+        click.echo('there were no approved early badges')
 
 # --------------------------------------------------------------
 #           Instructor commands

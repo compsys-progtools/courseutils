@@ -1,6 +1,7 @@
 # Standing
 
 
+(progressreport)=
 ## Get a Progress Report
 
 First, get your PR info: 
@@ -31,6 +32,23 @@ cspt progressreport badges.json
 
 ## Check PR Titles
 
+### Check a single PR
+
+```
+cspt titlecheck -t 'title I am thinking about'
+```
+
+
+```{eval-rst}
+.. click:: cspt.cli:titlecheck
+   :prog: cspt titlecheck
+   :nested: full
+   :commands:
+
+```
+
+
+### Make a list of PRs to fix
 This can check which titles will work with the grading calculation functions. 
 
 ```{eval-rst}
@@ -41,13 +59,21 @@ This can check which titles will work with the grading calculation functions.
 
 ```
 
+### What counts?
 Under the hood, the majority of the checking is done by this function: 
 
 ```{eval-rst}
-.. automodule:: cspt.badges:is_title_gradeable
+.. automodule:: cspt.badges
+   :members: is_title_gradeable
+   :no-index:
 ```
 
 ## Check if Early bonus is met
+
+
+```
+gh pr list -s all --json title,latestReviews,createdAt  | cspt earlybonus -
+```
 
 
 ```{eval-rst}

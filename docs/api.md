@@ -26,15 +26,15 @@ some functions are incomplete
 ## Notes
 
 ```{eval-rst}
-.. automodule:: cspt.tasktracking
+.. automodule:: cspt.notes
     :members:
 ```
 
 
-## Notes
+## Prep
 
 ```{eval-rst}
-.. automodule:: cspt.tasktracking
+.. automodule:: cspt.prep
     :members:
 ```
 

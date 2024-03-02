@@ -18,7 +18,8 @@ author = 'Sarah M Brown '
 extensions = [
     "myst_nb",
     'sphinx.ext.intersphinx',
-    "sphinx_panels",
+    "sphinx_design",
+    # "sphinx_panels",
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx_click'
@@ -47,15 +48,14 @@ html_theme = 'pydata_sphinx_theme'
 
 
 html_theme_options = {
-  "search_bar_text": "Search this site...",
-  "navbar_end": ["search-field.html"],
-    "header_links_before_dropdown": 6,
+  "show_nav_level": 2,
+  "header_links_before_dropdown": 6,
   "icon_links": [ 
         {
             "name": "GitHub",
             "url": "https://github.com/compsys-progtools/courseutils",
             "icon": "fa-brands fa-github",
-        },],
+        }],
   "secondary_sidebar_items": {
         "**/*": ["page-toc", "edit-this-page", "sourcelink"],
     }
@@ -72,8 +72,9 @@ html_static_path = ['_static']
 # html_extra_path = ["feed.xml"]
 # map pages to which sidebar they should have
 #  "page_file_name": ["list.html", "of.html", "sidebar.html", "files.html"]
-# html_sidebars = {
-#     "index": ["hello.html"],
+html_sidebars = {
+    "*": [],
+    "**/*": ["sidebar-nav-bs",]
 #     "about": ["hello.html"],
 #     "publications": ["hello.html"],
 #     "projects": ["hello.html"],
@@ -82,7 +83,7 @@ html_static_path = ['_static']
 #     "news/**": ['postcard.html', 'recentposts.html', 'archives.html'],
 #     "blog": ['tagcloud.html', 'archives.html'],
 #     "blog/**": ['postcard.html', 'recentposts.html', 'archives.html']
-# }
+}
 
 blog_title = "Blog "
 blog_path = "news"
@@ -110,6 +111,7 @@ myst_enable_extensions = [
     "smartquotes",
     "strikethrough",
     "substitution",
+    "design"
     # "tasklist",
 ]
 

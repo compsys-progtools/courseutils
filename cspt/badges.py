@@ -51,7 +51,7 @@ def is_title_gradeable(pr_title,errortype=False):
         else:
             msg = ''
             if not badge_type_included:
-                msg = 'no type keyword '
+                msg = 'missing a badge type keyword. '
             
             if not(date_included) and dated_type:
                 msg += 'missing or poorly formatted date'
