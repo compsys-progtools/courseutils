@@ -106,22 +106,27 @@ field_parser = {'title':lambda t:t,
 
 
 
-def check_approved(pr):
-     '''
-     check a pr dictionary for approval
+def check_approved(pr, any=False):
+    '''
+    check a pr dictionary for approval by default only approvers count
 
-     Parameters
-     ----------
-     pr : dict
-        single pr info from `gh pr list --json`
+    Parameters
+    ----------
+    pr : dict
+    single pr info from `gh pr list --json`
+    any: bool
+        if True consider any approavl
 
-    returns
+    Returns
     -------
     approved : bool
         True if approved by an eligible approver
-     '''
-     return (pr['latestReviews']['state'] == 'APPROVED' and  
-             pr['latestReviews']['author']['login']in GH_APPROVERS)
+    '''
+    if any: 
+        return pr['latestReviews']['state'] == 'APPROVED'
+    else:
+        return (pr['latestReviews']['state'] == 'APPROVED' and  
+            pr['latestReviews']['author']['login']in GH_APPROVERS)
 
 
 filter_fx = {'approved': check_approved,

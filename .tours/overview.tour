@@ -105,7 +105,7 @@
       "line": 4
     },
     {
-      "title": "exampl options",
+      "title": "example options",
       "file": "cspt/cli.py",
       "description": "for this function, I wanted the options to be flags. ",
       "line": 26

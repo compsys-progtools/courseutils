@@ -89,12 +89,8 @@ def parsedate(passed_date):
 
 def kwlcsv(tldpath = '.'):
     '''
-    generate the activity file csv file for the site building from site located at the TLDPATH
-
-    Parameters
-    ----------
-    tldpath : string or path
-        directory of the top level of the course site
+    generate the activity file csv file for the site building from site 
+    located at the TLDPATH (directory of the top level of the course site)
     '''
     activity_types = ['review','prepare','practice']
     ac_dir_list = [os.path.join(tldpath,'_'+ac_type) for ac_type in activity_types]
@@ -274,7 +270,8 @@ def exportprismia(lesson_file):
 
 def createtoyfiles(source_yaml,add_newline):
     '''
-    from a source file create a set of toy files
+    from a yaml source file create a set of toy files with file names as the keys
+    and the values as the content of each file
 
     '''
     # TODO: check file type and use different readers to accepts files other than yaml
@@ -334,7 +331,7 @@ def exportac(lesson_file,ac_date,path,prepare):
 @cspt_cli.command()
 @click.option('-d','--date-in',
               help='date part of filename to read in')
-@click.option('-p','--base-path',
+@click.option('-p','--base-path', default = '.',
               help='path that contains the notes folder')
 
 def processexport(date_in = None,base_path = '.'):

@@ -125,10 +125,10 @@ class Lesson():
         '''
         filter blocks for ones that have value for the label
 
-        Parameter
-        ---------
+        Parameters
+        ----------
         label : string
-            label that is one the of keys in block metadaa
+            label that is one the of keys in block metadata
         value: string
             value to filter for
         '''
@@ -229,7 +229,7 @@ class Block():
             body_prismia += self.body[last_end:block_start]
             # extract literal block content
             literal_content = self.body[content_start:content_end]
-            block_type = m.group('blocktype').replace('`','').strip('{}')
+            block_type = m_lit.group('blocktype').replace('`','').strip('{}')
             if block_type in code_blocks:
                 # keep ```, drop markup
                 body_prismia += wrap(literal_content,'```',newline=True)

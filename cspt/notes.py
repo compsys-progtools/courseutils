@@ -29,7 +29,7 @@ badge_string = ("\n\n## Prepare for this class \n\n"+
             '````{{tab-item}} Review\n' +
             "```{{include}} ../_review/{date}.md\n```\n\n````\n\n" +
             '````{{tab-item}} Practice\n' +
-            "```{{include}} ../_practice/{date}.md\n```\n\n")
+            "```{{include}} ../_practice/{date}.md\n```\n\n````\n`````")
     
 
 footer_string = ('\n\n## Experience Report Evidence' + 
@@ -43,7 +43,7 @@ def process_export(export,date_in):
 
     # transform export to notes base
     md_notes_starter = re.sub(r'\(base\) brownsarahm.*\$ (?P<line>.*\n)',
-            '```\n\n+++\n\n```{code-cell} bash\n:tags: ["skip-execution"]\n\g<line>```\n\n+++\n\n```{code-block} console\n',export)
+            '```\n\n+++{"lesson_part": "main"}\n\n```{code-cell} bash\n:tags: ["skip-execution"]\n\g<line>```\n\n+++{"lesson_part": "main","type":"output"}\n\n```{code-block} console\n',export)
     
     # TODO: rm extra parts at top and bottom 
     

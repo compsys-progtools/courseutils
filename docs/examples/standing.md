@@ -41,6 +41,12 @@ This can check which titles will work with the grading calculation functions.
 
 ```
 
+Under the hood, the majority of the checking is done by this function: 
+
+```{eval-rst}
+.. automodule:: cspt.badges:is_title_gradeable
+```
+
 ## Check if Early bonus is met
 
 

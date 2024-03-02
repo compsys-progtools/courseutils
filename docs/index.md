@@ -59,10 +59,9 @@ For use as a python library in component functions, see them in
 :maxdepth: 2
 
 cli.md
-tasktracking.md
-standing.md
-instructor.md
-library.md
+examples/index.md
+instructor/index.md
+api.md
 ```
 
 <!-- 
