@@ -1,0 +1,815 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>API &#8212; courseutils</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Website Tools" href="instructor/website.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">courseutils</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cli.html">
+                        CLI
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="instructor/index.html">
+                        Instructor
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        API
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/compsys-progtools/courseutils" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/compsys-progtools/courseutils" title="Course" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-school fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Course</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cli.html">
+                        CLI
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="instructor/index.html">
+                        Instructor
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        API
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/compsys-progtools/courseutils" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/compsys-progtools/courseutils" title="Course" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-school fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Course</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">API</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="api">
+<h1>API<a class="headerlink" href="#api" title="Link to this heading">#</a></h1>
+<p>The primary way to use  <code class="docutils literal notranslate"><span class="pre">courseutils</span></code> is through the CLI as outlined through, but it can also be used as a Python library.</p>
+<p>This API is also useful for extending the CLI.  Many of these functions offer flexible processing of basic information that could be used to create additional CLI functionality beyond what is already implemented.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>some functions are incomplete</p>
+</div>
+<section id="module-cspt.badges">
+<span id="badges"></span><h2>Badges<a class="headerlink" href="#module-cspt.badges" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.badges.badges_by_type">
+<span class="sig-prename descclassname"><span class="pre">cspt.badges.</span></span><span class="sig-name descname"><span class="pre">badges_by_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">approved_prs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.badges.badges_by_type" title="Link to this definition">#</a></dt>
+<dd><p>parse list of approved PRs to filter for badges</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>approved_prs</strong> (<em>list</em>) – list of titles or list of dicts with ‘title’ as a key</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>badges_by_type</strong> – dict with keys as badge types, keys as input type</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.badges.check_approved">
+<span class="sig-prename descclassname"><span class="pre">cspt.badges.</span></span><span class="sig-name descname"><span class="pre">check_approved</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">any</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.badges.check_approved" title="Link to this definition">#</a></dt>
+<dd><p>check a pr dictionary for approval by default only approvers count</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pr</strong> (<em>dict</em>) – </p></li>
+<li><p><strong>--json</strong> (<em>single pr info from gh pr list</em>) – </p></li>
+<li><p><strong>any</strong> (<em>bool</em>) – if True consider any approavl</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>approved</strong> – True if approved by an eligible approver</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.badges.is_title_gradeable">
+<span class="sig-prename descclassname"><span class="pre">cspt.badges.</span></span><span class="sig-name descname"><span class="pre">is_title_gradeable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pr_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errortype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.badges.is_title_gradeable" title="Link to this definition">#</a></dt>
+<dd><p>this defines if a pr title is good, it contains exactly one badge type word and
+a well date if experience, review or practice, in ISO (YYYY-MM-DD, YYYY MM DD) or
+M/DD/YY, MM-DD-YY or M-DD-YY</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>title</strong> (<em>string</em>) – title of pr</p></li>
+<li><p><strong>errortype</strong> (<em>bool</em>) – if true, return bool + message</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>good</strong> – true if good</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.badges.process_pr_json">
+<span class="sig-prename descclassname"><span class="pre">cspt.badges.</span></span><span class="sig-name descname"><span class="pre">process_pr_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numbered</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titles_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['approved',</span> <span class="pre">'good_title']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_field_parser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'filter'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.badges.process_pr_json" title="Link to this definition">#</a></dt>
+<dd><p>process gh cli json</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>json_output</strong> (<em>filename</em>) – dictionary generated from <cite>gh pr list -s all –json title,latestReviews</cite> and optionally
+additional fields</p></li>
+<li><p><strong>numbered</strong> (<em>bool</em>) – return with numbers as keys in dict</p></li>
+<li><p><strong>titles_only</strong> (<em>bool</em>) – return titles as list</p></li>
+<li><p><strong>custom_field_parser</strong> (<em>dict</em>) – dictionary with keys matching fields in the json result and values as functions
+to apply to each feild before use, overwrites defaults in field_parser</p></li>
+<li><p><strong>custom_filters</strong> (<em>dict</em>) – dictionary with keys as names, values that are boolean functions</p></li>
+<li><p><strong>filter_mode</strong> (<em>string {'filter'}</em>) – filter to keep only ones that pass each filer or ‘group’ to group prs by which filter they pass</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>filtered_prs</strong> – list or dict as per value above if a flag is used or dict that is like the input json</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-cspt.tasktracking">
+<span id="task-tracking"></span><h2>Task Tracking<a class="headerlink" href="#module-cspt.tasktracking" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.tasktracking.calculate_badge_date">
+<span class="sig-prename descclassname"><span class="pre">cspt.tasktracking.</span></span><span class="sig-name descname"><span class="pre">calculate_badge_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assignment_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">today</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.tasktracking.calculate_badge_date" title="Link to this definition">#</a></dt>
+<dd><p>return the date of the most recent past class except if prepare, then the next upcoming class</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.tasktracking.day_off">
+<span class="sig-prename descclassname"><span class="pre">cspt.tasktracking.</span></span><span class="sig-name descname"><span class="pre">day_off</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cur_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_range_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[(datetime.date(2024,</span> <span class="pre">3,</span> <span class="pre">10),</span> <span class="pre">datetime.date(2024,</span> <span class="pre">3,</span> <span class="pre">16)),</span> <span class="pre">datetime.date(2024,</span> <span class="pre">2,</span> <span class="pre">19)]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.tasktracking.day_off" title="Link to this definition">#</a></dt>
+<dd><p>is the current date a day off?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cur_date</strong> (<em>datetime.date</em>) – date to check</p></li>
+<li><p><strong>skip_range_list</strong> (<em>list</em><em> of </em><em>datetime.date objects</em><em> or </em><em>2-tuples</em><em> of </em><em>datetime.date</em>) – dates where there is no class, either single dates or ranges specified by a tuple</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>day_is_off</strong> – True if the day is off, False if the day has class</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.tasktracking.fetch_to_checklist">
+<span class="sig-prename descclassname"><span class="pre">cspt.tasktracking.</span></span><span class="sig-name descname"><span class="pre">fetch_to_checklist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignment_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'prepare'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.tasktracking.fetch_to_checklist" title="Link to this definition">#</a></dt>
+<dd><p>get assignment text and change numbered items to a checklist</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>date</strong> (<em>string</em>) – YYYY-MM-DD formatted strings of the date to get</p></li>
+<li><p><strong>assignment_type</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-cspt.notes">
+<span id="notes"></span><h2>Notes<a class="headerlink" href="#module-cspt.notes" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.notes.init_activity_files">
+<span class="sig-prename descclassname"><span class="pre">cspt.notes.</span></span><span class="sig-name descname"><span class="pre">init_activity_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_in</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.notes.init_activity_files" title="Link to this definition">#</a></dt>
+<dd><p>create blanks and link</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.notes.link_activities">
+<span class="sig-prename descclassname"><span class="pre">cspt.notes.</span></span><span class="sig-name descname"><span class="pre">link_activities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.notes.link_activities" title="Link to this definition">#</a></dt>
+<dd><p>Append activities via include to a file for all lessons</p>
+<p>FIXME… incomplete/possibly broken</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.notes.process_export">
+<span class="sig-prename descclassname"><span class="pre">cspt.notes.</span></span><span class="sig-name descname"><span class="pre">process_export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">export</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_in</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.notes.process_export" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-cspt.prep">
+<span id="prep"></span><h2>Prep<a class="headerlink" href="#module-cspt.prep" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.prep.load_lesson">
+<span class="sig-prename descclassname"><span class="pre">cspt.prep.</span></span><span class="sig-name descname"><span class="pre">load_lesson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'---'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.prep.load_lesson" title="Link to this definition">#</a></dt>
+<dd><p>load a lesson file</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.prep.parse_soln_file">
+<span class="sig-prename descclassname"><span class="pre">cspt.prep.</span></span><span class="sig-name descname"><span class="pre">parse_soln_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.prep.parse_soln_file" title="Link to this definition">#</a></dt>
+<dd><p>strip solutions from activity file and echo result</p>
+<section id="parameter">
+<h3>parameter<a class="headerlink" href="#parameter" title="Link to this heading">#</a></h3>
+<p>file: path</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.prep.swap_separators">
+<span class="sig-prename descclassname"><span class="pre">cspt.prep.</span></span><span class="sig-name descname"><span class="pre">swap_separators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.prep.swap_separators" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="lesson-objects">
+<h2>Lesson Objects<a class="headerlink" href="#lesson-objects" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cspt.lesson.</span></span><span class="sig-name descname"><span class="pre">Lesson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson" title="Link to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.create_ac_file">
+<span class="sig-name descname"><span class="pre">create_ac_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ac_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_site_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.create_ac_file" title="Link to this definition">#</a></dt>
+<dd><p>extract activity instructions from lesson plan and write to file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ac_type</strong> (<em>str</em>) – prepare, practice, or review</p></li>
+<li><p><strong>base_site_path</strong> (<em>str</em><em> or </em><em>path</em>) – site path</p></li>
+<li><p><strong>file_out</strong> (<em>str</em>) – file nam to sace the file</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.filter_blocks">
+<span class="sig-name descname"><span class="pre">filter_blocks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.filter_blocks" title="Link to this definition">#</a></dt>
+<dd><p>filter blocks for ones that have value for the label</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>string</em>) – label that is one the of keys in block metadata</p></li>
+<li><p><strong>value</strong> (<em>string</em>) – value to filter for</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.get_codeblocks">
+<span class="sig-name descname"><span class="pre">get_codeblocks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.get_codeblocks" title="Link to this definition">#</a></dt>
+<dd><p>produce hint sheet that is only the code blocks with an identifier</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.get_handout">
+<span class="sig-name descname"><span class="pre">get_handout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.get_handout" title="Link to this definition">#</a></dt>
+<dd><p>produce a handout that serves as an outline for students to follow along</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.get_prismia">
+<span class="sig-name descname"><span class="pre">get_prismia</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.get_prismia" title="Link to this definition">#</a></dt>
+<dd><p>get prismia version</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.print_bad">
+<span class="sig-name descname"><span class="pre">print_bad</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.print_bad" title="Link to this definition">#</a></dt>
+<dd><p>format bad blocks for debugging</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.save" title="Link to this definition">#</a></dt>
+<dd><p>write out lesson to file_out</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_out</strong> (<em>string</em><em> or </em><em>file buffer</em>) – where to write file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.valid">
+<span class="sig-name descname"><span class="pre">valid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.valid" title="Link to this definition">#</a></dt>
+<dd><p>check if any errors</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cspt.lesson.Block">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cspt.lesson.</span></span><span class="sig-name descname"><span class="pre">Block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block" title="Link to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.add_label">
+<span class="sig-name descname"><span class="pre">add_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.add_label" title="Link to this definition">#</a></dt>
+<dd><p>add an additional key value pair, label:value
+to the labels for the block</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>string</em>) – key to add to label attribute of block</p></li>
+<li><p><strong>value</strong> (<em>string</em><em> or </em><em>string-like</em>) – value to store</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.add_labels">
+<span class="sig-name descname"><span class="pre">add_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.add_labels" title="Link to this definition">#</a></dt>
+<dd><p>add an additional key value pair, label:value
+to the labels for the block</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>label_dict</strong> (<em>dict</em>) – key, value pairs to add</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.export">
+<span class="sig-name descname"><span class="pre">export</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.export" title="Link to this definition">#</a></dt>
+<dd><p>export back to srting</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.get_handout">
+<span class="sig-name descname"><span class="pre">get_handout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.get_handout" title="Link to this definition">#</a></dt>
+<dd><p>return handout version (only heading lines)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.get_prismia">
+<span class="sig-name descname"><span class="pre">get_prismia</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.get_prismia" title="Link to this definition">#</a></dt>
+<dd><p>return this block formatted for prisma,
+stripping admonitions and empty after filter</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.get_site">
+<span class="sig-name descname"><span class="pre">get_site</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.get_site" title="Link to this definition">#</a></dt>
+<dd><p>return the version of this block for the site,
+or empty if not the right lesson part</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.is_labeled">
+<span class="sig-name descname"><span class="pre">is_labeled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.is_labeled" title="Link to this definition">#</a></dt>
+<dd><p>does this block have any of values in the label field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>string</em>) – field to search for</p></li>
+<li><p><strong>values</strong> (<em>string</em><em> or </em><em>list</em>) – value(s) to check for.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="instructor/website.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Website Tools</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Sarah M Brown.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
