@@ -27,6 +27,7 @@ def wrap(s,marker,newline=False):
     return joiner.join([marker ,s , marker])
 
 
+
 class Lesson():
     # TODO add processing 
     def __init__(self,text):
@@ -36,11 +37,48 @@ class Lesson():
         
         # split at +++
         blocks_in = body.split('+++')
-        # make a collection of blocks
+
+        # check the blocks
+        self.block_res ={}
+        
+        for i,block_text in enumerate(blocks_in):
+            first_linebreak = block_text.find('\n')
+            meta_candidate = block_text[:first_linebreak].strip()
+            if meta_candidate:
+                if  meta_candidate[0] =='{' and meta_candidate[-1] == '}':
+                    self.block_res[i] = 'block'
+                else:
+                    self.block_res[i] = meta_candidate
+            else: 
+                self.block_res[i] = 'no meta'
+                
+            # make a collection of blocks
         self.blocks = [Block(b) for b in blocks_in]
         # activate 
         self.activities = [b for b in self.blocks if b.labels['lesson_part'] == 'activity']
+        
     
+    def valid(self):
+        '''
+        check if any errors
+        '''
+        good_res = ['block','no meta']
+        validation_list = [v in good_res for v in self.block_res]
+
+        # if num true == len then all good
+        return sum(validation_list)==len(self.block_res)
+    
+    def print_bad(self):
+        '''
+        format bad blocks for debugging
+        '''
+        message = ''
+        for i,result in self.block_res.items():
+            if not(result == 'block'):
+                # TODO: improve by finding line numbers in original text
+                message+=result
+        return message
+
     def save(self,file_out):
         '''
         write out lesson to file_out 
@@ -151,8 +189,7 @@ class Block():
                 self.body = text[first_linebreak:].strip()
             except:
                 # TODO: clean this up, make it process better
-                print(meta_candidate)
-                self.labels = json.loads(meta_candidate)
+                self.body = text
             
         else: 
             self.labels = DEFAULT_BLOCK_META

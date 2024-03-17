@@ -268,8 +268,13 @@ def exportprismia(lesson_file):
     export prismia version of the content 
     '''
     lesson = Lesson(lesson_file.read())
-    prismia_text = lesson.get_prismia()
-    click.echo(prismia_text)
+
+    if lesson.validate():
+
+        prismia_text = lesson.get_prismia()
+        click.echo(prismia_text)
+    else:
+        click.echo(lesson.print_bad())
   
 
 
