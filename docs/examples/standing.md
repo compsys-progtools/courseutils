@@ -65,7 +65,7 @@ Under the hood, the majority of the checking is done by this function:
 ```{eval-rst}
 .. automodule:: cspt.badges
    :members: is_title_gradeable
-   :no-index:
+   :noindex:
 ```
 
 ## Check if Early bonus is met
