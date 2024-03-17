@@ -19,7 +19,6 @@ extensions = [
     "myst_nb",
     'sphinx.ext.intersphinx',
     "sphinx_design",
-    # "sphinx_panels",
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx_click'
@@ -43,8 +42,6 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', "*import_posts*",
 # a list of builtin themes.
 #
 html_theme = 'pydata_sphinx_theme'
-
-
 
 
 html_theme_options = {
@@ -80,24 +77,15 @@ html_static_path = ['_static']
 html_sidebars = {
     "*": [],
     "**/*": ["sidebar-nav-bs",]
+}
+
 #     "about": ["hello.html"],
 #     "publications": ["hello.html"],
 #     "projects": ["hello.html"],
 #     "resume": ["hello.html"],
 #     "news": ["hello.html", 'archives.html'],
 #     "news/**": ['postcard.html', 'recentposts.html', 'archives.html'],
-#     "blog": ['tagcloud.html', 'archives.html'],
-#     "blog/**": ['postcard.html', 'recentposts.html', 'archives.html']
-}
 
-blog_title = "Blog "
-blog_path = "news"
-blog_feed_length = 5
-fontawesome_included = True
-blog_post_pattern = "news/*"
-post_redirect_refresh = 1
-post_auto_image = 1
-post_auto_excerpt = 2
 
 # Panels config
 panels_add_bootstrap_css = False
