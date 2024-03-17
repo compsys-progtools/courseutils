@@ -55,6 +55,11 @@ html_theme_options = {
             "name": "GitHub",
             "url": "https://github.com/compsys-progtools/courseutils",
             "icon": "fa-brands fa-github",
+        },
+        {
+            "name": "Course",
+            "url": "https://github.com/compsys-progtools/courseutils",
+            "icon": "fa-solid fa-school",
         }],
   "secondary_sidebar_items": {
         "**/*": ["page-toc", "edit-this-page", "sourcelink"],
