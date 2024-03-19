@@ -269,7 +269,7 @@ def exportprismia(lesson_file):
     '''
     lesson = Lesson(lesson_file.read())
 
-    if lesson.validate():
+    if lesson.valid():
 
         prismia_text = lesson.get_prismia()
         click.echo(prismia_text)
