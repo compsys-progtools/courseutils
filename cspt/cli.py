@@ -262,12 +262,13 @@ def earlybonus(json_output):
 
 @cspt_cli.command()
 @click.argument('lesson-file',type=click.File('r'))
+@click.option('-v','--debug',is_flag=True)
 
-def exportprismia(lesson_file):
+def exportprismia(lesson_file,debug):
     '''
     export prismia version of the content 
     '''
-    lesson = Lesson(lesson_file.read())
+    lesson = Lesson(lesson_file.read(),debug)
 
     if lesson.valid():
 
@@ -275,6 +276,7 @@ def exportprismia(lesson_file):
         click.echo(prismia_text)
     else:
         click.echo(lesson.print_bad())
+        click.echo(lesson.debug)
   
 
 

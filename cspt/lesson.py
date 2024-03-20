@@ -30,30 +30,41 @@ def wrap(s,marker,newline=False):
 
 class Lesson():
     # TODO add processing 
-    def __init__(self,text):
+    def __init__(self,text, debug=False):
         # pull out header  marked by ---
         _,header,body = text.split('---')
         self.metadata = yaml.safe_load(header)
+        if debug:
+            self.debug = []
+        else:
+            self.debug = False
         
         # split at +++
-        blocks_in = body.split('+++')
+        blocks_in = body.strip().split('+++')
+        blocks_full = [b for b in blocks_in if b]
 
         # check the blocks
         self.block_res ={}
         
-        for i,block_text in enumerate(blocks_in):
+        for i,block_text in enumerate(blocks_full):
             first_linebreak = block_text.find('\n')
             meta_candidate = block_text[:first_linebreak].strip()
             if meta_candidate:
                 if  meta_candidate[0] =='{' and meta_candidate[-1] == '}':
                     self.block_res[i] = 'block'
+                    if debug:
+                        self.debug.append(('good',block_text))
                 else:
                     self.block_res[i] = meta_candidate
+                    if debug:
+                        self.debug.append(('bad',block_text))
             else: 
                 self.block_res[i] = 'no meta'
+                if debug:
+                    self.debug.append(('missing',block_text))
                 
             # make a collection of blocks
-        self.blocks = [Block(b) for b in blocks_in]
+        self.blocks = [Block(b) for b in blocks_full]
         # activate 
         self.activities = [b for b in self.blocks if b.labels['lesson_part'] == 'activity']
         
@@ -63,8 +74,11 @@ class Lesson():
         check if any errors
         '''
         good_res = ['block','no meta']
-        validation_list = [v in good_res for v in self.block_res]
-
+        validation_list = [v in good_res for v in self.block_res.values()]
+        if self.debug:
+            # val_msg = ' '.join([str(n) for n in [len(validation_list),len(self.block_res)]])
+            val_msg = validation_list
+            self.debug.insert(0,val_msg)
         # if num true == len then all good
         return sum(validation_list)==len(self.block_res)
     
