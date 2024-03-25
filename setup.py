@@ -2,13 +2,13 @@ from setuptools import setup
 
 setup(
     name='syscourseutils',
-    version='1.0.3',
+    version='1.0.4',
     py_modules=['cspt','cspt.activities','cspt.badges','cspt.cli',
                 'cspt.config','cspt.lesson','cspt.notes','cspt.prep',
                 'cspt.sitetools','cspt.tasktracking'
                 ],
     install_requires=[
-        'Click', 'pandas', 'lxml', 'numpy','requests','html5lib'
+        'Click', 'pandas', 'lxml','pyyaml', 'numpy','requests','html5lib'
     ],
     entry_points={
         'console_scripts': [
