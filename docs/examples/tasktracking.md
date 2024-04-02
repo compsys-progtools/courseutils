@@ -16,10 +16,10 @@ allows specifying a file for the body of the issue, and `-` reads from stdin, or
 
 (makeupbadgeissue)=
 ### Create a badge issue for a specific date
-Put badge instructions into the PR comment, while creating a PR from the current branch
+Create a badge issue from instructions
 
 ```
-cspt getassignment --type practice --date 2024-02-15 | gh pr create -t 'practice 2024-02-15' -F -
+cspt getassignment --type practice --date 2024-02-15 | gh issue create -t 'practice 2024-02-15' -F -
 ```
 
 
