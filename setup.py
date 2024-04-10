@@ -6,7 +6,7 @@ setup(
     py_modules=['cspt','cspt.activities','cspt.badges','cspt.cli',
                 'cspt.config','cspt.lesson','cspt.notes','cspt.prep',
                 'cspt.sitetools','cspt.tasktracking','cspt.grade_calculation',
-                'cspt.grade_contants'
+                'cspt.grade_constants'
                 ],
     install_requires=[
         'Click', 'pandas', 'lxml','pyyaml', 'numpy','requests','html5lib'
