@@ -84,18 +84,26 @@ def badges_by_type(approved_prs):
     badges_by_type.pop('prepare')
     return badges_by_type
 
-def generate_report(approved_prs,):
+def generate_report(approved_prs,short=False):
+    '''
+    format approved prs into a report
+    '''
     titles_by_type = badges_by_type(approved_prs)
     verified_by_type = '\n' +  '\n'.join(['\n## '+bt + ' ('+str(len(bl)) +')' +'\n- '+'\n- '. join(bl) 
                     for bt,bl in titles_by_type.items() if len(bl)>0 ])
     valid_badges = [vi for v in titles_by_type.values() for vi in v]
     not_typed = [p for p in approved_prs if not(p in valid_badges) ]
     
-    report_parts =[ '## all approved \n\n',
+    if short:
+        report_parts = [verified_by_type]
+    else:
+        report_parts =[ '## all approved \n\n',
                     '- ' + '\n- '.join(approved_prs),
                     verified_by_type,
                     '\n\n## Approved, not badges',
                     '\n- ' + '\n - '.join(not_typed)]
+    
+    
     
     return '\n'.join(report_parts)
 
@@ -178,6 +186,8 @@ def process_pr_json(json_output,numbered=False,
     #  process each feild according to spec or pass value if spec not defined
     reviewed = [{k: field_parser.get(k,lambda mv: mv)(v) for k,v in pr.items()}
                 for pr in json_output if pr['latestReviews']]
+    
+
     # apply all filters and keep only the ones that pass all filters
     if filter_mode =='filter':
         # list of prs where all filters are true

@@ -8,6 +8,7 @@ from .activities import files_from_dict
 from .notes import process_export,init_activity_files
 from .sitetools import generate_csv_from_index
 from .tasktracking import calculate_badge_date, fetch_to_checklist
+from .grade_calculation import calculate_grade, community_apply
 from .config import EARLY_BIRD_DEADLINE
 
 from .lesson import Lesson
@@ -108,10 +109,12 @@ def kwlcsv(tldpath = '.'):
 @click.option('-f','--file-out',default=None,
                 help='to write to a file, otherwise will use stdout')
 @click.option('-r','--report',is_flag=True,
-              help ='process approved badges  by type to a more descriptive report')
+              help ='process approved badges by type to a more descriptive report')
 @click.option('-s','--soft',is_flag= True,
               help = 'soft check, skip title check')
-def progressreport(json_output,file_out, report,soft):
+@click.option('-b','--brief',is_flag= True,
+              help = 'short version of report')
+def progressreport(json_output,file_out, report,soft,brief):
     '''
     list PR titles from json or - to use std in  that have been approved by an official approver 
     
@@ -129,7 +132,7 @@ def progressreport(json_output,file_out, report,soft):
 
     if approved_prs: # not empty
         if report:
-            report = generate_report(approved_prs)
+            report = generate_report(approved_prs,brief)
         else:
             report = '\n'.join(approved_prs)
         
@@ -141,6 +144,35 @@ def progressreport(json_output,file_out, report,soft):
             click.echo(report)
     else:
         click.echo('There are no approved badges')
+
+
+@cspt_cli.command()
+@click.argument('json-output', type =click.File('r'))
+@click.option('-s','--soft',is_flag= True,
+              help = 'soft check, skip title check')
+def badgecounts(json_output,soft):
+    '''
+    check if early bonus is met from output of 
+    `gh pr list -s all --json title,latestReviews,createdAt` and return 
+    a message. input from  either a file or -for stdin
+
+    '''
+    json_output = json.load(json_output)
+
+    selected_filters = ['approved']
+    if not(soft):
+        selected_filters.append('good_title')
+
+    approved_prs = process_pr_json(json_output,titles_only=True,filter_list=selected_filters)
+    
+    
+    if approved_prs:
+        eligble_by_type = badges_by_type(approved_prs)
+        count_by_type = {btype:len(badges) for btype,badges in eligble_by_type.items()}
+
+    #last character would be a newline, we do not want that so that we can append
+    click.echo(yaml.dump(count_by_type)[:-1])
+
 
 
 @cspt_cli.command()
@@ -232,7 +264,9 @@ def mkchecklist(gh_cli_output,message):
 
 @cspt_cli.command()
 @click.argument('json-output', type =click.File('r'))
-def earlybonus(json_output):
+@click.option('-y','--output-yaml',is_flag = True,
+                 help = 'output as yaml compatible with grading')
+def earlybonus(json_output,output_yaml):
     '''
     check if early bonus is met from output of 
     `gh pr list -s all --json title,latestReviews,createdAt` and return 
@@ -240,20 +274,53 @@ def earlybonus(json_output):
 
     '''
     json_output = json.load(json_output)
-    approved_submitted_early = process_pr_json(json_output,titles_only=True,
-                                               filter_list= ['approved','early'])
+    filter_list = ['approved','early']
+    try:
+        approved_submitted_early = process_pr_json(json_output,titles_only=True,
+                                               filter_list= filter_list)
+    except KeyError as e:
+        msg = (str(e) +' is required to be in the JSON_OUTPUT from gh'+
+                       ' for one for the selected filters: '+ ' '.join(filter_list ))
+        # click.echo(msg)
+        raise click.UsageError(msg)
+
     
     if approved_submitted_early:
         eligble_by_type = badges_by_type(approved_submitted_early)
 
         earned = len(eligble_by_type['review']) + len(eligble_by_type['practice']) >=6
 
-        earned_text = {True:'was',False:'was not'}
-        message = 'early bird bonus ' + earned_text[earned] + ' earned'
-        click.echo(message)
+        if output_yaml:
+            message = 'early: ' + str(int(earned))
+        else:
+            earned_text = {True:'was',False:'was not'}
+            
+            message = 'early bird bonus ' + earned_text[earned] + ' earned'
     else:
-        
-        click.echo('there were no approved early badges')
+        if output_yaml:
+            message = 'early: 0'
+        else:
+            message = 'there were no approved early badges'
+
+    click.echo(message)
+
+
+@cspt_cli.command()
+@click.argument('badge_file', type =click.File('r'))
+@click.option('-i','--influence',is_flag = True,
+                 help = 'return numerical instead of letter')
+def grade(badge_file, influence):
+    '''
+    calculate a grade from yaml that had keys of badges/bonuses and value for counts
+
+    '''
+    badges = yaml.safe_load(badge_file)
+
+    badges_comm_applied = community_apply(badges)
+    
+    grade = calculate_grade(badges_comm_applied,influence)
+
+    click.echo(grade)
 
 # --------------------------------------------------------------
 #           Instructor commands
