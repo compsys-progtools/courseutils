@@ -408,6 +408,29 @@ document.write(`
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
 </pre></div>
 </div>
+<section id="cspt-badgecounts">
+<h3>badgecounts<a class="headerlink" href="#cspt-badgecounts" title="Link to this heading">#</a></h3>
+<p>check if early bonus is met from output of
+<cite>gh pr list -s all –json title,latestReviews,createdAt</cite> and return
+a message. input from  either a file or -for stdin</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>badgecounts<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badgecounts-s">
+<span id="cmdoption-cspt-badgecounts-soft"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--soft</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-badgecounts-s" title="Link to this definition">#</a></dt>
+<dd><p>soft check, skip title check</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badgecounts-arg-JSON_OUTPUT">
+<span class="sig-name descname"><span class="pre">JSON_OUTPUT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-badgecounts-arg-JSON_OUTPUT" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
 <section id="cspt-createtoyfiles">
 <h3>createtoyfiles<a class="headerlink" href="#cspt-createtoyfiles" title="Link to this heading">#</a></h3>
 <p>from a yaml source file create a set of toy files with file names as the keys
@@ -438,6 +461,13 @@ a message. input from  either a file or -for stdin</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>earlybonus<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
 </pre></div>
 </div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-earlybonus-y">
+<span id="cmdoption-cspt-earlybonus-output-yaml"></span><span class="sig-name descname"><span class="pre">-y</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output-yaml</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-earlybonus-y" title="Link to this definition">#</a></dt>
+<dd><p>output as yaml compatible with grading</p>
+</dd></dl>
+
 <p class="rubric">Arguments</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-cspt-earlybonus-arg-JSON_OUTPUT">
@@ -562,6 +592,27 @@ a message. input from  either a file or -for stdin</p>
 <dd></dd></dl>
 
 </section>
+<section id="cspt-grade">
+<h3>grade<a class="headerlink" href="#cspt-grade" title="Link to this heading">#</a></h3>
+<p>calculate a grade from yaml that had keys of badges/bonuses and value for counts</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>grade<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>BADGE_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-grade-i">
+<span id="cmdoption-cspt-grade-influence"></span><span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--influence</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-grade-i" title="Link to this definition">#</a></dt>
+<dd><p>return numerical instead of letter</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-grade-arg-BADGE_FILE">
+<span class="sig-name descname"><span class="pre">BADGE_FILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-grade-arg-BADGE_FILE" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
 <section id="cspt-kwlcsv">
 <h3>kwlcsv<a class="headerlink" href="#cspt-kwlcsv" title="Link to this heading">#</a></h3>
 <p>generate the activity file csv file for the site building from site
@@ -666,13 +717,19 @@ this will include <cite>gh pr list -s all –json title,latestReviews</cite></p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-cspt-progressreport-r">
 <span id="cmdoption-cspt-progressreport-report"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--report</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-progressreport-r" title="Link to this definition">#</a></dt>
-<dd><p>process approved badges  by type to a more descriptive report</p>
+<dd><p>process approved badges by type to a more descriptive report</p>
 </dd></dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-cspt-progressreport-s">
 <span id="cmdoption-cspt-progressreport-soft"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--soft</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-progressreport-s" title="Link to this definition">#</a></dt>
 <dd><p>soft check, skip title check</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-progressreport-b">
+<span id="cmdoption-cspt-progressreport-brief"></span><span class="sig-name descname"><span class="pre">-b</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--brief</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-progressreport-b" title="Link to this definition">#</a></dt>
+<dd><p>short version of report</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
