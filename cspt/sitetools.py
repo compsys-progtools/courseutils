@@ -16,7 +16,7 @@ def generate_csv_from_index(path_list,sub_re,file_out=None,
     path_list : list of strings or buffers
         paths to search
     sub_re : string
-        regex excerpt to be search for literal matches of after searchign for {index}
+        regex excerpt to be search for literal matches of after searching for {index}
     file_out : string or buffer
         path to write file, default none, returns the dataFrame
     path_meaning : dict
@@ -51,9 +51,9 @@ def generate_csv_from_index(path_list,sub_re,file_out=None,
                         for a in re.finditer(complete_re, filetext)]
 
         all_file_df_list.append(pd.DataFrame(result_list,
-                                    columns = [path_meaning['dir'],
+                                    columns = [path_meaning['file'],
                                                path_meaning['result'],
-                                               path_meaning['type']]))
+                                               path_meaning['dir']]))
     # combine 
     all_file_df = pd.concat(all_file_df_list)
 
