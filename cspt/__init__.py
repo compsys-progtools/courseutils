@@ -4,6 +4,7 @@ from .activities import files_from_dict
 from .notes import process_export,init_activity_files
 from .sitetools import generate_csv_from_index
 from .tasktracking import calculate_badge_date, fetch_to_checklist
+from .grade_calculation import calculate_grade, community_apply
 
 from .badges import field_parser
 
