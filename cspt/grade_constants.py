@@ -56,7 +56,8 @@ influence_df = pd.concat([learning_df]).fillna(1).rename(columns={'index':'badge
 
 
 # base grade influence cutoffs
-thresh_mrw = {'D ':22*learning_weights['experience']+13*learning_weights['lab']+bonus_participation + bonus_lab, 
+thresh_mrw = {'F':0,
+              'D ':22*learning_weights['experience']+13*learning_weights['lab']+bonus_participation + bonus_lab, 
               'D+':22*learning_weights['experience']+13*learning_weights['lab']+bonus_participation + bonus_lab + 6*learning_weights['review'], 
               'C-':22*learning_weights['experience']+13*learning_weights['lab']+bonus_participation + bonus_lab + 12*learning_weights['review'], 
           'C ':22*learning_weights['experience']+13*learning_weights['lab']+18*learning_weights['review']+\

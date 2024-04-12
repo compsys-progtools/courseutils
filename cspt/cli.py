@@ -288,7 +288,7 @@ def earlybonus(json_output,output_yaml):
     if approved_submitted_early:
         eligble_by_type = badges_by_type(approved_submitted_early)
 
-        earned = len(eligble_by_type['review']) + len(eligble_by_type['practice']) >=6
+        earned = len(eligble_by_type['review']) + len(eligble_by_type['practice']) >=5
 
         if output_yaml:
             message = 'early: ' + str(int(earned))

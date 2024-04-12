@@ -84,3 +84,38 @@ gh pr list -s all --json title,latestReviews,createdAt  | cspt earlybonus -
 
 ```
 
+## Calculate Grade 
+
+the following is how you can compute most of your grade.  
+
+This does not take into consideration any of the event bonuses, but you can add them to the badges.yml file if you think you'll have them or want to see the impact they would have. 
+
+
+```
+gh pr list -s all  -L 200 --json title,latestReviews,createdAt > badges.json
+cspt badgecounts badges.json  > badges.yml
+cspt earlybonus -y badges.json >> badges.yml
+cspt grade badges.yml 
+```
+
+```{warning}
+Your grade is not an *average* it is cumulative, so the grade this shows is not the grade you will get if you keep working as you have been, but the grade you will get if you do no more work. 
+```
+
+For more: 
+
+```{eval-rst}
+.. click:: cspt.cli:badgecounts
+   :prog: cspt badgecounts
+   :nested: full
+   :commands:
+
+```
+
+```{eval-rst}
+.. click:: cspt.cli:grade
+   :prog: cspt grade
+   :nested: full
+   :commands:
+
+```
