@@ -578,6 +578,66 @@ a message. input from  either a file or -for stdin</p>
 
 </section>
 </section>
+<section id="calculate-grade">
+<h2>Calculate Grade<a class="headerlink" href="#calculate-grade" title="Link to this heading">#</a></h2>
+<p>the following is how you can compute most of your grade.</p>
+<p>This does not take into consideration any of the event bonuses, but you can add them to the badges.yml file if you think you’ll have them or want to see the impact they would have.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gh</span> <span class="n">pr</span> <span class="nb">list</span> <span class="o">-</span><span class="n">s</span> <span class="nb">all</span>  <span class="o">-</span><span class="n">L</span> <span class="mi">200</span> <span class="o">--</span><span class="n">json</span> <span class="n">title</span><span class="p">,</span><span class="n">latestReviews</span><span class="p">,</span><span class="n">createdAt</span> <span class="o">&gt;</span> <span class="n">badges</span><span class="o">.</span><span class="n">json</span>
+<span class="n">cspt</span> <span class="n">badgecounts</span> <span class="n">badges</span><span class="o">.</span><span class="n">json</span>  <span class="o">&gt;</span> <span class="n">badges</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">cspt</span> <span class="n">earlybonus</span> <span class="o">-</span><span class="n">y</span> <span class="n">badges</span><span class="o">.</span><span class="n">json</span> <span class="o">&gt;&gt;</span> <span class="n">badges</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">cspt</span> <span class="n">grade</span> <span class="n">badges</span><span class="o">.</span><span class="n">yml</span> 
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Your grade is not an <em>average</em> it is cumulative, so the grade this shows is not the grade you will get if you keep working as you have been, but the grade you will get if you do no more work.</p>
+</div>
+<p>For more:</p>
+<section id="cspt-badgecounts">
+<h3>cspt badgecounts<a class="headerlink" href="#cspt-badgecounts" title="Link to this heading">#</a></h3>
+<p>check if early bonus is met from output of
+<cite>gh pr list -s all –json title,latestReviews,createdAt</cite> and return
+a message. input from  either a file or -for stdin</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>badgecounts<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badgecounts-s">
+<span id="cmdoption-cspt-badgecounts-soft"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--soft</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-badgecounts-s" title="Link to this definition">#</a></dt>
+<dd><p>soft check, skip title check</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badgecounts-arg-JSON_OUTPUT">
+<span class="sig-name descname"><span class="pre">JSON_OUTPUT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-badgecounts-arg-JSON_OUTPUT" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-grade">
+<h3>cspt grade<a class="headerlink" href="#cspt-grade" title="Link to this heading">#</a></h3>
+<p>calculate a grade from yaml that had keys of badges/bonuses and value for counts</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>grade<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>BADGE_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-grade-i">
+<span id="cmdoption-cspt-grade-influence"></span><span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--influence</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-grade-i" title="Link to this definition">#</a></dt>
+<dd><p>return numerical instead of letter</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-grade-arg-BADGE_FILE">
+<span class="sig-name descname"><span class="pre">BADGE_FILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-grade-arg-BADGE_FILE" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+</section>
 </section>
 
 
@@ -644,6 +704,11 @@ a message. input from  either a file or -for stdin</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-if-early-bonus-is-met">Check if Early bonus is met</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cspt-earlybonus">cspt earlybonus</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-grade">Calculate Grade</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cspt-badgecounts">cspt badgecounts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cspt-grade">cspt grade</a></li>
 </ul>
 </li>
 </ul>
