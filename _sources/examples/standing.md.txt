@@ -30,6 +30,7 @@ cspt progressreport badges.json
 
 ```
 
+
 ## Check PR Titles
 
 ### Check a single PR
@@ -118,4 +119,9 @@ For more:
    :nested: full
    :commands:
 
+```
+
+```{tip}
+copy and edit that `badges.yml` file to represent other scenarios and increase badge counts to see what 
+your grade would be with more badges.
 ```
