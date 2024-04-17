@@ -23,7 +23,7 @@ default_badges = {'experience' :0,
                   'question':0 }
 
 bonus_criteria = {'participation_bonus': lambda r: int(r['experience'] >=exp_thresh),
-                  'lab_bonus':  lambda r: int(r['lab'] >=13),
+                  'lab_bonus':  lambda r: int(r['lab'] >=12),
                    'breadth_bonus': lambda r: int(r['review'] + r['practice']>=rp_thresh),
                  'community_bonus': lambda r: int(r['community']>=10),
                  'unstuck_bonus': lambda r: r['unstuck'],
