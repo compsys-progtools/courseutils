@@ -43,7 +43,7 @@ def community_apply(student_dict):
     return student_dict
 
 
-def calculate_grade(badges_in,return_influence=False):
+def calculate_grade(badges_in,return_influence=False,verbose=False):
     '''
     compute grade from dictionary
 
@@ -58,10 +58,14 @@ def calculate_grade(badges_in,return_influence=False):
     current_badges.update(badges_in)
     # apply bonuses 
     current_badges.update({bname:bfunc(current_badges) for bname,bfunc in bonus_criteria.items()})
+    
     # compute final
     influence = sum([current_badges[k]*weights[k] for k in weights.keys()])
     
     letter_grade = letter_df[letter_df['threshold']<=influence].iloc[-1].name.strip()
+
+    if verbose: 
+        return current_badges, influence, letter_grade
 
     if return_influence:
         return influence

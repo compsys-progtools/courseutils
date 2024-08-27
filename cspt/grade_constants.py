@@ -31,6 +31,7 @@ bonus_criteria = {'participation_bonus': lambda r: int(r['experience'] >=exp_thr
                  'early_bonus': lambda r: r['early'] ,
                  'hack_bonus': lambda r: r['hack'] ,
                  'curiosity_bonus': lambda r: r['question']>10}
+
 bonus_values = {'participation_bonus': bonus_participation,
                   'lab_bonus':  bonus_lab,
                    'breadth_bonus': bonus_breadth,

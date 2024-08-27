@@ -309,7 +309,9 @@ def earlybonus(json_output,output_yaml):
 @click.argument('badge_file', type =click.File('r'))
 @click.option('-i','--influence',is_flag = True,
                  help = 'return numerical instead of letter')
-def grade(badge_file, influence):
+@click.option('-v','--verbose',is_flag = True,
+                 help = 'print out all information')
+def grade(badge_file, influence, verbose):
     '''
     calculate a grade from yaml that had keys of badges/bonuses and value for counts
 
@@ -318,9 +320,42 @@ def grade(badge_file, influence):
 
     badges_comm_applied = community_apply(badges)
     
-    grade = calculate_grade(badges_comm_applied,influence)
+    
+    
+    if verbose: 
+        badges,influence_total, letter = calculate_grade(badges_comm_applied,influence,verbose)
+        click.echo('final badge counts')
+        click.echo(yaml.dump(badges))
+        click.echo('total influence: '+ str(influence_total))
+        click.echo('letter: '+ letter)
+    else:
+        grade = calculate_grade(badges_comm_applied,influence)
+        click.echo(grade)
 
-    click.echo(grade)
+
+@cspt_cli.command()
+@click.argument('filea', type =click.File('r'))
+@click.argument('fileb', type =click.File('r'))
+
+def combinecounts(filea, fileb):
+    '''
+    combine two yaml files by adding values
+    '''
+    badges_a = yaml.safe_load(filea)
+    badges_b = yaml.safe_load(fileb)
+
+    # first pass combined all keys, some bad values
+    combined = badges_a.copy()
+    combined.update(badges_b)
+
+    # set to sum
+    for badge in combined.keys():
+        if badge in badges_a.keys() and badge in badges_b.keys():
+            combined[badge] = badges_a[badge] + badges_b[badge]
+
+    combined_yaml = yaml.safe_dump(combined)
+    click.echo(combined_yaml)
+
 
 # --------------------------------------------------------------
 #           Instructor commands
@@ -348,7 +383,7 @@ def exportprismia(lesson_file,debug):
 
 
 @cspt_cli.command
-@click.argument('source-yaml',)
+@click.argument('source-yaml',type=click.File('r'))
 @click.option('-n','--add-newline',is_flag=True,default=False,
               help='add new line as last character')
 
