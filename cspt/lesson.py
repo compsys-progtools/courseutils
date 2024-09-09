@@ -204,6 +204,7 @@ class Block():
             except:
                 # TODO: clean this up, make it process better
                 self.body = text
+                self.labels = DEFAULT_BLOCK_META
             
         else: 
             self.labels = DEFAULT_BLOCK_META
