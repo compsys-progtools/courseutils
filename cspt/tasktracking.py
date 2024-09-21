@@ -3,95 +3,49 @@ import click
 from datetime import date as dt
 from datetime import datetime as dtt
 from datetime import timedelta
+import pandas as pd
 import re
-from .config import BASE_URL
-
-cur_days_off = [(dt(2024,3,10),dt(2024,3,16)),
-                    (dt(2024,2,19))]
-
-# [(dt(2023,11,23),dt(2023,11,26)),
-                    # (dt(2023,11,13)),
-                #   (dt(2023,10,10))]
-
-# MW 
-day_adj_MW = {0:timedelta(days=0), 2:timedelta(days=0),
-            1:timedelta(days=1), 3:timedelta(days=1),
-            4:timedelta(days=2),5:timedelta(days=3),
-            6:timedelta(days=4)}
-
-day_adj_TTh = {1: timedelta(days=0), 3: timedelta(days=0),
-              2: timedelta(days=1), 4: timedelta(days=1),
-              5: timedelta(days=2), 6: timedelta(days=3),
-              0: timedelta(days=4)}
-next_class_TTh = {1: timedelta(days=2), 3: timedelta(days=5),
-              2: timedelta(days=1), 4: timedelta(days=4),
-              5: timedelta(days=3), 6: timedelta(days=2),
-              0: timedelta(days=2)}
-
-# UPDATE if MW instead of TTh
-day_adj = day_adj_TTh
-next_adj = next_class_TTh
+from .config import BASE_URL, CourseDates
 
 
+course_dates = CourseDates()
 
-def day_off(cur_date,skip_range_list= cur_days_off):
+
+def calculate_badge_date(assignment_type,date_to_use=None,):
     '''
-    is the current date a day off? 
+    return the date of the most recent past class except if prepare, 
+    then the next upcoming class
 
     Parameters
     ----------
-    cur_date : datetime.date
-        date to check
-    skip_range_list : list of datetime.date objects or 2-tuples of datetime.date
-        dates where there is no class, either single dates or ranges specified by a tuple
-
-    Returns
-    -------
-    day_is_off : bool
-        True if the day is off, False if the day has class
+    assignment_type : str
+     one of prepare, review, or practice
+    date_to_use : srt
+        a date to use in iso format or none to use current day 
     '''
-    # default to not a day off
-    day_is_off=False
-    # 
-    for skip_range in skip_range_list:
-        if type(skip_range) == tuple:
-            # if any of the conditions are true that increments and it will never go down, flase=0, true=1
-            day_is_off +=  skip_range[0]<=cur_date<=skip_range[1]
-        else:
-            day_is_off += skip_range == cur_date
-    # 
-    return day_is_off
-
-
-def calculate_badge_date(assignment_type,today=None):
-    '''
-    return the date of the most recent past class except if prepare, then the next upcoming class
-    '''
-    if not(today):
-        today = dt.today()
+    if not(date_to_use):
+        date_to_use = dt.today()
 
         # if auto in the morning use past
-        if dtt.today().hour < 12:
-            today -= timedelta(days=1)
+        if dtt.today().hour < CourseDates.meeting_hour:
+            date_to_use -= timedelta(days=1)
     
     # make date object from string
-    if type(today)==str:
-        today = dt.fromisoformat(today)
+    if type(date_to_use)==str:
+        date_to_use = dt.fromisoformat(date_to_use)
 
-    last_class = today- day_adj[today.weekday()]
+    
+    last_class = course_dates.prev_class(date_to_use)
     # 
     if assignment_type =='prepare':
         # calculate next class, check if off and 
-        next_class = last_class + next_adj[last_class.weekday()]
-        while day_off(next_class):
-            # incement and update if it's a day off until it is not
-            next_class = next_class + next_adj[next_class.weekday()]
+        next_class = course_dates.next_class(date_to_use)
         
-        badge_date = next_class.isoformat()
+        badge_date_str = next_class.isoformat()
     else:
-        badge_date = last_class.isoformat()
+        badge_date_str = last_class.isoformat()
     # 
-    return badge_date
+    return badge_date_str
 
 
 
@@ -117,7 +71,10 @@ def fetch_to_checklist(date, assignment_type = 'prepare'):
     path = BASE_URL +assignment_type + '/' + date +'.md'
     # get and convert to checklist from enumerated
     fetched_instructions = requests.get(path).text
-    check_list = re.sub('[0-9]\. ', '- [ ] ', fetched_instructions)
+    lines = fetched_instructions.split('\n')
+    checked = [l for l in lines]
+    check_list = re.sub(r'^\d+\.\s*', '- [ ] ', fetched_instructions,
+                        flags=re.MULTILINE)
 
     # remove index items 
     cleaned_lists = re.sub(r'\n```\{index\} (?P<file>.*\n)```', '', check_list)
@@ -125,5 +82,69 @@ def fetch_to_checklist(date, assignment_type = 'prepare'):
     # and return
     return cleaned_lists
 
+dated_badge_types = ['practice','prepare','review']
 
 
+def date_label(badge_date_str,today=None):
+    '''
+    '''
+    if today:
+        today = dt.fromisoformat(today)
+    else:
+        today = dt.today()
+    badge_date = dt.fromisoformat(badge_date_str)
+    badge_age = (today - badge_date).days
+    # 
+    if badge_date < course_dates.penalty_free_end:
+        return 'penalty-free'
+    elif badge_age < 7:
+        return 'new'
+    elif badge_age < 14:
+        return 'due'
+    else:
+        return 'expired'
+
+
+
+def determine_issue_statuses(issue_json,as_of_date=None):
+    '''
+    '''
+
+    issue_df = pd.read_json(issue_json)
+    is_dated_badge = lambda title: len(title.split('-'))==4 and title.split('-')[0] in dated_badge_types
+
+
+    issue_df.insert(0,'badge',issue_df['title'].apply(is_dated_badge))
+    badge_df = issue_df[issue_df['badge']]
+    badge_dater = lambda title: '-'.join(title.split('-')[1:])
+    badge_df.insert(0,'date', badge_df['title'].apply(badge_dater))
+
+    extract_label_names = lambda label_response: [label_item['name'] for label_item in label_response]
+    badge_df.insert(0,'current_labels',
+                    badge_df['labels'].apply(extract_label_names))
+    
+    cur_date_labeler = lambda title_date: date_label(title_date,as_of_date)
+    badge_df.insert(0,'date_label', 
+                    badge_df['date'].apply(cur_date_labeler))
+
+    date_label_options = ['penalty-free','new','due','expired']
+    # determine labels to remove, if any
+    outdated_date_labels = lambda row: [l for l in row['current_labels'] if ((l in date_label_options) and not(l ==row['date_label']))]
+    badge_df.insert(0,'remove_label_list', badge_df.apply(outdated_date_labels,axis=1))
+    rm_opt_fmt = lambda rm_list: '--remove-label ' + ','.join(rm_list) if rm_list else ''
+    badge_df.insert(0,'remove_label_cmd',badge_df['remove_label_list'].apply(rm_opt_fmt))
+    # labels to add, if any
+    new_needed_labels = lambda row: '--add-label ' + row['date_label'] if not(row['date_label'] in row['current_labels']) else ''
+    badge_df.insert(0,'add_label_cmd', badge_df.apply(new_needed_labels,axis=1))
+    # badge_df.insert(0,'add_label', 
+    # badge_df['remove_label'] = 
+
+    template = 'gh issue edit {num} {rm} {add}'
+    gen_cmds = lambda row: template.format(num=row['number'],rm=row['remove_label_cmd'],
+                                        add=row['add_label_cmd'])
+    cmds = badge_df.apply(gen_cmds,axis=1).values
+    # remove any empty
+    script = '\n'.join([c for c in cmds if len(c)>18])
+    
+    # script = script_draft.replace('--remove-label []','').replace('--add-label []','')
+    return script

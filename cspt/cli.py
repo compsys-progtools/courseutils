@@ -2,12 +2,13 @@ import click
 import json
 import yaml
 import os
+import subprocess
 from datetime import date
 from .badges import badges_by_type, process_pr_json, generate_report,is_title_gradeable
 from .activities import files_from_dict
 from .notes import process_export,init_activity_files
 from .sitetools import generate_csv_from_index
-from .tasktracking import calculate_badge_date, fetch_to_checklist
+from .tasktracking import calculate_badge_date, fetch_to_checklist,determine_issue_statuses
 from .grade_calculation import calculate_grade, community_apply
 from .config import EARLY_BIRD_DEADLINE
 
@@ -95,9 +96,56 @@ def kwlcsv(tldpath = '.'):
     '''
     activity_types = ['review','prepare','practice']
     ac_dir_list = [os.path.join(tldpath,'_'+ac_type) for ac_type in activity_types]
-    generate_csv_from_index(path_list = ac_dir_list,sub_re='.*\.md',file_out='kwl.csv')
+    generate_csv_from_index(path_list = ac_dir_list,sub_re='.*md',file_out='kwl.csv')
+
+# --------------------------------------------------------------
+#               Issue management   
+# --------------------------------------------------------------
 
 
+@cspt_cli.command()
+@click.argument('json-output', type =click.File('r'))
+@click.option('-f','--file-out',default=None,
+                help='to write to a file, otherwise stdout')
+@click.option('-r','--execute',is_flag=True,
+              help ='run instead of returning')
+@click.option('-d','--as-of-date',
+              help = 'date for not current')
+# @click.option('-b','--brief',is_flag= True,
+#               help = 'short version of report')
+def issuestatus(json_output,file_out,execute,as_of_date):
+    '''
+    generate script to appy course issue statuse updates
+
+    `gh issue list --json title,number,labels`
+      
+     
+    '''
+    # json_output  = json.load(json_output)
+    file_script = determine_issue_statuses(json_output,as_of_date)
+    
+    if file_out:
+        with open(file_out,'w') as f:
+            f.write(file_script)
+    elif execute:
+        shell_script = file_script.replace('\n','; ')
+        subprocess.run(shell_script,shell=True)
+    else:
+        click.echo(file_script)
+
+
+@cspt_cli.command()
+@click.argument('issue_response',)
+# @click.option('-f','--file-out',default=None,
+#                 help='to write to a file, otherwise execute')
+# @click.option('-r','--report',is_flag=True,
+#               help ='process approved badges by type to a more descriptive report')
+# @click.option('-s','--soft',is_flag= True,
+#               help = 'soft check, skip title check')
+# @click.option('-b','--brief',is_flag= True,
+#               help = 'short version of report')
+def issuestat(issue_response):
+    click.echo(len(issue_response))
 # --------------------------------------------------------------
 #          Course standing 
 # --------------------------------------------------------------

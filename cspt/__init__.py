@@ -9,6 +9,7 @@ from .grade_constants import exp_thresh, community_cost
 from .grade_constants import letter_df 
 from .grade_constants import bonus_criteria, weights, default_badges
 
+from .config import CourseDates
 
 from .badges import field_parser
 
