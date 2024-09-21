@@ -42,7 +42,7 @@ def process_export(export,date_in):
     '''
 
     # transform export to notes base
-    md_notes_starter = re.sub(r'\(base\) brownsarahm.*\$ (?P<line>.*\n)',
+    md_notes_starter = re.sub(r'brownsarahm.*\$ (?P<line>.*\n)',
             '```\n\n+++{"lesson_part": "main"}\n\n```{code-cell} bash\n:tags: ["skip-execution"]\n\g<line>```\n\n+++{"lesson_part": "main","type":"output"}\n\n```{code-block} console\n',export)
     
     # TODO: rm extra parts at top and bottom 
