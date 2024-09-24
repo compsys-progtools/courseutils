@@ -506,29 +506,28 @@ to apply to each feild before use, overwrites defaults in field_parser</p></li>
 <span id="task-tracking"></span><h2>Task Tracking<a class="headerlink" href="#module-cspt.tasktracking" title="Link to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="cspt.tasktracking.calculate_badge_date">
-<span class="sig-prename descclassname"><span class="pre">cspt.tasktracking.</span></span><span class="sig-name descname"><span class="pre">calculate_badge_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assignment_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">today</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.tasktracking.calculate_badge_date" title="Link to this definition">#</a></dt>
-<dd><p>return the date of the most recent past class except if prepare, then the next upcoming class</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="cspt.tasktracking.day_off">
-<span class="sig-prename descclassname"><span class="pre">cspt.tasktracking.</span></span><span class="sig-name descname"><span class="pre">day_off</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cur_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_range_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[(datetime.date(2024,</span> <span class="pre">3,</span> <span class="pre">10),</span> <span class="pre">datetime.date(2024,</span> <span class="pre">3,</span> <span class="pre">16)),</span> <span class="pre">datetime.date(2024,</span> <span class="pre">2,</span> <span class="pre">19)]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.tasktracking.day_off" title="Link to this definition">#</a></dt>
-<dd><p>is the current date a day off?</p>
+<span class="sig-prename descclassname"><span class="pre">cspt.tasktracking.</span></span><span class="sig-name descname"><span class="pre">calculate_badge_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assignment_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_to_use</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.tasktracking.calculate_badge_date" title="Link to this definition">#</a></dt>
+<dd><p>return the date of the most recent past class except if prepare,
+then the next upcoming class</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cur_date</strong> (<em>datetime.date</em>) – date to check</p></li>
-<li><p><strong>skip_range_list</strong> (<em>list</em><em> of </em><em>datetime.date objects</em><em> or </em><em>2-tuples</em><em> of </em><em>datetime.date</em>) – dates where there is no class, either single dates or ranges specified by a tuple</p></li>
+<li><p><strong>assignment_type</strong> (<em>str</em>) – one of prepare, review, or practice</p></li>
+<li><p><strong>date_to_use</strong> (<em>srt</em>) – a date to use in iso format or none to use current day</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>day_is_off</strong> – True if the day is off, False if the day has class</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.tasktracking.date_label">
+<span class="sig-prename descclassname"><span class="pre">cspt.tasktracking.</span></span><span class="sig-name descname"><span class="pre">date_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">badge_date_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">today</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.tasktracking.date_label" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.tasktracking.determine_issue_statuses">
+<span class="sig-prename descclassname"><span class="pre">cspt.tasktracking.</span></span><span class="sig-name descname"><span class="pre">determine_issue_statuses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">issue_json</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">as_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.tasktracking.determine_issue_statuses" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cspt.tasktracking.fetch_to_checklist">

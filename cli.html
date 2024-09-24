@@ -645,6 +645,53 @@ a message. input from  either a file or -for stdin</p>
 </dd></dl>
 
 </section>
+<section id="cspt-issuestat">
+<h3>issuestat<a class="headerlink" href="#cspt-issuestat" title="Link to this heading">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>issuestat<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>ISSUE_RESPONSE
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-issuestat-arg-ISSUE_RESPONSE">
+<span class="sig-name descname"><span class="pre">ISSUE_RESPONSE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-issuestat-arg-ISSUE_RESPONSE" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-issuestatus">
+<h3>issuestatus<a class="headerlink" href="#cspt-issuestatus" title="Link to this heading">#</a></h3>
+<p>generate script to appy course issue statuse updates</p>
+<p><cite>gh issue list –json title,number,labels</cite></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>issuestatus<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-issuestatus-f">
+<span id="cmdoption-cspt-issuestatus-file-out"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--file-out</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;file_out&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-issuestatus-f" title="Link to this definition">#</a></dt>
+<dd><p>to write to a file, otherwise stdout</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-issuestatus-r">
+<span id="cmdoption-cspt-issuestatus-execute"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--execute</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-issuestatus-r" title="Link to this definition">#</a></dt>
+<dd><p>run instead of returning</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-issuestatus-d">
+<span id="cmdoption-cspt-issuestatus-as-of-date"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--as-of-date</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;as_of_date&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-issuestatus-d" title="Link to this definition">#</a></dt>
+<dd><p>date for not current</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-issuestatus-arg-JSON_OUTPUT">
+<span class="sig-name descname"><span class="pre">JSON_OUTPUT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-issuestatus-arg-JSON_OUTPUT" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
 <section id="cspt-kwlcsv">
 <h3>kwlcsv<a class="headerlink" href="#cspt-kwlcsv" title="Link to this heading">#</a></h3>
 <p>generate the activity file csv file for the site building from site
