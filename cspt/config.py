@@ -49,11 +49,11 @@ class CourseDates():
         self.class_meeting_strings = [m.isoformat() for m in self.class_meetings]
     
 
-    def next_class(self,today):
-        # all before, then take the last one
-        return [cd for cd in self.class_meetings if cd < today][-1]
-
     def prev_class(self,today):
+        # all before, then take the last one
+        return [cd for cd in self.class_meetings if cd <= today][-1]
+
+    def next_class (self,today):
         # all after, then take the first one
         return [cd for cd in self.class_meetings if cd > today][0]
     
