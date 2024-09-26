@@ -14,8 +14,16 @@ Activities:
 ```{include} ../{ac}/{date}.md
 ```'''
 
-header = '''
----
+preparepage_entry = '''
+## {date}
+
+[related notes](../notes/{date})
+
+Activities:
+```{include} ../{ac}/{date}.md
+```'''
+
+header = '''---
 file_format: mystnb
 kernelspec:
     name: python3
