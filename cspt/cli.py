@@ -480,9 +480,9 @@ def exportac(lesson_file,ac_date,path,prepare):
     # process date
     if not(ac_date):
         if prepare:
-            ac_date = calculate_badge_date(assignment_type='prepare',today=date.today())
+            ac_date = calculate_badge_date(assignment_type='prepare',date_to_use=date.today())
         else:
-            ac_date = calculate_badge_date(assignment_type='pracice',today=date.today())
+            ac_date = calculate_badge_date(assignment_type='practice',date_to_use=date.today())
     
     #  cannot do all 3 in one because of source; if about to post badges,
     #  reveiw & practice are from current date and prepare is from next
@@ -494,6 +494,7 @@ def exportac(lesson_file,ac_date,path,prepare):
                             ac_date,base_site_path=path)
         lesson.create_ac_file('practice',
                             ac_date,base_site_path=path)
+    
 
 @cspt_cli.command()
 @click.option('-d','--date-in',
