@@ -6,7 +6,7 @@
 
 First, get your PR info: 
 ```
-gh pr list --state all --json title,latestReviews >> badges.json
+gh pr list --state all --json title,latestReviews > badges.json
 ```
 
 Notes: 
