@@ -2,7 +2,8 @@ import pandas as pd
 
 exp_thresh = 22
 rp_thresh =18
-learning_weights = {'experience' :2, 'lab': 2, 'review': 3,'practice': 6,'explore': 9,'build' :36}
+learning_weights = {'experience' :2, 'lab': 2, 
+                    'review': 3,'practice': 6,'explore': 9,'build' :36}
 community_weights = {'experience_replace' :3,  'review_replace': 4,'practice_replace': 7, 'review_upgrade': 3,}
 bonus_participation = 18
 bonus_lab = 18
@@ -30,7 +31,8 @@ bonus_criteria = {'participation_bonus': lambda r: int(r['experience'] >=exp_thr
                  'descriptive_bonus': lambda r: r['descriptive'],
                  'early_bonus': lambda r: r['early'] ,
                  'hack_bonus': lambda r: r['hack'] ,
-                 'curiosity_bonus': lambda r: r['question']>10}
+                 'curiosity_bonus': lambda r: divmod(r['question'],10)[0]}
+
 
 bonus_values = {'participation_bonus': bonus_participation,
                   'lab_bonus':  bonus_lab,
