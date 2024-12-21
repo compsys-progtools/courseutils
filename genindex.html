@@ -15,8 +15,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -26,18 +26,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
@@ -329,9 +329,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -411,6 +416,13 @@
 </li>
       </ul></li>
       <li>
+    --count
+
+      <ul>
+        <li><a href="cli.html#cmdoption-cspt-logquestion-c">cspt-logquestion command line option</a>
+</li>
+      </ul></li>
+      <li>
     --date
 
       <ul>
@@ -442,9 +454,18 @@
     --file-out
 
       <ul>
+        <li><a href="cli.html#cmdoption-cspt-combinecounts-f">cspt-combinecounts command line option</a>
+</li>
         <li><a href="cli.html#cmdoption-cspt-issuestatus-f">cspt-issuestatus command line option</a>
 </li>
         <li><a href="cli.html#cmdoption-cspt-progressreport-f">cspt-progressreport command line option</a>, <a href="examples/standing.html#cmdoption-cspt-progressreport-f">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    --filename
+
+      <ul>
+        <li><a href="cli.html#cmdoption-cspt-glossify-filename">cspt-glossify command line option</a>
 </li>
       </ul></li>
       <li>
@@ -459,6 +480,20 @@
 
       <ul>
         <li><a href="cli.html#cmdoption-cspt-grade-i">cspt-grade command line option</a>, <a href="examples/standing.html#cmdoption-cspt-grade-i">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    --info
+
+      <ul>
+        <li><a href="cli.html#cmdoption-cspt-badge-i">cspt-badge command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --manual
+
+      <ul>
+        <li><a href="cli.html#cmdoption-cspt-badgecounts-m">cspt-badgecounts command line option</a>, <a href="examples/standing.html#cmdoption-cspt-badgecounts-m">[1]</a>
 </li>
       </ul></li>
       <li>
@@ -519,8 +554,6 @@
         <li><a href="cli.html#cmdoption-cspt-getbadgedate-review">cspt-getbadgedate command line option</a>, <a href="examples/tasktracking.html#cmdoption-cspt-getbadgedate-review">[1]</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     --soft
 
@@ -528,6 +561,26 @@
         <li><a href="cli.html#cmdoption-cspt-badgecounts-s">cspt-badgecounts command line option</a>, <a href="examples/standing.html#cmdoption-cspt-badgecounts-s">[1]</a>
 </li>
         <li><a href="cli.html#cmdoption-cspt-progressreport-s">cspt-progressreport command line option</a>, <a href="examples/standing.html#cmdoption-cspt-progressreport-s">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    --to-file
+
+      <ul>
+        <li><a href="cli.html#cmdoption-cspt-earlybonus-f">cspt-earlybonus command line option</a>, <a href="examples/standing.html#cmdoption-cspt-earlybonus-f">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    --to-terminal
+
+      <ul>
+        <li><a href="cli.html#cmdoption-cspt-badge-v">cspt-badge command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-eventbonus-v">cspt-eventbonus command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-logquestion-v">cspt-logquestion command line option</a>
 </li>
       </ul></li>
       <li>
@@ -554,6 +607,13 @@
 </li>
       </ul></li>
       <li>
+    -c
+
+      <ul>
+        <li><a href="cli.html#cmdoption-cspt-logquestion-c">cspt-logquestion command line option</a>
+</li>
+      </ul></li>
+      <li>
     -d
 
       <ul>
@@ -568,6 +628,10 @@
     -f
 
       <ul>
+        <li><a href="cli.html#cmdoption-cspt-combinecounts-f">cspt-combinecounts command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-earlybonus-f">cspt-earlybonus command line option</a>, <a href="examples/standing.html#cmdoption-cspt-earlybonus-f">[1]</a>
+</li>
         <li><a href="cli.html#cmdoption-cspt-issuestatus-f">cspt-issuestatus command line option</a>
 </li>
         <li><a href="cli.html#cmdoption-cspt-progressreport-f">cspt-progressreport command line option</a>, <a href="examples/standing.html#cmdoption-cspt-progressreport-f">[1]</a>
@@ -584,6 +648,8 @@
     -i
 
       <ul>
+        <li><a href="cli.html#cmdoption-cspt-badge-i">cspt-badge command line option</a>
+</li>
         <li><a href="cli.html#cmdoption-cspt-grade-i">cspt-grade command line option</a>, <a href="examples/standing.html#cmdoption-cspt-grade-i">[1]</a>
 </li>
       </ul></li>
@@ -591,6 +657,8 @@
     -m
 
       <ul>
+        <li><a href="cli.html#cmdoption-cspt-badgecounts-m">cspt-badgecounts command line option</a>, <a href="examples/standing.html#cmdoption-cspt-badgecounts-m">[1]</a>
+</li>
         <li><a href="cli.html#cmdoption-cspt-mkchecklist-m">cspt-mkchecklist command line option</a>
 </li>
       </ul></li>
@@ -639,9 +707,15 @@
     -v
 
       <ul>
+        <li><a href="cli.html#cmdoption-cspt-badge-v">cspt-badge command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-eventbonus-v">cspt-eventbonus command line option</a>
+</li>
         <li><a href="cli.html#cmdoption-cspt-exportprismia-v">cspt-exportprismia command line option</a>, <a href="instructor/lessons.html#cmdoption-cspt-exportprismia-v">[1]</a>
 </li>
         <li><a href="cli.html#cmdoption-cspt-grade-v">cspt-grade command line option</a>, <a href="examples/standing.html#cmdoption-cspt-grade-v">[1]</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-logquestion-v">cspt-logquestion command line option</a>
 </li>
       </ul></li>
       <li>
@@ -676,12 +750,26 @@
         <li><a href="cli.html#cmdoption-cspt-grade-arg-BADGE_FILE">cspt-grade command line option</a>, <a href="examples/standing.html#cmdoption-cspt-grade-arg-BADGE_FILE">[1]</a>
 </li>
       </ul></li>
+      <li>
+    BADGE_TITLE
+
+      <ul>
+        <li><a href="cli.html#cmdoption-cspt-badge-arg-BADGE_TITLE">cspt-badge command line option</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#cspt.badges.badges_by_type">badges_by_type() (in module cspt.badges)</a>
 </li>
       <li><a href="api.html#cspt.lesson.Block">Block (class in cspt.lesson)</a>
 </li>
+      <li>
+    BONUS_NAME
+
+      <ul>
+        <li><a href="cli.html#cmdoption-cspt-eventbonus-arg-BONUS_NAME">cspt-eventbonus command line option</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -695,10 +783,29 @@
       <li><a href="api.html#cspt.lesson.Lesson.create_ac_file">create_ac_file() (cspt.lesson.Lesson method)</a>
 </li>
       <li>
+    cspt-badge command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-cspt-badge-i">--info</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-badge-v">--to-terminal</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-badge-i">-i</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-badge-v">-v</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-badge-arg-BADGE_TITLE">BADGE_TITLE</a>
+</li>
+      </ul></li>
+      <li>
     cspt-badgecounts command line option
 
       <ul>
+        <li><a href="cli.html#cmdoption-cspt-badgecounts-m">--manual</a>, <a href="examples/standing.html#cmdoption-cspt-badgecounts-m">[1]</a>
+</li>
         <li><a href="cli.html#cmdoption-cspt-badgecounts-s">--soft</a>, <a href="examples/standing.html#cmdoption-cspt-badgecounts-s">[1]</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-badgecounts-m">-m</a>, <a href="examples/standing.html#cmdoption-cspt-badgecounts-m">[1]</a>
 </li>
         <li><a href="cli.html#cmdoption-cspt-badgecounts-s">-s</a>, <a href="examples/standing.html#cmdoption-cspt-badgecounts-s">[1]</a>
 </li>
@@ -709,9 +816,11 @@
     cspt-combinecounts command line option
 
       <ul>
-        <li><a href="cli.html#cmdoption-cspt-combinecounts-arg-FILEA">FILEA</a>
+        <li><a href="cli.html#cmdoption-cspt-combinecounts-f">--file-out</a>
 </li>
-        <li><a href="cli.html#cmdoption-cspt-combinecounts-arg-FILEB">FILEB</a>
+        <li><a href="cli.html#cmdoption-cspt-combinecounts-f">-f</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-combinecounts-arg-FILE_LIST">FILE_LIST</a>
 </li>
       </ul></li>
       <li>
@@ -731,9 +840,24 @@
       <ul>
         <li><a href="cli.html#cmdoption-cspt-earlybonus-y">--output-yaml</a>, <a href="examples/standing.html#cmdoption-cspt-earlybonus-y">[1]</a>
 </li>
+        <li><a href="cli.html#cmdoption-cspt-earlybonus-f">--to-file</a>, <a href="examples/standing.html#cmdoption-cspt-earlybonus-f">[1]</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-earlybonus-f">-f</a>, <a href="examples/standing.html#cmdoption-cspt-earlybonus-f">[1]</a>
+</li>
         <li><a href="cli.html#cmdoption-cspt-earlybonus-y">-y</a>, <a href="examples/standing.html#cmdoption-cspt-earlybonus-y">[1]</a>
 </li>
         <li><a href="cli.html#cmdoption-cspt-earlybonus-arg-JSON_OUTPUT">JSON_OUTPUT</a>, <a href="examples/standing.html#cmdoption-cspt-earlybonus-arg-JSON_OUTPUT">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    cspt-eventbonus command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-cspt-eventbonus-v">--to-terminal</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-eventbonus-v">-v</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-eventbonus-arg-BONUS_NAME">BONUS_NAME</a>
 </li>
       </ul></li>
       <li>
@@ -794,6 +918,13 @@
 </li>
       </ul></li>
       <li>
+    cspt-glossify command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-cspt-glossify-filename">--filename</a>
+</li>
+      </ul></li>
+      <li>
     cspt-grade command line option
 
       <ul>
@@ -808,6 +939,8 @@
         <li><a href="cli.html#cmdoption-cspt-grade-arg-BADGE_FILE">BADGE_FILE</a>, <a href="examples/standing.html#cmdoption-cspt-grade-arg-BADGE_FILE">[1]</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     cspt-issuestat command line option
 
@@ -815,8 +948,6 @@
         <li><a href="cli.html#cmdoption-cspt-issuestat-arg-ISSUE_RESPONSE">ISSUE_RESPONSE</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     cspt-issuestatus command line option
 
@@ -841,6 +972,19 @@
 
       <ul>
         <li><a href="cli.html#cmdoption-cspt-kwlcsv-arg-TLDPATH">TLDPATH</a>
+</li>
+      </ul></li>
+      <li>
+    cspt-logquestion command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-cspt-logquestion-c">--count</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-logquestion-v">--to-terminal</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-logquestion-c">-c</a>
+</li>
+        <li><a href="cli.html#cmdoption-cspt-logquestion-v">-v</a>
 </li>
       </ul></li>
       <li>
@@ -974,21 +1118,14 @@
       <li><a href="api.html#cspt.tasktracking.fetch_to_checklist">fetch_to_checklist() (in module cspt.tasktracking)</a>
 </li>
       <li>
-    FILEA
+    FILE_LIST
 
       <ul>
-        <li><a href="cli.html#cmdoption-cspt-combinecounts-arg-FILEA">cspt-combinecounts command line option</a>
+        <li><a href="cli.html#cmdoption-cspt-combinecounts-arg-FILE_LIST">cspt-combinecounts command line option</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    FILEB
-
-      <ul>
-        <li><a href="cli.html#cmdoption-cspt-combinecounts-arg-FILEB">cspt-combinecounts command line option</a>
-</li>
-      </ul></li>
       <li><a href="api.html#cspt.lesson.Lesson.filter_blocks">filter_blocks() (cspt.lesson.Lesson method)</a>
 </li>
   </ul></td>
@@ -1007,15 +1144,17 @@
         <li><a href="api.html#cspt.lesson.Lesson.get_handout">(cspt.lesson.Lesson method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#cspt.lesson.Block.get_prismia">get_prismia() (cspt.lesson.Block method)</a>
 
       <ul>
         <li><a href="api.html#cspt.lesson.Lesson.get_prismia">(cspt.lesson.Lesson method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#cspt.lesson.Block.get_site">get_site() (cspt.lesson.Block method)</a>
+</li>
+      <li><a href="api.html#cspt.badges.get_type_from_title">get_type_from_title() (in module cspt.badges)</a>
 </li>
       <li>
     GH_CLI_OUTPUT
@@ -1205,8 +1344,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1239,7 +1378,8 @@
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

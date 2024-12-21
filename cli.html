@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,18 +27,18 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
@@ -330,9 +330,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -389,6 +394,33 @@
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
 </pre></div>
 </div>
+<section id="cspt-badge">
+<h3>badge<a class="headerlink" href="#cspt-badge" title="Link to this heading">#</a></h3>
+<p>log an additional badge that is not in the pr list</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>badge<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>BADGE_TITLE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badge-i">
+<span id="cmdoption-cspt-badge-info"></span><span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--info</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;info&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-badge-i" title="Link to this definition">#</a></dt>
+<dd><p>messgae to include for comment</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badge-v">
+<span id="cmdoption-cspt-badge-to-terminal"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--to-terminal</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-badge-v" title="Link to this definition">#</a></dt>
+<dd><p>write to terminal instead of a file</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badge-arg-BADGE_TITLE">
+<span class="sig-name descname"><span class="pre">BADGE_TITLE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-badge-arg-BADGE_TITLE" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
 <section id="cspt-badgecounts">
 <h3>badgecounts<a class="headerlink" href="#cspt-badgecounts" title="Link to this heading">#</a></h3>
 <p>check if early bonus is met from output of
@@ -404,6 +436,12 @@ a message. input from  either a file or -for stdin</p>
 <dd><p>soft check, skip title check</p>
 </dd></dl>
 
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badgecounts-m">
+<span id="cmdoption-cspt-badgecounts-manual"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--manual</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-badgecounts-m" title="Link to this definition">#</a></dt>
+<dd><p>check for manually recorded badges</p>
+</dd></dl>
+
 <p class="rubric">Arguments</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-cspt-badgecounts-arg-JSON_OUTPUT">
@@ -414,21 +452,22 @@ a message. input from  either a file or -for stdin</p>
 </section>
 <section id="cspt-combinecounts">
 <h3>combinecounts<a class="headerlink" href="#cspt-combinecounts" title="Link to this heading">#</a></h3>
-<p>combine two yaml files by adding values</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>combinecounts<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>FILEA<span class="w"> </span>FILEB
+<p>combine two yaml files by adding all keys and summing values for duplicate keys</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>combinecounts<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>FILE_LIST<span class="o">]</span>...
 </pre></div>
 </div>
-<p class="rubric">Arguments</p>
+<p class="rubric">Options</p>
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-cspt-combinecounts-arg-FILEA">
-<span class="sig-name descname"><span class="pre">FILEA</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-combinecounts-arg-FILEA" title="Link to this definition">#</a></dt>
-<dd><p>Required argument</p>
+<dt class="sig sig-object std" id="cmdoption-cspt-combinecounts-f">
+<span id="cmdoption-cspt-combinecounts-file-out"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--file-out</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-combinecounts-f" title="Link to this definition">#</a></dt>
+<dd><p>write to final-badge-sum.yml file</p>
 </dd></dl>
 
+<p class="rubric">Arguments</p>
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-cspt-combinecounts-arg-FILEB">
-<span class="sig-name descname"><span class="pre">FILEB</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-combinecounts-arg-FILEB" title="Link to this definition">#</a></dt>
-<dd><p>Required argument</p>
+<dt class="sig sig-object std" id="cmdoption-cspt-combinecounts-arg-FILE_LIST">
+<span class="sig-name descname"><span class="pre">FILE_LIST</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-combinecounts-arg-FILE_LIST" title="Link to this definition">#</a></dt>
+<dd><p>Optional argument(s)</p>
 </dd></dl>
 
 </section>
@@ -469,10 +508,37 @@ a message. input from  either a file or -for stdin</p>
 <dd><p>output as yaml compatible with grading</p>
 </dd></dl>
 
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-earlybonus-f">
+<span id="cmdoption-cspt-earlybonus-to-file"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--to-file</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-earlybonus-f" title="Link to this definition">#</a></dt>
+<dd><p>write directly to a file</p>
+</dd></dl>
+
 <p class="rubric">Arguments</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-cspt-earlybonus-arg-JSON_OUTPUT">
 <span class="sig-name descname"><span class="pre">JSON_OUTPUT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-earlybonus-arg-JSON_OUTPUT" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-eventbonus">
+<h3>eventbonus<a class="headerlink" href="#cspt-eventbonus" title="Link to this heading">#</a></h3>
+<p>award a bonus,</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>eventbonus<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>BONUS_NAME
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-eventbonus-v">
+<span id="cmdoption-cspt-eventbonus-to-terminal"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--to-terminal</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-eventbonus-v" title="Link to this definition">#</a></dt>
+<dd><p>write to terminal instead of a file</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-eventbonus-arg-BONUS_NAME">
+<span class="sig-name descname"><span class="pre">BONUS_NAME</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-eventbonus-arg-BONUS_NAME" title="Link to this definition">#</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
@@ -593,10 +659,23 @@ a message. input from  either a file or -for stdin</p>
 <dd></dd></dl>
 
 </section>
+<section id="cspt-glossify">
+<h3>glossify<a class="headerlink" href="#cspt-glossify" title="Link to this heading">#</a></h3>
+<p>overwrite a file with all glossary terms using the term directive</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>glossify<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-glossify-filename">
+<span class="sig-name descname"><span class="pre">--filename</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;filename&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-glossify-filename" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
 <section id="cspt-grade">
 <h3>grade<a class="headerlink" href="#cspt-grade" title="Link to this heading">#</a></h3>
 <p>calculate a grade from yaml that had keys of badges/bonuses and value for counts</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>grade<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>BADGE_FILE
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>grade<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>BADGE_FILE<span class="o">]</span>
 </pre></div>
 </div>
 <p class="rubric">Options</p>
@@ -616,7 +695,7 @@ a message. input from  either a file or -for stdin</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-cspt-grade-arg-BADGE_FILE">
 <span class="sig-name descname"><span class="pre">BADGE_FILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-grade-arg-BADGE_FILE" title="Link to this definition">#</a></dt>
-<dd><p>Required argument</p>
+<dd><p>Optional argument</p>
 </dd></dl>
 
 </section>
@@ -679,6 +758,26 @@ located at the TLDPATH (directory of the top level of the course site)</p>
 <dt class="sig sig-object std" id="cmdoption-cspt-kwlcsv-arg-TLDPATH">
 <span class="sig-name descname"><span class="pre">TLDPATH</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-kwlcsv-arg-TLDPATH" title="Link to this definition">#</a></dt>
 <dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-logquestion">
+<h3>logquestion<a class="headerlink" href="#cspt-logquestion" title="Link to this heading">#</a></h3>
+<p>award a bonus,</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>logquestion<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-logquestion-v">
+<span id="cmdoption-cspt-logquestion-to-terminal"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--to-terminal</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-logquestion-v" title="Link to this definition">#</a></dt>
+<dd><p>write to terminal instead of a file</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-logquestion-c">
+<span id="cmdoption-cspt-logquestion-count"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--count</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;count&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-logquestion-c" title="Link to this definition">#</a></dt>
+<dd><p>number to add,</p>
 </dd></dl>
 
 </section>
@@ -863,8 +962,8 @@ this will include <cite>gh pr list -s all –json title,latestReviews</cite></p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -897,7 +996,8 @@ this will include <cite>gh pr list -s all –json title,latestReviews</cite></p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>
