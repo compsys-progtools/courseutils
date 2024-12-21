@@ -4,7 +4,8 @@ import re
 from numpy import prod as npprod
 
 from .config import GH_APPROVERS, EARLY_BIRD_DEADLINE
-badge_types = ['experience','review','practice','explore','build','lab','community','prepare']
+badge_types = ['experience','review','practice','explore',
+               'build','lab','community','prepare','unstuck']
 dated_types = ['experience','review','practice']
 supported_dates_re = [
     re.compile('20[2-9][0-9]-[0-1][0-9]-[0-3][0-9]'), # YYYY-DD-MM
@@ -13,6 +14,12 @@ supported_dates_re = [
     re.compile('(\d{1,2})/(\d{1,2})/(\d{2})') # M/DD/YY
     # Add other regex expressions as needed
 ]
+
+def get_type_from_title():
+    '''
+    return badge type
+    '''
+    return 
 
 def is_title_gradeable(pr_title,errortype=False):
     '''

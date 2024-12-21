@@ -6,13 +6,17 @@ import subprocess
 from datetime import date
 from .badges import badges_by_type, process_pr_json, generate_report,is_title_gradeable
 from .activities import files_from_dict
-from .notes import process_export,init_activity_files
+from .notes import process_export, init_activity_files
 from .sitetools import generate_csv_from_index
 from .tasktracking import calculate_badge_date, fetch_to_checklist,determine_issue_statuses
 from .grade_calculation import calculate_grade, community_apply
 from .config import EARLY_BIRD_DEADLINE
 
 from .lesson import Lesson
+
+
+MANUAL_BADGE_FILE = 'manual_badges.txt'
+MANUAL_BADGE_SEPARATOR = '-- reason: '
 
 @click.group()
 def cspt_cli():
@@ -125,7 +129,7 @@ def issuestatus(json_output,file_out,execute,as_of_date):
     file_script = determine_issue_statuses(json_output,as_of_date)
     
     if file_out:
-        with open(file_out,'w') as f:
+        with open(file_out,'w') as f:       
             f.write(file_script)
     elif execute:
         shell_script = file_script.replace('\n','; ')
@@ -198,27 +202,43 @@ def progressreport(json_output,file_out, report,soft,brief):
 @click.argument('json-output', type =click.File('r'))
 @click.option('-s','--soft',is_flag= True,
               help = 'soft check, skip title check')
-def badgecounts(json_output,soft):
+@click.option('-m','--manual', is_flag=True,
+              help = 'check for manually recorded badges')
+def badgecounts(json_output,soft,manual):
     '''
     check if early bonus is met from output of 
     `gh pr list -s all --json title,latestReviews,createdAt` and return 
     a message. input from  either a file or -for stdin
 
     '''
-    json_output = json.load(json_output)
 
+    # get regular badges
+    json_output = json.load(json_output)
     selected_filters = ['approved']
     if not(soft):
         selected_filters.append('good_title')
 
-    approved_prs = process_pr_json(json_output,titles_only=True,filter_list=selected_filters)
+    approved_pr_titles = process_pr_json(json_output,titles_only=True,
+                                   filter_list=selected_filters)
     
+    # get manual if needed
+    if manual and os.path.exists(MANUAL_BADGE_FILE):
+        with open(MANUAL_BADGE_FILE,'r') as f:
+            man_badge_file = f.readlines()
+        
+        #  each will be like: title separator reason; do not need reasons
+        manual_badge_list = [title_info.split(MANUAL_BADGE_SEPARATOR)[0] 
+                             for title_info in man_badge_file]
+    else:
+        manual_badge_list = []
     
-    if approved_prs:
-        eligble_by_type = badges_by_type(approved_prs)
+    all_badge_titles = approved_pr_titles + manual_badge_list
+
+    if all_badge_titles:
+        eligble_by_type = badges_by_type(all_badge_titles)
         count_by_type = {btype:len(badges) for btype,badges in eligble_by_type.items()}
 
-    #last character would be a newline, we do not want that so that we can append
+    #last character would be a newline, we do not want that so that we can append without blanks
     click.echo(yaml.dump(count_by_type)[:-1])
 
 
@@ -311,10 +331,73 @@ def mkchecklist(gh_cli_output,message):
 
 
 @cspt_cli.command()
+@click.argument('bonus-name')
+@click.option('-v','--to-terminal',is_flag=True,
+              help ='write to terminal instead of a file')
+
+def eventbonus(bonus_name,to_terminal):
+    '''
+    award a bonus, 
+    '''
+    file = f'{bonus_name}-bonus.yml'
+    message = bonus_name + ': 1'
+    if to_terminal: 
+        click.echo(message)
+    else:
+        with open(file,'w') as f:
+            f.write(message)
+
+@cspt_cli.command()
+@click.argument('badge-title')
+@click.option('-i','--info',default = 'manually assessed in final grading',
+                help= 'messgae to include for comment')
+@click.option('-v','--to-terminal',is_flag=True,
+              help ='write to terminal instead of a file')
+
+def badge(badge_title,info,to_terminal):
+    '''
+    log an additional badge that is not in the pr list 
+    '''
+    file = MANUAL_BADGE_FILE
+    message = f'{badge_title} {MANUAL_BADGE_SEPARATOR} {info}\n'
+    if to_terminal: 
+        click.echo(message)
+    else:
+        with open(file,'a') as f:
+            f.write(message)
+
+
+@cspt_cli.command()
+@click.option('-v','--to-terminal',is_flag=True,
+              help ='write to terminal instead of a file')
+@click.option('-c','--count',default=1,
+              help =' number to add,')
+
+def logquestion(to_terminal,count):
+    '''
+    award a bonus, 
+    '''
+    file = 'question-count.yml'
+    # if not first, add old to count
+    if os.path.exists(file):
+        with open(file,'r') as f:
+            past = yaml.safe_load(f)
+        count += past['question']
+
+    message = 'question: '+ str(count)
+    if to_terminal: 
+        click.echo(message)
+    else:
+        with open(file,'w') as f:
+            f.write(message)
+
+@cspt_cli.command()
 @click.argument('json-output', type =click.File('r'))
 @click.option('-y','--output-yaml',is_flag = True,
                  help = 'output as yaml compatible with grading')
-def earlybonus(json_output,output_yaml):
+@click.option('-f','--to-file',is_flag=True,
+              help ='write directly to a file')
+def earlybonus(json_output,output_yaml, to_file):
     '''
     check if early bonus is met from output of 
     `gh pr list -s all --json title,latestReviews,createdAt` and return 
@@ -350,11 +433,16 @@ def earlybonus(json_output,output_yaml):
         else:
             message = 'there were no approved early badges'
 
-    click.echo(message)
+    file_name_by_output = {True:'early.yml',False:'early.txt'}
+    if to_file:
+        with open(file_name_by_output[output_yaml],'w') as f:
+            f.write(message)
+    else:
+        click.echo(message)
 
 
 @cspt_cli.command()
-@click.argument('badge_file', type =click.File('r'))
+@click.argument('badge_file', type =click.File('r'), default = '-')
 @click.option('-i','--influence',is_flag = True,
                  help = 'return numerical instead of letter')
 @click.option('-v','--verbose',is_flag = True,
@@ -371,38 +459,63 @@ def grade(badge_file, influence, verbose):
     
     
     if verbose: 
-        badges,influence_total, letter = calculate_grade(badges_comm_applied,influence,verbose)
+        badges,influence_total, letter, message = calculate_grade(badges_comm_applied,influence,verbose)
         click.echo('final badge counts')
         click.echo(yaml.dump(badges))
         click.echo('total influence: '+ str(influence_total))
         click.echo('letter: '+ letter)
+        click.echo('detailed calc:'+message)
     else:
         grade = calculate_grade(badges_comm_applied,influence)
         click.echo(grade)
 
 
+def safe_load_yaml(file):
+    with open(file,'r') as f:
+        content_dict = yaml.safe_load(f)
+
+    if isinstance(content_dict,dict):
+        return content_dict
+    else:
+        return {}
+
 @cspt_cli.command()
-@click.argument('filea', type =click.File('r'))
-@click.argument('fileb', type =click.File('r'))
-
-def combinecounts(filea, fileb):
+@click.argument('file-list', nargs=-1, type =click.Path())
+@click.option('-f','--file-out', is_flag = True,
+              help =' write to final-badge-sum.yml file')
+def combinecounts(file_list,file_out):
     '''
-    combine two yaml files by adding values
+    combine two yaml files by adding all keys and summing values for duplicate keys
     '''
-    badges_a = yaml.safe_load(filea)
-    badges_b = yaml.safe_load(fileb)
+    # ignore final and canonical jupyterbook ones
+    file_list_to_combine = [f for f in file_list if not('final' in f) and not(f[0]=='_')]
+    
+    badge_dict_list = [safe_load_yaml(f) for f in file_list_to_combine]
+    # drop empty
+    badge_dict_list = [b for b in badge_dict_list if b]
 
-    # first pass combined all keys, some bad values
-    combined = badges_a.copy()
-    combined.update(badges_b)
-
-    # set to sum
-    for badge in combined.keys():
-        if badge in badges_a.keys() and badge in badges_b.keys():
-            combined[badge] = badges_a[badge] + badges_b[badge]
+    
+    combined = badge_dict_list[0].copy()
+    for badge_dict in badge_dict_list[1:]:
+        duplicate_keys  = combined.keys() & badge_dict.keys()
+        # create values to update with
+        sum_vals = {}
+        for dup_key in duplicate_keys:
+            sum_vals[dup_key] = combined[dup_key] + badge_dict[dup_key]
+        # add new keys
+        combined.update(badge_dict)
+        # update duplicate keys
+        combined.update(sum_vals)
 
     combined_yaml = yaml.safe_dump(combined)
-    click.echo(combined_yaml)
+
+    if file_out:
+        out_path = 'final-badge-sum.yml'
+        with open(out_path,'w') as f:
+            f.write(combined_yaml)
+        click.echo(f'wrote to {out_path}')
+    else:
+        click.echo(combined_yaml)
 
 
 # --------------------------------------------------------------
@@ -522,3 +635,16 @@ def processexport(date_in = None,base_path = '.'):
     init_activity_files(base_path,date_in)
 
  
+@cspt_cli.command()
+@click.option('--filename', default=None)
+def glossify(filename):
+    '''
+    overwrite a file with all glossary terms using the term directive
+    '''
+    if filename is None:
+        filename = f'{date.today().isoformat()}.md'
+    with open(filename, 'r') as file:
+        lesson_content = file.read()
+    glossified_lesson_content = glossify(lesson_content)
+    with open(filename, 'w') as file:
+        file.write(glossified_lesson_content)

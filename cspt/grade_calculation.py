@@ -65,7 +65,8 @@ def calculate_grade(badges_in,return_influence=False,verbose=False):
     letter_grade = letter_df[letter_df['threshold']<=influence].iloc[-1].name.strip()
 
     if verbose: 
-        return current_badges, influence, letter_grade
+        message =  [(k,current_badges[k],weights[k]) for k in weights.keys()]
+        return current_badges, influence, letter_grade, str(message)
 
     if return_influence:
         return influence
