@@ -29,6 +29,11 @@ select messages from the lesson button
 
 ```
 
+## Handout
+
+```{note}
+this is not used, but could be?
+```
 
 ```{eval-rst}
 .. click:: cspt.cli:exporthandout
