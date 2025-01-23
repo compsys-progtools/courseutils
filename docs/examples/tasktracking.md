@@ -19,7 +19,7 @@ allows specifying a file for the body of the issue, and `-` reads from stdin, or
 Create a badge issue from instructions
 
 ```
-cspt getassignment --type practice --date 2024-02-15 | gh issue create -t 'practice 2024-02-15' -F -
+cspt getassignment --type practice --date 2025-02-18 | gh issue create -t 'practice 2025-02-18' -F -
 ```
 
 
@@ -27,7 +27,7 @@ cspt getassignment --type practice --date 2024-02-15 | gh issue create -t 'pract
 Put badge instructions into the PR comment, while creating a PR from the current branch
 
 ```
-cspt getassignment --type practice --date 2024-02-15 | gh pr create -t 'practice 2024-02-15' -F -
+cspt getassignment --type practice --date 2025-02-18 | gh pr create -t 'practice 2025-02-18' -F -
 ```
 
 ### Details
