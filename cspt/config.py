@@ -6,7 +6,7 @@ REPO = 'http://compsys-progtools.github.io/spring2025/'
 BASE_URL = 'https://raw.githubusercontent.com/compsys-progtools/spring2025/main/_'
 
 GH_APPROVERS = ['AymanBx','trevmoy','efsa95']
-EARLY_BIRD_DEADLINE= datetime.fromisoformat('2025-01-30')
+EARLY_BIRD_DEADLINE= datetime.fromisoformat('2025-02-14')
 
 def expand_range(first_day,last_day=None,days_of_week=[]):
     if last_day:
