@@ -29,7 +29,7 @@ class CourseDates():
     last_day = dt(2025,12,9)
 
     #  add any skipped days or ranges (without makeup)
-    no_class_ranges = [dt(2025,11,11)
+    no_class_ranges = [(dt(2025,11,11),),
                        (dt(2025,11,26),dt(2025,11,30)),]
     
     
