@@ -387,20 +387,343 @@
 <p class="admonition-title">Warning</p>
 <p>some functions are incomplete</p>
 </div>
-<section id="badges">
-<h2>Badges<a class="headerlink" href="#badges" title="Link to this heading">#</a></h2>
+<section id="module-cspt.badges">
+<span id="badges"></span><h2>Badges<a class="headerlink" href="#module-cspt.badges" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.badges.badges_by_type">
+<span class="sig-prename descclassname"><span class="pre">cspt.badges.</span></span><span class="sig-name descname"><span class="pre">badges_by_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">approved_prs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.badges.badges_by_type" title="Link to this definition">#</a></dt>
+<dd><p>parse list of approved PRs to filter for badges</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>approved_prs</strong> (<em>list</em>) – list of titles or list of dicts with ‘title’ as a key</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>badges_by_type</strong> – dict with keys as badge types, keys as input type</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.badges.check_approved">
+<span class="sig-prename descclassname"><span class="pre">cspt.badges.</span></span><span class="sig-name descname"><span class="pre">check_approved</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">any</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.badges.check_approved" title="Link to this definition">#</a></dt>
+<dd><p>check a pr dictionary for approval by default only approvers count</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pr</strong> (<em>dict</em>)</p></li>
+<li><p><strong>--json</strong> (<em>single pr info from gh pr list</em>)</p></li>
+<li><p><strong>any</strong> (<em>bool</em>) – if True consider any approavl</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>approved</strong> – True if approved by an eligible approver</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.badges.generate_report">
+<span class="sig-prename descclassname"><span class="pre">cspt.badges.</span></span><span class="sig-name descname"><span class="pre">generate_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">approved_prs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">short</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.badges.generate_report" title="Link to this definition">#</a></dt>
+<dd><p>format approved prs into a report</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.badges.get_type_from_title">
+<span class="sig-prename descclassname"><span class="pre">cspt.badges.</span></span><span class="sig-name descname"><span class="pre">get_type_from_title</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.badges.get_type_from_title" title="Link to this definition">#</a></dt>
+<dd><p>return badge type</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.badges.is_title_gradeable">
+<span class="sig-prename descclassname"><span class="pre">cspt.badges.</span></span><span class="sig-name descname"><span class="pre">is_title_gradeable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pr_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errortype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.badges.is_title_gradeable" title="Link to this definition">#</a></dt>
+<dd><p>this defines if a pr title is good, it contains exactly one badge type word and
+a well date if experience, review or practice, in ISO (YYYY-MM-DD, YYYY MM DD) or
+M/DD/YY, MM-DD-YY or M-DD-YY</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>title</strong> (<em>string</em>) – title of pr</p></li>
+<li><p><strong>errortype</strong> (<em>bool</em>) – if true, return bool + message</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>good</strong> – true if good</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.badges.process_pr_json">
+<span class="sig-prename descclassname"><span class="pre">cspt.badges.</span></span><span class="sig-name descname"><span class="pre">process_pr_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numbered</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titles_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['approved',</span> <span class="pre">'good_title']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_field_parser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'filter'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.badges.process_pr_json" title="Link to this definition">#</a></dt>
+<dd><p>process gh cli json</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>json_output</strong> (<em>filename</em>) – dictionary generated from <cite>gh pr list -s all –json title,latestReviews</cite> and optionally
+additional fields</p></li>
+<li><p><strong>numbered</strong> (<em>bool</em>) – return with numbers as keys in dict</p></li>
+<li><p><strong>titles_only</strong> (<em>bool</em>) – return titles as list</p></li>
+<li><p><strong>custom_field_parser</strong> (<em>dict</em>) – dictionary with keys matching fields in the json result and values as functions
+to apply to each feild before use, overwrites defaults in field_parser</p></li>
+<li><p><strong>custom_filters</strong> (<em>dict</em>) – dictionary with keys as names, values that are boolean functions</p></li>
+<li><p><strong>filter_mode</strong> (<em>string {'filter'}</em>) – filter to keep only ones that pass each filer or ‘group’ to group prs by which filter they pass</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>filtered_prs</strong> – list or dict as per value above if a flag is used or dict that is like the input json</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="task-tracking">
-<h2>Task Tracking<a class="headerlink" href="#task-tracking" title="Link to this heading">#</a></h2>
+<section id="module-cspt.tasktracking">
+<span id="task-tracking"></span><h2>Task Tracking<a class="headerlink" href="#module-cspt.tasktracking" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.tasktracking.calculate_badge_date">
+<span class="sig-prename descclassname"><span class="pre">cspt.tasktracking.</span></span><span class="sig-name descname"><span class="pre">calculate_badge_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assignment_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_to_use</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.tasktracking.calculate_badge_date" title="Link to this definition">#</a></dt>
+<dd><p>return the date of the most recent past class except if prepare,
+then the next upcoming class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assignment_type</strong> (<em>str</em>) – one of prepare, review, or practice</p></li>
+<li><p><strong>date_to_use</strong> (<em>srt</em>) – a date to use in iso format or none to use current day</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.tasktracking.date_label">
+<span class="sig-prename descclassname"><span class="pre">cspt.tasktracking.</span></span><span class="sig-name descname"><span class="pre">date_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">badge_date_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">today</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.tasktracking.date_label" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.tasktracking.determine_issue_statuses">
+<span class="sig-prename descclassname"><span class="pre">cspt.tasktracking.</span></span><span class="sig-name descname"><span class="pre">determine_issue_statuses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">issue_json</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">as_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.tasktracking.determine_issue_statuses" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.tasktracking.fetch_to_checklist">
+<span class="sig-prename descclassname"><span class="pre">cspt.tasktracking.</span></span><span class="sig-name descname"><span class="pre">fetch_to_checklist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignment_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'prepare'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.tasktracking.fetch_to_checklist" title="Link to this definition">#</a></dt>
+<dd><p>get assignment text and change numbered items to a checklist</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>date</strong> (<em>string</em>) – YYYY-MM-DD formatted strings of the date to get</p></li>
+<li><p><strong>assignment_type</strong></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="notes">
-<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h2>
+<section id="module-cspt.notes">
+<span id="notes"></span><h2>Notes<a class="headerlink" href="#module-cspt.notes" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.notes.init_activity_files">
+<span class="sig-prename descclassname"><span class="pre">cspt.notes.</span></span><span class="sig-name descname"><span class="pre">init_activity_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_in</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.notes.init_activity_files" title="Link to this definition">#</a></dt>
+<dd><p>create blanks and link</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.notes.link_activities">
+<span class="sig-prename descclassname"><span class="pre">cspt.notes.</span></span><span class="sig-name descname"><span class="pre">link_activities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.notes.link_activities" title="Link to this definition">#</a></dt>
+<dd><p>Append activities via include to a file for all lessons</p>
+<p>FIXME… incomplete/possibly broken</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.notes.process_export">
+<span class="sig-prename descclassname"><span class="pre">cspt.notes.</span></span><span class="sig-name descname"><span class="pre">process_export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">export</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_in</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.notes.process_export" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 </section>
-<section id="prep">
-<h2>Prep<a class="headerlink" href="#prep" title="Link to this heading">#</a></h2>
+<section id="module-cspt.prep">
+<span id="prep"></span><h2>Prep<a class="headerlink" href="#module-cspt.prep" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.prep.load_lesson">
+<span class="sig-prename descclassname"><span class="pre">cspt.prep.</span></span><span class="sig-name descname"><span class="pre">load_lesson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'---'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.prep.load_lesson" title="Link to this definition">#</a></dt>
+<dd><p>load a lesson file</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.prep.parse_soln_file">
+<span class="sig-prename descclassname"><span class="pre">cspt.prep.</span></span><span class="sig-name descname"><span class="pre">parse_soln_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.prep.parse_soln_file" title="Link to this definition">#</a></dt>
+<dd><p>strip solutions from activity file and echo result</p>
+<section id="parameter">
+<h3>parameter<a class="headerlink" href="#parameter" title="Link to this heading">#</a></h3>
+<p>file: path</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cspt.prep.swap_separators">
+<span class="sig-prename descclassname"><span class="pre">cspt.prep.</span></span><span class="sig-name descname"><span class="pre">swap_separators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.prep.swap_separators" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 </section>
 <section id="lesson-objects">
 <h2>Lesson Objects<a class="headerlink" href="#lesson-objects" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cspt.lesson.</span></span><span class="sig-name descname"><span class="pre">Lesson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson" title="Link to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.create_ac_file">
+<span class="sig-name descname"><span class="pre">create_ac_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ac_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_site_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.create_ac_file" title="Link to this definition">#</a></dt>
+<dd><p>extract activity instructions from lesson plan and write to file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ac_type</strong> (<em>str</em>) – prepare, practice, or review</p></li>
+<li><p><strong>base_site_path</strong> (<em>str</em><em> or </em><em>path</em>) – site path</p></li>
+<li><p><strong>file_out</strong> (<em>str</em>) – file nam to sace the file</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.filter_blocks">
+<span class="sig-name descname"><span class="pre">filter_blocks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.filter_blocks" title="Link to this definition">#</a></dt>
+<dd><p>filter blocks for ones that have value for the label</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>string</em>) – label that is one the of keys in block metadata</p></li>
+<li><p><strong>value</strong> (<em>string</em>) – value to filter for</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.get_codeblocks">
+<span class="sig-name descname"><span class="pre">get_codeblocks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.get_codeblocks" title="Link to this definition">#</a></dt>
+<dd><p>produce hint sheet that is only the code blocks with an identifier</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.get_handout">
+<span class="sig-name descname"><span class="pre">get_handout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.get_handout" title="Link to this definition">#</a></dt>
+<dd><p>produce a handout that serves as an outline for students to follow along</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.get_prismia">
+<span class="sig-name descname"><span class="pre">get_prismia</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.get_prismia" title="Link to this definition">#</a></dt>
+<dd><p>get prismia version</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.print_bad">
+<span class="sig-name descname"><span class="pre">print_bad</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.print_bad" title="Link to this definition">#</a></dt>
+<dd><p>format bad blocks for debugging</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.save" title="Link to this definition">#</a></dt>
+<dd><p>write out lesson to file_out</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_out</strong> (<em>string</em><em> or </em><em>file buffer</em>) – where to write file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Lesson.valid">
+<span class="sig-name descname"><span class="pre">valid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Lesson.valid" title="Link to this definition">#</a></dt>
+<dd><p>check if any errors</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cspt.lesson.Block">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cspt.lesson.</span></span><span class="sig-name descname"><span class="pre">Block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block" title="Link to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.add_label">
+<span class="sig-name descname"><span class="pre">add_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.add_label" title="Link to this definition">#</a></dt>
+<dd><p>add an additional key value pair, label:value
+to the labels for the block</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>string</em>) – key to add to label attribute of block</p></li>
+<li><p><strong>value</strong> (<em>string</em><em> or </em><em>string-like</em>) – value to store</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.add_labels">
+<span class="sig-name descname"><span class="pre">add_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.add_labels" title="Link to this definition">#</a></dt>
+<dd><p>add an additional key value pair, label:value
+to the labels for the block</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>label_dict</strong> (<em>dict</em>) – key, value pairs to add</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.export">
+<span class="sig-name descname"><span class="pre">export</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.export" title="Link to this definition">#</a></dt>
+<dd><p>export back to srting</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.get_handout">
+<span class="sig-name descname"><span class="pre">get_handout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.get_handout" title="Link to this definition">#</a></dt>
+<dd><p>return handout version (only heading lines)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.get_prismia">
+<span class="sig-name descname"><span class="pre">get_prismia</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.get_prismia" title="Link to this definition">#</a></dt>
+<dd><p>return this block formatted for prisma,
+stripping admonitions and empty after filter</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.get_site">
+<span class="sig-name descname"><span class="pre">get_site</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.get_site" title="Link to this definition">#</a></dt>
+<dd><p>return the version of this block for the site,
+or empty if not the right lesson part</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cspt.lesson.Block.is_labeled">
+<span class="sig-name descname"><span class="pre">is_labeled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cspt.lesson.Block.is_labeled" title="Link to this definition">#</a></dt>
+<dd><p>does this block have any of values in the label field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>string</em>) – field to search for</p></li>
+<li><p><strong>values</strong> (<em>string</em><em> or </em><em>list</em>) – value(s) to check for.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
