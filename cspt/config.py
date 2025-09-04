@@ -2,11 +2,11 @@ from datetime import datetime
 from datetime import date as dt
 from datetime import timedelta
 # UPDATE: update this each semester
-REPO = 'http://compsys-progtools.github.io/spring2025/'
-BASE_URL = 'https://raw.githubusercontent.com/compsys-progtools/spring2025/main/_'
+REPO = 'http://compsys-progtools.github.io/fall2025/'
+BASE_URL = 'https://raw.githubusercontent.com/compsys-progtools/fall2025/main/_'
 
-GH_APPROVERS = ['AymanBx','trevmoy','efsa95']
-EARLY_BIRD_DEADLINE= datetime.fromisoformat('2025-02-14')
+GH_APPROVERS = ['AymanBx','brownsarahm',]
+EARLY_BIRD_DEADLINE= datetime.fromisoformat('2025-09-25')
 
 def expand_range(first_day,last_day=None,days_of_week=[]):
     if last_day:
@@ -25,15 +25,16 @@ class CourseDates():
     lab_hour = 14
     # -------semester settings from academic calender 
     #  https://web.uri.edu/academic-calendars/
-    first_day = dt(2025,1,23)
-    last_day = dt(2025,4,29)
+    first_day = dt(2025,9,4)
+    last_day = dt(2025,12,9)
 
     #  add any skipped days or ranges (without makeup)
-    no_class_ranges = [(dt(2025,3,9),dt(2025,3,15)),]
+    no_class_ranges = [dt(2025,11,11)
+                       (dt(2025,11,26),dt(2025,11,30)),]
     
     
     # classes "cancelled" on keys, running on value instead
-    date_substitutes = {dt(2025,2,17):dt(2025,2,19)}
+    date_substitutes = {}# {dt(2025,2,17):dt(2025,2,19)}
     # instructor choices
     penalty_free_end = first_day + timedelta(days=21)
     early_bird_deadline = first_day + timedelta(days=21)
