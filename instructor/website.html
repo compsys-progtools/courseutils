@@ -31,7 +31,7 @@
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
@@ -408,60 +408,6 @@ the course website</p>
 <section id="prepare-content-for-the-website">
 <h2>Prepare content for the website<a class="headerlink" href="#prepare-content-for-the-website" title="Link to this heading">#</a></h2>
 <p>For use in preparing notes to post</p>
-<section id="cspt-processexport">
-<h3>cspt processexport<a class="headerlink" href="#cspt-processexport" title="Link to this heading">#</a></h3>
-<p>transform output from mac terminal export to myst notebook
-(relies on regex specifically to brownsarahm)</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>processexport<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
-</pre></div>
-</div>
-<p class="rubric">Options</p>
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-cspt-processexport-d">
-<span id="cmdoption-cspt-processexport-date-in"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--date-in</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;date_in&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-processexport-d" title="Link to this definition">#</a></dt>
-<dd><p>date part of filename to read in</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-cspt-processexport-p">
-<span id="cmdoption-cspt-processexport-base-path"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--base-path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;base_path&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-processexport-p" title="Link to this definition">#</a></dt>
-<dd><p>path that contains the notes folder</p>
-</dd></dl>
-
-</section>
-<section id="cspt-exportac">
-<h3>cspt exportac<a class="headerlink" href="#cspt-exportac" title="Link to this heading">#</a></h3>
-<p>export ac files for site from lesson</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>exportac<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>LESSON_FILE
-</pre></div>
-</div>
-<p class="rubric">Options</p>
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-cspt-exportac-d">
-<span id="cmdoption-cspt-exportac-ac-date"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--ac-date</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;ac_date&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-exportac-d" title="Link to this definition">#</a></dt>
-<dd><p>date to use for writing file out</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-cspt-exportac-p">
-<span id="cmdoption-cspt-exportac-path"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;path&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-exportac-p" title="Link to this definition">#</a></dt>
-<dd><p>base path of where to save ac date files into subfolders</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-cspt-exportac-prepare">
-<span class="sig-name descname"><span class="pre">--prepare</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-exportac-prepare" title="Link to this definition">#</a></dt>
-<dd><p>do prepare (otherwise do review &amp; practice)</p>
-</dd></dl>
-
-<p class="rubric">Arguments</p>
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-cspt-exportac-arg-LESSON_FILE">
-<span class="sig-name descname"><span class="pre">LESSON_FILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-exportac-arg-LESSON_FILE" title="Link to this definition">#</a></dt>
-<dd><p>Required argument</p>
-</dd></dl>
-
-</section>
 </section>
 </section>
 
@@ -512,11 +458,7 @@ the course website</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-content-for-the-website">Prepare content for the website</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cspt-processexport">cspt processexport</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cspt-exportac">cspt exportac</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-content-for-the-website">Prepare content for the website</a></li>
 </ul>
   </nav></div>
 
@@ -563,7 +505,7 @@ the course website</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>
