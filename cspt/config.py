@@ -7,7 +7,8 @@ BASE_URL = 'https://raw.githubusercontent.com/compsys-progtools/fall2025/main/_'
 GLOSSARY_URL = 'https://compsys-progtools.github.io/fall2025/glossary/#term-'
 
 GH_APPROVERS = ['AymanBx','brownsarahm','thomaspeck11']
-EARLY_BIRD_DEADLINE= datetime.fromisoformat('2025-09-25')
+EARLY_BIRD_DEADLINE_STR = '2025-09-25'
+EARLY_BIRD_DEADLINE= datetime.fromisoformat(EARLY_BIRD_DEADLINE_STR)
 
 def expand_range(first_day,last_day=None,days_of_week=[]):
     if last_day:
