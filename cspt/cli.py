@@ -11,8 +11,9 @@ from .sitetools import generate_csv_from_index
 from .tasktracking import calculate_badge_date, fetch_to_checklist,determine_issue_statuses
 from .grade_calculation import calculate_grade, community_apply
 from .config import EARLY_BIRD_DEADLINE
-
+from .sitetools import generate_schedule_from_lesson_plans, generate_schedule_from_lab_plans
 from .lesson import Lesson
+from .grade_constants import default_badges
 
 
 MANUAL_BADGE_FILE = 'manual_badges.txt'
@@ -68,6 +69,25 @@ def getassignment(date, assignment_type = 'prepare'):
     
     md_activity = fetch_to_checklist(date, assignment_type)
     click.echo( md_activity)
+
+
+@cspt_cli.command()
+@click.option('-p', '--path', 
+              help='path to lesson or lab plans')
+@click.option('--type', default='class',
+              help='type can be class or lab, default class')
+
+def getschedule(path,type):
+    '''
+    generate a csv file of the schedule from lesson plans located at PATH
+    '''
+    if type == 'class':
+        schedule_df = generate_schedule_from_lesson_plans(path)
+
+    if type == 'lab':
+        schedule_df = generate_schedule_from_lab_plans(path)
+
+    click.echo(schedule_df.to_csv(index=False))
 
 
 @cspt_cli.command()
@@ -470,6 +490,15 @@ def grade(badge_file, influence, verbose):
         click.echo(grade)
 
 
+@cspt_cli.command()
+
+def badgesyml():
+    '''
+    generate a template yaml file for grading
+    '''
+    
+    click.echo(yaml.dump(default_badges)[:-1]) # drop last newline
+
 def safe_load_yaml(file):
     with open(file,'r') as f:
         content_dict = yaml.safe_load(f)
@@ -540,7 +569,35 @@ def exportprismia(lesson_file,debug):
     else:
         click.echo(lesson.print_bad())
         click.echo(lesson.debug)
-  
+        
+@cspt_cli.command()
+@click.argument('lesson-file',type=click.File('r'))
+@click.option('-v','--debug',is_flag=True)
+
+def exportsite(lesson_file,debug):
+    '''
+    export site version of the content 
+    '''
+    lesson = Lesson(lesson_file.read(),debug)
+
+    if lesson.valid():
+
+        site_text = lesson.get_site()
+        click.echo(site_text)
+    else:
+        click.echo(lesson.print_bad())
+        click.echo(lesson.debug)
+
+@cspt_cli.command()
+@click.argument('lesson-file',type=click.File('r'))
+
+def exporthandout(lesson_file):
+    '''
+    export handout version of the content 
+    '''
+    lesson = Lesson(lesson_file.read())
+    handout_text = lesson.get_handout()
+    click.echo(handout_text)
 
 
 @cspt_cli.command
@@ -562,16 +619,7 @@ def createtoyfiles(source_yaml,add_newline):
     files_from_dict(files_to_create,add_newline)
 
 
-@cspt_cli.command()
-@click.argument('lesson-file',type=click.File('r'))
 
-def exporthandout(lesson_file):
-    '''
-    export prismia version of the content 
-    '''
-    lesson = Lesson(lesson_file.read())
-    handout_text = lesson.get_handout()
-    click.echo(handout_text)
 
 
 @cspt_cli.command()
