@@ -428,6 +428,26 @@ allows specifying a file for the body of the issue, and <code class="docutils li
 </section>
 <section id="details">
 <h3>Details<a class="headerlink" href="#details" title="Link to this heading">#</a></h3>
+<section id="cspt-getassignment">
+<h4>cspt getassignment<a class="headerlink" href="#cspt-getassignment" title="Link to this heading">#</a></h4>
+<p>get the assignment text formatted</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>getassignment<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getassignment-type">
+<span class="sig-name descname"><span class="pre">--type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;assignment_type&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-getassignment-type" title="Link to this definition">#</a></dt>
+<dd><p>type can be {prepare, review, or practice}; default prepare</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getassignment-date">
+<span class="sig-name descname"><span class="pre">--date</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;date&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-getassignment-date" title="Link to this definition">#</a></dt>
+<dd><p>date should be YYYY-MM-DD of the tasks you want; default most recently posted</p>
+</dd></dl>
+
+</section>
 </section>
 </section>
 <section id="get-the-most-recent-badge-date">
@@ -438,6 +458,35 @@ example when creating issues for the title use <code class="docutils literal not
 cspt getassignment --type prepare | gh issue create --title $pretitle --label prepare --body-file -
 </pre></div>
 </div>
+<section id="cspt-getbadgedate">
+<h3>cspt getbadgedate<a class="headerlink" href="#cspt-getbadgedate" title="Link to this heading">#</a></h3>
+<p>cli for calculate badge date</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>getbadgedate<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getbadgedate-type">
+<span class="sig-name descname"><span class="pre">--type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;assignment_type&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-getbadgedate-type" title="Link to this definition">#</a></dt>
+<dd><p>type can be prepare, review, or practice</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getbadgedate-prepare">
+<span class="sig-name descname"><span class="pre">--prepare</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-getbadgedate-prepare" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getbadgedate-review">
+<span class="sig-name descname"><span class="pre">--review</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-getbadgedate-review" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getbadgedate-practice">
+<span class="sig-name descname"><span class="pre">--practice</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-getbadgedate-practice" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
 </section>
 </section>
 
@@ -491,10 +540,16 @@ cspt getassignment --type prepare | gh issue create --title $pretitle --label pr
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-assignment">Get Assignment</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-badge-issue-for-a-specific-date">Create a badge issue for a specific date</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-instructions-in-pr-issue">Use instructions in PR issue</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#details">Details</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#details">Details</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cspt-getassignment">cspt getassignment</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-most-recent-badge-date">Get the most recent badge date</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-most-recent-badge-date">Get the most recent badge date</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cspt-getbadgedate">cspt getbadgedate</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

@@ -389,6 +389,578 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">[OPTIONS]</span></code> refers to any optional inputs or options</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">[ARGS]</span></code> refers to required inputs, or arguments</p></li>
 </ul>
+<section id="cspt">
+<h2>cspt<a class="headerlink" href="#cspt" title="Link to this heading">#</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<section id="cspt-badge">
+<h3>badge<a class="headerlink" href="#cspt-badge" title="Link to this heading">#</a></h3>
+<p>log an additional badge that is not in the pr list</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>badge<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>BADGE_TITLE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badge-i">
+<span id="cmdoption-cspt-badge-info"></span><span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--info</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;info&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-badge-i" title="Link to this definition">#</a></dt>
+<dd><p>messgae to include for comment</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badge-v">
+<span id="cmdoption-cspt-badge-to-terminal"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--to-terminal</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-badge-v" title="Link to this definition">#</a></dt>
+<dd><p>write to terminal instead of a file</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badge-arg-BADGE_TITLE">
+<span class="sig-name descname"><span class="pre">BADGE_TITLE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-badge-arg-BADGE_TITLE" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-badgecounts">
+<h3>badgecounts<a class="headerlink" href="#cspt-badgecounts" title="Link to this heading">#</a></h3>
+<p>check if early bonus is met from output of
+<cite>gh pr list -s all –json title,latestReviews,createdAt</cite> and return
+a message. input from  either a file or -for stdin</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>badgecounts<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badgecounts-s">
+<span id="cmdoption-cspt-badgecounts-soft"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--soft</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-badgecounts-s" title="Link to this definition">#</a></dt>
+<dd><p>soft check, skip title check</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badgecounts-m">
+<span id="cmdoption-cspt-badgecounts-manual"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--manual</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-badgecounts-m" title="Link to this definition">#</a></dt>
+<dd><p>check for manually recorded badges</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-badgecounts-arg-JSON_OUTPUT">
+<span class="sig-name descname"><span class="pre">JSON_OUTPUT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-badgecounts-arg-JSON_OUTPUT" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-badgesyml">
+<h3>badgesyml<a class="headerlink" href="#cspt-badgesyml" title="Link to this heading">#</a></h3>
+<p>generate a template yaml file for grading</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>badgesyml<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="cspt-combinecounts">
+<h3>combinecounts<a class="headerlink" href="#cspt-combinecounts" title="Link to this heading">#</a></h3>
+<p>combine two yaml files by adding all keys and summing values for duplicate keys</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>combinecounts<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>FILE_LIST<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-combinecounts-f">
+<span id="cmdoption-cspt-combinecounts-file-out"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--file-out</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-combinecounts-f" title="Link to this definition">#</a></dt>
+<dd><p>write to final-badge-sum.yml file</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-combinecounts-arg-FILE_LIST">
+<span class="sig-name descname"><span class="pre">FILE_LIST</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-combinecounts-arg-FILE_LIST" title="Link to this definition">#</a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+
+</section>
+<section id="cspt-createtoyfiles">
+<h3>createtoyfiles<a class="headerlink" href="#cspt-createtoyfiles" title="Link to this heading">#</a></h3>
+<p>from a yaml source file create a set of toy files with file names as the keys
+and the values as the content of each file</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>createtoyfiles<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>SOURCE_YAML
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-createtoyfiles-n">
+<span id="cmdoption-cspt-createtoyfiles-add-newline"></span><span class="sig-name descname"><span class="pre">-n</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--add-newline</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-createtoyfiles-n" title="Link to this definition">#</a></dt>
+<dd><p>add new line as last character</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-createtoyfiles-arg-SOURCE_YAML">
+<span class="sig-name descname"><span class="pre">SOURCE_YAML</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-createtoyfiles-arg-SOURCE_YAML" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-earlybonus">
+<h3>earlybonus<a class="headerlink" href="#cspt-earlybonus" title="Link to this heading">#</a></h3>
+<p>check if early bonus is met from output of
+<cite>gh pr list -s all –json title,latestReviews,createdAt</cite> and return
+a message. input from  either a file or -for stdin</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>earlybonus<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-earlybonus-y">
+<span id="cmdoption-cspt-earlybonus-output-yaml"></span><span class="sig-name descname"><span class="pre">-y</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output-yaml</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-earlybonus-y" title="Link to this definition">#</a></dt>
+<dd><p>output as yaml compatible with grading</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-earlybonus-f">
+<span id="cmdoption-cspt-earlybonus-to-file"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--to-file</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-earlybonus-f" title="Link to this definition">#</a></dt>
+<dd><p>write directly to a file</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-earlybonus-arg-JSON_OUTPUT">
+<span class="sig-name descname"><span class="pre">JSON_OUTPUT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-earlybonus-arg-JSON_OUTPUT" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-eventbonus">
+<h3>eventbonus<a class="headerlink" href="#cspt-eventbonus" title="Link to this heading">#</a></h3>
+<p>award a bonus,</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>eventbonus<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>BONUS_NAME
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-eventbonus-v">
+<span id="cmdoption-cspt-eventbonus-to-terminal"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--to-terminal</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-eventbonus-v" title="Link to this definition">#</a></dt>
+<dd><p>write to terminal instead of a file</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-eventbonus-arg-BONUS_NAME">
+<span class="sig-name descname"><span class="pre">BONUS_NAME</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-eventbonus-arg-BONUS_NAME" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-exportac">
+<h3>exportac<a class="headerlink" href="#cspt-exportac" title="Link to this heading">#</a></h3>
+<p>export ac files for site from lesson</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>exportac<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>LESSON_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-exportac-d">
+<span id="cmdoption-cspt-exportac-ac-date"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--ac-date</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;ac_date&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-exportac-d" title="Link to this definition">#</a></dt>
+<dd><p>date to use for writing file out</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-exportac-p">
+<span id="cmdoption-cspt-exportac-path"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;path&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-exportac-p" title="Link to this definition">#</a></dt>
+<dd><p>base path of where to save ac date files into subfolders</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-exportac-prepare">
+<span class="sig-name descname"><span class="pre">--prepare</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-exportac-prepare" title="Link to this definition">#</a></dt>
+<dd><p>do prepare (otherwise do review &amp; practice)</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-exportac-arg-LESSON_FILE">
+<span class="sig-name descname"><span class="pre">LESSON_FILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-exportac-arg-LESSON_FILE" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-exporthandout">
+<h3>exporthandout<a class="headerlink" href="#cspt-exporthandout" title="Link to this heading">#</a></h3>
+<p>export handout version of the content</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>exporthandout<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>LESSON_FILE
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-exporthandout-arg-LESSON_FILE">
+<span class="sig-name descname"><span class="pre">LESSON_FILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-exporthandout-arg-LESSON_FILE" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-exportprismia">
+<h3>exportprismia<a class="headerlink" href="#cspt-exportprismia" title="Link to this heading">#</a></h3>
+<p>export prismia version of the content</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>exportprismia<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>LESSON_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-exportprismia-v">
+<span id="cmdoption-cspt-exportprismia-debug"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--debug</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-exportprismia-v" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-exportprismia-arg-LESSON_FILE">
+<span class="sig-name descname"><span class="pre">LESSON_FILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-exportprismia-arg-LESSON_FILE" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-exportsite">
+<h3>exportsite<a class="headerlink" href="#cspt-exportsite" title="Link to this heading">#</a></h3>
+<p>export site version of the content</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>exportsite<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>LESSON_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-exportsite-v">
+<span id="cmdoption-cspt-exportsite-debug"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--debug</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-exportsite-v" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-exportsite-arg-LESSON_FILE">
+<span class="sig-name descname"><span class="pre">LESSON_FILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-exportsite-arg-LESSON_FILE" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-getassignment">
+<h3>getassignment<a class="headerlink" href="#cspt-getassignment" title="Link to this heading">#</a></h3>
+<p>get the assignment text formatted</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>getassignment<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getassignment-type">
+<span class="sig-name descname"><span class="pre">--type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;assignment_type&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-getassignment-type" title="Link to this definition">#</a></dt>
+<dd><p>type can be {prepare, review, or practice}; default prepare</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getassignment-date">
+<span class="sig-name descname"><span class="pre">--date</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;date&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-getassignment-date" title="Link to this definition">#</a></dt>
+<dd><p>date should be YYYY-MM-DD of the tasks you want; default most recently posted</p>
+</dd></dl>
+
+</section>
+<section id="cspt-getbadgedate">
+<h3>getbadgedate<a class="headerlink" href="#cspt-getbadgedate" title="Link to this heading">#</a></h3>
+<p>cli for calculate badge date</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>getbadgedate<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getbadgedate-type">
+<span class="sig-name descname"><span class="pre">--type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;assignment_type&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-getbadgedate-type" title="Link to this definition">#</a></dt>
+<dd><p>type can be prepare, review, or practice</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getbadgedate-prepare">
+<span class="sig-name descname"><span class="pre">--prepare</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-getbadgedate-prepare" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getbadgedate-review">
+<span class="sig-name descname"><span class="pre">--review</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-getbadgedate-review" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getbadgedate-practice">
+<span class="sig-name descname"><span class="pre">--practice</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-getbadgedate-practice" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="cspt-getschedule">
+<h3>getschedule<a class="headerlink" href="#cspt-getschedule" title="Link to this heading">#</a></h3>
+<p>generate a csv file of the schedule from lesson plans located at PATH</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>getschedule<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getschedule-p">
+<span id="cmdoption-cspt-getschedule-path"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;path&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-getschedule-p" title="Link to this definition">#</a></dt>
+<dd><p>path to lesson or lab plans</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-getschedule-type">
+<span class="sig-name descname"><span class="pre">--type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;type&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-getschedule-type" title="Link to this definition">#</a></dt>
+<dd><p>type can be class or lab, default class</p>
+</dd></dl>
+
+</section>
+<section id="cspt-glossify">
+<h3>glossify<a class="headerlink" href="#cspt-glossify" title="Link to this heading">#</a></h3>
+<p>overwrite a file with all glossary terms using the term directive</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>glossify<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-glossify-filename">
+<span class="sig-name descname"><span class="pre">--filename</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;filename&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-glossify-filename" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="cspt-grade">
+<h3>grade<a class="headerlink" href="#cspt-grade" title="Link to this heading">#</a></h3>
+<p>calculate a grade from yaml that had keys of badges/bonuses and value for counts</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>grade<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>BADGE_FILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-grade-i">
+<span id="cmdoption-cspt-grade-influence"></span><span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--influence</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-grade-i" title="Link to this definition">#</a></dt>
+<dd><p>return numerical instead of letter</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-grade-v">
+<span id="cmdoption-cspt-grade-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-grade-v" title="Link to this definition">#</a></dt>
+<dd><p>print out all information</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-grade-arg-BADGE_FILE">
+<span class="sig-name descname"><span class="pre">BADGE_FILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-grade-arg-BADGE_FILE" title="Link to this definition">#</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-issuestat">
+<h3>issuestat<a class="headerlink" href="#cspt-issuestat" title="Link to this heading">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>issuestat<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>ISSUE_RESPONSE
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-issuestat-arg-ISSUE_RESPONSE">
+<span class="sig-name descname"><span class="pre">ISSUE_RESPONSE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-issuestat-arg-ISSUE_RESPONSE" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-issuestatus">
+<h3>issuestatus<a class="headerlink" href="#cspt-issuestatus" title="Link to this heading">#</a></h3>
+<p>generate script to appy course issue statuse updates</p>
+<p><cite>gh issue list –json title,number,labels</cite></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>issuestatus<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-issuestatus-f">
+<span id="cmdoption-cspt-issuestatus-file-out"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--file-out</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;file_out&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-issuestatus-f" title="Link to this definition">#</a></dt>
+<dd><p>to write to a file, otherwise stdout</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-issuestatus-r">
+<span id="cmdoption-cspt-issuestatus-execute"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--execute</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-issuestatus-r" title="Link to this definition">#</a></dt>
+<dd><p>run instead of returning</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-issuestatus-d">
+<span id="cmdoption-cspt-issuestatus-as-of-date"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--as-of-date</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;as_of_date&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-issuestatus-d" title="Link to this definition">#</a></dt>
+<dd><p>date for not current</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-issuestatus-arg-JSON_OUTPUT">
+<span class="sig-name descname"><span class="pre">JSON_OUTPUT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-issuestatus-arg-JSON_OUTPUT" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-kwlcsv">
+<h3>kwlcsv<a class="headerlink" href="#cspt-kwlcsv" title="Link to this heading">#</a></h3>
+<p>generate the activity file csv file for the site building from site
+located at the TLDPATH (directory of the top level of the course site)</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>kwlcsv<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>TLDPATH
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-kwlcsv-arg-TLDPATH">
+<span class="sig-name descname"><span class="pre">TLDPATH</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-kwlcsv-arg-TLDPATH" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-logquestion">
+<h3>logquestion<a class="headerlink" href="#cspt-logquestion" title="Link to this heading">#</a></h3>
+<p>award a bonus,</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>logquestion<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-logquestion-v">
+<span id="cmdoption-cspt-logquestion-to-terminal"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--to-terminal</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-logquestion-v" title="Link to this definition">#</a></dt>
+<dd><p>write to terminal instead of a file</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-logquestion-c">
+<span id="cmdoption-cspt-logquestion-count"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--count</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;count&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-logquestion-c" title="Link to this definition">#</a></dt>
+<dd><p>number to add,</p>
+</dd></dl>
+
+</section>
+<section id="cspt-mkchecklist">
+<h3>mkchecklist<a class="headerlink" href="#cspt-mkchecklist" title="Link to this heading">#</a></h3>
+<p>transform input file to a gh markdown checklist, if the first
+characters of eaech line are numbers, make them links</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>mkchecklist<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>GH_CLI_OUTPUT
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-mkchecklist-m">
+<span id="cmdoption-cspt-mkchecklist-message"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--message</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;message&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-mkchecklist-m" title="Link to this definition">#</a></dt>
+<dd><p>messsage to prepend to output</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-mkchecklist-arg-GH_CLI_OUTPUT">
+<span class="sig-name descname"><span class="pre">GH_CLI_OUTPUT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-mkchecklist-arg-GH_CLI_OUTPUT" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-parsedate">
+<h3>parsedate<a class="headerlink" href="#cspt-parsedate" title="Link to this heading">#</a></h3>
+<p>process select non dates</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>parsedate<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>PASSED_DATE
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-parsedate-arg-PASSED_DATE">
+<span class="sig-name descname"><span class="pre">PASSED_DATE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-parsedate-arg-PASSED_DATE" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-prfixlist">
+<h3>prfixlist<a class="headerlink" href="#cspt-prfixlist" title="Link to this heading">#</a></h3>
+<p>check json output for titles that will not be counted as a badge
+this will include <cite>gh pr list -s all –json title,latestReviews</cite></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>prfixlist<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-prfixlist-arg-JSON_OUTPUT">
+<span class="sig-name descname"><span class="pre">JSON_OUTPUT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-prfixlist-arg-JSON_OUTPUT" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-processexport">
+<h3>processexport<a class="headerlink" href="#cspt-processexport" title="Link to this heading">#</a></h3>
+<p>transform output from mac terminal export to myst notebook
+(relies on regex specifically to brownsarahm)</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>processexport<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-processexport-d">
+<span id="cmdoption-cspt-processexport-date-in"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--date-in</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;date_in&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-processexport-d" title="Link to this definition">#</a></dt>
+<dd><p>date part of filename to read in</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-processexport-p">
+<span id="cmdoption-cspt-processexport-base-path"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--base-path</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;base_path&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-processexport-p" title="Link to this definition">#</a></dt>
+<dd><p>path that contains the notes folder</p>
+</dd></dl>
+
+</section>
+<section id="cspt-progressreport">
+<h3>progressreport<a class="headerlink" href="#cspt-progressreport" title="Link to this heading">#</a></h3>
+<p>list PR titles from json or - to use std in  that have been approved by an official approver</p>
+<p><cite>gh pr list -s all –json title,latestReviews</cite></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>progressreport<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-progressreport-f">
+<span id="cmdoption-cspt-progressreport-file-out"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--file-out</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;file_out&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-progressreport-f" title="Link to this definition">#</a></dt>
+<dd><p>to write to a file, otherwise will use stdout</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-progressreport-r">
+<span id="cmdoption-cspt-progressreport-report"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--report</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-progressreport-r" title="Link to this definition">#</a></dt>
+<dd><p>process approved badges by type to a more descriptive report</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-progressreport-s">
+<span id="cmdoption-cspt-progressreport-soft"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--soft</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-progressreport-s" title="Link to this definition">#</a></dt>
+<dd><p>soft check, skip title check</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-progressreport-b">
+<span id="cmdoption-cspt-progressreport-brief"></span><span class="sig-name descname"><span class="pre">-b</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--brief</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-progressreport-b" title="Link to this definition">#</a></dt>
+<dd><p>short version of report</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-progressreport-arg-JSON_OUTPUT">
+<span class="sig-name descname"><span class="pre">JSON_OUTPUT</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cspt-progressreport-arg-JSON_OUTPUT" title="Link to this definition">#</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="cspt-titlecheck">
+<h3>titlecheck<a class="headerlink" href="#cspt-titlecheck" title="Link to this heading">#</a></h3>
+<p>check a single title</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>titlecheck<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-titlecheck-t">
+<span id="cmdoption-cspt-titlecheck-pr-title"></span><span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--pr-title</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;pr_title&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-titlecheck-t" title="Link to this definition">#</a></dt>
+<dd><p>title to check as string</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cspt-titlecheck-g">
+<span id="cmdoption-cspt-titlecheck-ghpr"></span><span class="sig-name descname"><span class="pre">-g</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--ghpr</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;ghpr&gt;</span></span><a class="headerlink" href="#cmdoption-cspt-titlecheck-g" title="Link to this definition">#</a></dt>
+<dd><p>pass title as file, or gh pr view output through pipe</p>
+</dd></dl>
+
+</section>
+</section>
 </section>
 
 
