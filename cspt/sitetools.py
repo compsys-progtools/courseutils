@@ -1,8 +1,99 @@
 import os
 import pandas as pd
+from cspt.lesson import Lesson
 import re
+from .config import CourseDates
 
 
+def generate_schedule_from_lesson_plans(lesson_plan_path):
+    '''
+    generate a schedule from lesson plan files
+
+    Parameters
+    ----------
+    lesson_plan_path : string or buffer
+        path to lesson plan files
+
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame with columns [date,question,keyword,conceptual,practical,social,activity]
+
+    '''
+    all_file_df_list = []
+    # iterate types 
+    file_list = sorted([f for f in os.listdir(lesson_plan_path) if f.endswith('.md') and '-' in f])
+
+    # iterate dates within type
+    lesson_meta_list = []
+    for file in file_list:
+
+        # create a Lesson object
+        cur_file_path = os.path.join(lesson_plan_path,file)
+        with open(cur_file_path,'r') as f:
+            filetext = f.read()
+        lesson = Lesson(filetext)
+        lesson_meta = lesson.get_metadata()
+
+        # converst list in metadata to string
+        for k,v in lesson_meta.items():
+            if type(v) == list:
+                lesson_meta[k] = ','.join(v)
+
+        lesson_meta_list.append(lesson_meta)
+
+
+    class_dates = CourseDates().class_meeting_strings
+
+    if len(class_dates) < len(lesson_meta_list):
+        shortage = len(lesson_meta_list)-len(class_dates)
+        class_dates = class_dates + ['TBD']*shortage
+    elif len(class_dates) > len(lesson_meta_list):
+        shortage = len(class_dates)-len(lesson_meta_list)
+        lesson_meta_list = lesson_meta_list + [{}]*shortage 
+
+    df = pd.DataFrame(lesson_meta_list)
+    df.insert(0,'date',class_dates)
+
+    return df
+
+def generate_schedule_from_lab_plans(lab_plan_path):
+    '''
+    generate a schedule from lab plan files
+
+    Parameters
+    ----------
+    lab_plan_path : string or buffer
+        path to lab plan files
+
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame with columns [date,question,keyword,conceptual,practical,social,activity]
+
+    '''
+    all_file_df_list = []
+    # iterate types 
+    file_list = sorted([f for f in os.listdir(lab_plan_path) if f.endswith('.md')])
+
+    # iterate dates within type
+    lab_title_list = []
+    for file in file_list:
+
+        # create a Lesson object
+        cur_file_path = os.path.join(lab_plan_path,file)
+        with open(cur_file_path,'r') as f:
+            filetext = f.read().strip().split('\n')
+        
+        title_line = filetext[0].strip('# ').split(':')[1].strip()
+        lab_title_list.append(title_line)
+
+    lab_dates = CourseDates().lab_meeting_strings
+    df = pd.DataFrame({'date':lab_dates,
+                       'title':lab_title_list})
+    
+
+    return df
 
 def generate_csv_from_index(path_list,sub_re,file_out=None,
                             path_meaning = {'dir':'type','file':'date','result':'file'},

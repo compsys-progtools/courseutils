@@ -2,6 +2,7 @@ import yaml
 import json
 import re 
 import os
+from .config import GLOSSARY_URL
 
 DEFAULT_BLOCK_META = {"lesson_part": "main"}
 # TODO: validate that lesson has pace questoin
@@ -67,6 +68,13 @@ class Lesson():
         self.blocks = [Block(b) for b in blocks_full]
         # activate 
         self.activities = [b for b in self.blocks if b.labels['lesson_part'] == 'activity']
+
+    def get_metadata(self):
+        '''
+        return the metadata for this lesson plan
+
+        '''
+        return self.metadata
         
     
     def valid(self):
@@ -296,6 +304,11 @@ class Block():
         #add any remaining content after matches 
         body_prismia += self.body[last_end:]
         
+        # replace {term}`the_term` with [the_term](glossary_url+the_term)
+        body_prismia = re.sub(r'\{term\}`(?P<the_term>[^`]*)`',
+                              r'[\g<the_term>](' + GLOSSARY_URL + r'\g<the_term>)',
+                              body_prismia)
+        
         return body_prismia
 
     def get_site(self):
@@ -305,7 +318,7 @@ class Block():
         '''
         if self.labels['lesson_part'] in ['site','main']:
             # strip ``` for anything not code
-            body_notes = self.body.relace('```','')
+            body_notes = self.body.replace('```','')
             # strip code cell meta data
             # return null if meta is notes only 
         else: 
