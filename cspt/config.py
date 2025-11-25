@@ -44,7 +44,8 @@ class CourseDates():
     early_bird_deadline = first_day + timedelta(days=21)
     def __init__(self):
         # set class days
-        skipped_days = ([day for date_range in self.no_class_ranges for day in expand_range(*date_range)] +
+        skipped_days = ([day for date_range in self.no_class_ranges for day in expand_range(*date_range
+                                                                                            ,days_of_week=self.meeting_days)] +
                         list(self.date_substitutes.values() )  )
         
         possible_list = expand_range(self.first_day,self.last_day,self.meeting_days)
