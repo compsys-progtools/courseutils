@@ -28,7 +28,7 @@ class CourseDates():
     # -------semester settings from academic calender 
     #  https://web.uri.edu/academic-calendars/
     first_day = dt(2025,9,4)
-    last_day = dt(2025,12,9)
+    last_day = dt(2025,12,10)
 
     #  add any skipped days or ranges (without makeup)
     # single days must be  tuple, (have a ,)
