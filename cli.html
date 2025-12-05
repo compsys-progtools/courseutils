@@ -391,12 +391,14 @@
 </ul>
 <section id="cspt">
 <h2>cspt<a class="headerlink" href="#cspt" title="Link to this heading">#</a></h2>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
 </pre></div>
 </div>
 <section id="cspt-badge">
 <h3>badge<a class="headerlink" href="#cspt-badge" title="Link to this heading">#</a></h3>
 <p>log an additional badge that is not in the pr list</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>badge<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>BADGE_TITLE
 </pre></div>
 </div>
@@ -426,6 +428,7 @@
 <p>check if early bonus is met from output of
 <cite>gh pr list -s all –json title,latestReviews,createdAt</cite> and return
 a message. input from  either a file or -for stdin</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>badgecounts<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
 </pre></div>
 </div>
@@ -453,6 +456,7 @@ a message. input from  either a file or -for stdin</p>
 <section id="cspt-badgesyml">
 <h3>badgesyml<a class="headerlink" href="#cspt-badgesyml" title="Link to this heading">#</a></h3>
 <p>generate a template yaml file for grading</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>badgesyml<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
@@ -460,6 +464,7 @@ a message. input from  either a file or -for stdin</p>
 <section id="cspt-combinecounts">
 <h3>combinecounts<a class="headerlink" href="#cspt-combinecounts" title="Link to this heading">#</a></h3>
 <p>combine two yaml files by adding all keys and summing values for duplicate keys</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>combinecounts<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>FILE_LIST<span class="o">]</span>...
 </pre></div>
 </div>
@@ -482,6 +487,7 @@ a message. input from  either a file or -for stdin</p>
 <h3>createtoyfiles<a class="headerlink" href="#cspt-createtoyfiles" title="Link to this heading">#</a></h3>
 <p>from a yaml source file create a set of toy files with file names as the keys
 and the values as the content of each file</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>createtoyfiles<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>SOURCE_YAML
 </pre></div>
 </div>
@@ -505,6 +511,7 @@ and the values as the content of each file</p>
 <p>check if early bonus is met from output of
 <cite>gh pr list -s all –json title,latestReviews,createdAt</cite> and return
 a message. input from  either a file or -for stdin</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>earlybonus<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
 </pre></div>
 </div>
@@ -532,6 +539,7 @@ a message. input from  either a file or -for stdin</p>
 <section id="cspt-eventbonus">
 <h3>eventbonus<a class="headerlink" href="#cspt-eventbonus" title="Link to this heading">#</a></h3>
 <p>award a bonus,</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>eventbonus<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>BONUS_NAME
 </pre></div>
 </div>
@@ -553,6 +561,7 @@ a message. input from  either a file or -for stdin</p>
 <section id="cspt-exportac">
 <h3>exportac<a class="headerlink" href="#cspt-exportac" title="Link to this heading">#</a></h3>
 <p>export ac files for site from lesson</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>exportac<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>LESSON_FILE
 </pre></div>
 </div>
@@ -586,6 +595,7 @@ a message. input from  either a file or -for stdin</p>
 <section id="cspt-exporthandout">
 <h3>exporthandout<a class="headerlink" href="#cspt-exporthandout" title="Link to this heading">#</a></h3>
 <p>export handout version of the content</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>exporthandout<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>LESSON_FILE
 </pre></div>
 </div>
@@ -600,6 +610,7 @@ a message. input from  either a file or -for stdin</p>
 <section id="cspt-exportprismia">
 <h3>exportprismia<a class="headerlink" href="#cspt-exportprismia" title="Link to this heading">#</a></h3>
 <p>export prismia version of the content</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>exportprismia<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>LESSON_FILE
 </pre></div>
 </div>
@@ -620,6 +631,7 @@ a message. input from  either a file or -for stdin</p>
 <section id="cspt-exportsite">
 <h3>exportsite<a class="headerlink" href="#cspt-exportsite" title="Link to this heading">#</a></h3>
 <p>export site version of the content</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>exportsite<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>LESSON_FILE
 </pre></div>
 </div>
@@ -640,6 +652,7 @@ a message. input from  either a file or -for stdin</p>
 <section id="cspt-getassignment">
 <h3>getassignment<a class="headerlink" href="#cspt-getassignment" title="Link to this heading">#</a></h3>
 <p>get the assignment text formatted</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>getassignment<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
@@ -660,6 +673,7 @@ a message. input from  either a file or -for stdin</p>
 <section id="cspt-getbadgedate">
 <h3>getbadgedate<a class="headerlink" href="#cspt-getbadgedate" title="Link to this heading">#</a></h3>
 <p>cli for calculate badge date</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>getbadgedate<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
@@ -689,6 +703,7 @@ a message. input from  either a file or -for stdin</p>
 <section id="cspt-getschedule">
 <h3>getschedule<a class="headerlink" href="#cspt-getschedule" title="Link to this heading">#</a></h3>
 <p>generate a csv file of the schedule from lesson plans located at PATH</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>getschedule<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
@@ -709,6 +724,7 @@ a message. input from  either a file or -for stdin</p>
 <section id="cspt-glossify">
 <h3>glossify<a class="headerlink" href="#cspt-glossify" title="Link to this heading">#</a></h3>
 <p>overwrite a file with all glossary terms using the term directive</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>glossify<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
@@ -722,6 +738,7 @@ a message. input from  either a file or -for stdin</p>
 <section id="cspt-grade">
 <h3>grade<a class="headerlink" href="#cspt-grade" title="Link to this heading">#</a></h3>
 <p>calculate a grade from yaml that had keys of badges/bonuses and value for counts</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>grade<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>BADGE_FILE<span class="o">]</span>
 </pre></div>
 </div>
@@ -748,6 +765,7 @@ a message. input from  either a file or -for stdin</p>
 </section>
 <section id="cspt-issuestat">
 <h3>issuestat<a class="headerlink" href="#cspt-issuestat" title="Link to this heading">#</a></h3>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>issuestat<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>ISSUE_RESPONSE
 </pre></div>
 </div>
@@ -763,6 +781,7 @@ a message. input from  either a file or -for stdin</p>
 <h3>issuestatus<a class="headerlink" href="#cspt-issuestatus" title="Link to this heading">#</a></h3>
 <p>generate script to appy course issue statuse updates</p>
 <p><cite>gh issue list –json title,number,labels</cite></p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>issuestatus<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
 </pre></div>
 </div>
@@ -797,6 +816,7 @@ a message. input from  either a file or -for stdin</p>
 <h3>kwlcsv<a class="headerlink" href="#cspt-kwlcsv" title="Link to this heading">#</a></h3>
 <p>generate the activity file csv file for the site building from site
 located at the TLDPATH (directory of the top level of the course site)</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>kwlcsv<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>TLDPATH
 </pre></div>
 </div>
@@ -811,6 +831,7 @@ located at the TLDPATH (directory of the top level of the course site)</p>
 <section id="cspt-logquestion">
 <h3>logquestion<a class="headerlink" href="#cspt-logquestion" title="Link to this heading">#</a></h3>
 <p>award a bonus,</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>logquestion<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
@@ -832,6 +853,7 @@ located at the TLDPATH (directory of the top level of the course site)</p>
 <h3>mkchecklist<a class="headerlink" href="#cspt-mkchecklist" title="Link to this heading">#</a></h3>
 <p>transform input file to a gh markdown checklist, if the first
 characters of eaech line are numbers, make them links</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>mkchecklist<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>GH_CLI_OUTPUT
 </pre></div>
 </div>
@@ -853,6 +875,7 @@ characters of eaech line are numbers, make them links</p>
 <section id="cspt-parsedate">
 <h3>parsedate<a class="headerlink" href="#cspt-parsedate" title="Link to this heading">#</a></h3>
 <p>process select non dates</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>parsedate<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>PASSED_DATE
 </pre></div>
 </div>
@@ -868,6 +891,7 @@ characters of eaech line are numbers, make them links</p>
 <h3>prfixlist<a class="headerlink" href="#cspt-prfixlist" title="Link to this heading">#</a></h3>
 <p>check json output for titles that will not be counted as a badge
 this will include <cite>gh pr list -s all –json title,latestReviews</cite></p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>prfixlist<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
 </pre></div>
 </div>
@@ -883,6 +907,7 @@ this will include <cite>gh pr list -s all –json title,latestReviews</cite></p>
 <h3>processexport<a class="headerlink" href="#cspt-processexport" title="Link to this heading">#</a></h3>
 <p>transform output from mac terminal export to myst notebook
 (relies on regex specifically to brownsarahm)</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>processexport<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
@@ -904,6 +929,7 @@ this will include <cite>gh pr list -s all –json title,latestReviews</cite></p>
 <h3>progressreport<a class="headerlink" href="#cspt-progressreport" title="Link to this heading">#</a></h3>
 <p>list PR titles from json or - to use std in  that have been approved by an official approver</p>
 <p><cite>gh pr list -s all –json title,latestReviews</cite></p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>progressreport<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>JSON_OUTPUT
 </pre></div>
 </div>
@@ -943,6 +969,7 @@ this will include <cite>gh pr list -s all –json title,latestReviews</cite></p>
 <section id="cspt-titlecheck">
 <h3>titlecheck<a class="headerlink" href="#cspt-titlecheck" title="Link to this heading">#</a></h3>
 <p>check a single title</p>
+<p class="rubric">Usage</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cspt<span class="w"> </span>titlecheck<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
