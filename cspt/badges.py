@@ -1,30 +1,35 @@
-
-from datetime import datetime
 import re
+from datetime import datetime
+from re import Pattern
+from typing import List
+
 from numpy import prod as npprod
 
-from .config import GH_APPROVERS, EARLY_BIRD_DEADLINE
-badge_types = ['experience','review','practice','explore',
-               'build','lab','community','prepare','unstuck']
-dated_types = ['experience','review','practice']
-supported_dates_re = [
-    re.compile('20[2-9][0-9]-[0-1][0-9]-[0-3][0-9]'), # YYYY-DD-MM
-    re.compile('(\d{1,2})-(\d{1,2})-(\d{2})'), # MM-DD-YY and M-DD-YY
-    re.compile('(\d{4})\s(\d{2})\s(\d{2})'), # YYYY MM DD (Space separated)
-    re.compile('(\d{1,2})/(\d{1,2})/(\d{2})') # M/DD/YY
+from .config import EARLY_BIRD_DEADLINE, GH_APPROVERS
+
+badge_types = ["experience", "review", "practice", "explore", "build", "lab", "community", "prepare", "unstuck"]
+dated_types = ["experience", "review", "practice"]
+supported_dates_re: List[Pattern[str]] = [
+    re.compile("20[2-9][0-9]-[0-1][0-9]-[0-3][0-9]"),  # YYYY-DD-MM
+    re.compile("(\d{1,2})-(\d{1,2})-(\d{2})"),  # MM-DD-YY and M-DD-YY
+    re.compile("(\d{4})\s(\d{2})\s(\d{2})"),  # YYYY MM DD (Space separated)
+    re.compile("(\d{1,2})/(\d{1,2})/(\d{2})"),  # M/DD/YY
+    re.compile("(\d{1,2})/(\d{1,2})"),  # Nathan: M/DD?
     # Add other regex expressions as needed
 ]
 
-def get_type_from_title():
-    '''
-    return badge type
-    '''
-    return 
 
-def is_title_gradeable(pr_title,errortype=False):
-    '''
+def get_type_from_title():
+    """
+    return badge type
+    """
+    return
+
+
+def is_title_gradeable(pr_title, errortype=False):
+    """
     this defines if a pr title is good, it contains exactly one badge type word and
-    a well date if experience, review or practice, in ISO (YYYY-MM-DD, YYYY MM DD) or 
+    a well date if experience, review or practice, in ISO (YYYY-MM-DD, YYYY MM DD) or
     M/DD/YY, MM-DD-YY or M-DD-YY
 
     Parameters
@@ -33,17 +38,17 @@ def is_title_gradeable(pr_title,errortype=False):
         title of pr
     errortype : bool
         if true, return bool + message
-    
+
     Return
     ------
     good : bool
         true if good
 
-    
-    '''
-    badge_type_included = sum([bt in pr_title.lower() for bt in badge_types]) ==1
-    dated_type = sum([bt in pr_title.lower() for bt in dated_types])>0
-    
+
+    """
+    badge_type_included = sum([bt in pr_title.lower() for bt in badge_types]) == 1
+    dated_type = sum([bt in pr_title.lower() for bt in dated_types]) > 0
+
     if dated_type:
         # Search for supported dates in PR title
         date_included = any(date_regex.search(pr_title) for date_regex in supported_dates_re)
@@ -54,22 +59,22 @@ def is_title_gradeable(pr_title,errortype=False):
 
     if errortype:
         if good:
-            return good,''
+            return good, ""
         else:
-            msg = ''
+            msg = ""
             if not badge_type_included:
-                msg = 'missing a badge type keyword. '
-            
-            if not(date_included) and dated_type:
-                msg += 'missing or poorly formatted date'
-            return good,msg
+                msg = "missing a badge type keyword. "
+
+            if not (date_included) and dated_type:
+                msg += "missing or poorly formatted date"
+            return good, msg
     else:
         return good
 
 
 def badges_by_type(approved_prs):
-    '''
-    parse list of approved PRs to filter for badges 
+    """
+    parse list of approved PRs to filter for badges
 
     Parameters
     ----------
@@ -80,49 +85,50 @@ def badges_by_type(approved_prs):
     -------
     badges_by_type: dict
         dict with keys as badge types, keys as input type
-    '''
-    if type(approved_prs[0])==str:
-        badges_by_type = {btype:[title for title in approved_prs if btype in title.lower()] 
-                          for btype in badge_types}
-    else: 
-        badges_by_type = {btype:[pr for pr in approved_prs if btype in pr['title'].lower()] 
-                          for btype in badge_types}
+    """
+    if type(approved_prs[0]) == str:
+        badges_by_type = {btype: [title for title in approved_prs if btype in title.lower()] for btype in badge_types}
+    else:
+        badges_by_type = {btype: [pr for pr in approved_prs if btype in pr["title"].lower()] for btype in badge_types}
 
-    badges_by_type.pop('prepare')
+    badges_by_type.pop("prepare")
     return badges_by_type
 
-def generate_report(approved_prs,short=False):
-    '''
+
+def generate_report(approved_prs, short=False):
+    """
     format approved prs into a report
-    '''
+    """
     titles_by_type = badges_by_type(approved_prs)
-    verified_by_type = '\n' +  '\n'.join(['\n## '+bt + ' ('+str(len(bl)) +')' +'\n- '+'\n- '. join(bl) 
-                    for bt,bl in titles_by_type.items() if len(bl)>0 ])
+    verified_by_type = "\n" + "\n".join(
+        [
+            "\n## " + bt + " (" + str(len(bl)) + ")" + "\n- " + "\n- ".join(bl)
+            for bt, bl in titles_by_type.items()
+            if len(bl) > 0
+        ]
+    )
     valid_badges = [vi for v in titles_by_type.values() for vi in v]
-    not_typed = [p for p in approved_prs if not(p in valid_badges) ]
-    
+    not_typed = [p for p in approved_prs if not (p in valid_badges)]
+
     if short:
         report_parts = [verified_by_type]
     else:
-        report_parts =[ '## all approved \n\n',
-                    '- ' + '\n- '.join(approved_prs),
-                    verified_by_type,
-                    '\n\n## Approved, not badges',
-                    '\n- ' + '\n - '.join(not_typed)]
-    
-    
-    
-    return '\n'.join(report_parts)
+        report_parts = [
+            "## all approved \n\n",
+            "- " + "\n- ".join(approved_prs),
+            verified_by_type,
+            "\n\n## Approved, not badges",
+            "\n- " + "\n - ".join(not_typed),
+        ]
 
-field_parser = {'title':lambda t:t,
-                'latestReviews': lambda lr: lr[-1],
-                'createdAt':lambda d: d[:-1]
-                }
+    return "\n".join(report_parts)
 
+
+field_parser = {"title": lambda t: t, "latestReviews": lambda lr: lr[-1], "createdAt": lambda d: d[:-1]}
 
 
 def check_approved(pr, any=False):
-    '''
+    """
     check a pr dictionary for approval by default only approvers count
 
     Parameters
@@ -136,33 +142,37 @@ def check_approved(pr, any=False):
     -------
     approved : bool
         True if approved by an eligible approver
-    '''
-    if any: 
-        return pr['latestReviews']['state'] == 'APPROVED'
+    """
+    if any:
+        return pr["latestReviews"]["state"] == "APPROVED"
     else:
-        return (pr['latestReviews']['state'] == 'APPROVED' and  
-            pr['latestReviews']['author']['login']in GH_APPROVERS)
+        return pr["latestReviews"]["state"] == "APPROVED" and pr["latestReviews"]["author"]["login"] in GH_APPROVERS
 
 
-filter_fx = {'approved': check_approved,
-          'early':lambda pr: datetime.fromisoformat(pr['createdAt'])< EARLY_BIRD_DEADLINE,
-          'good_title': lambda pr: is_title_gradeable(pr['title']),
-          'bad_title': lambda pr: not(is_title_gradeable(pr['title']))
-          }
+filter_fx = {
+    "approved": check_approved,
+    "early": lambda pr: datetime.fromisoformat(pr["createdAt"]) < EARLY_BIRD_DEADLINE,
+    "good_title": lambda pr: is_title_gradeable(pr["title"]),
+    "bad_title": lambda pr: not (is_title_gradeable(pr["title"])),
+}
 
-def process_pr_json(json_output,numbered=False,
-                    titles_only=False,
-                    filter_list = ['approved','good_title'],
-                    custom_field_parser = {},
-                    custom_filters = {},
-                    filter_mode = 'filter'):
-    '''
+
+def process_pr_json(
+    json_output,
+    numbered=False,
+    titles_only=False,
+    filter_list=["approved", "good_title"],
+    custom_field_parser={},
+    custom_filters={},
+    filter_mode="filter",
+):
+    """
     process gh cli json
 
     Parameters
     ----------
     json_output : filename
-        dictionary generated from `gh pr list -s all --json title,latestReviews` and optionally 
+        dictionary generated from `gh pr list -s all --json title,latestReviews` and optionally
         additional fields
     numbered : bool
         return with numbers as keys in dict
@@ -175,49 +185,45 @@ def process_pr_json(json_output,numbered=False,
         dictionary with keys as names, values that are boolean functions
     filter_mode : string {'filter'}
         filter to keep only ones that pass each filer or 'group' to group prs by which filter they pass
-    
+
 
     Returns
     -------
     filtered_prs : iterable
         list or dict as per value above if a flag is used or dict that is like the input json
-    '''
+    """
     # apply user updates
     field_parser.update(custom_field_parser)
     filter_fx.update(custom_filters)
     filter_list.extend(list(custom_filters.keys()))
     # with open(json_output, 'r') as f:
     #     PR_list = json.load(f)
-        
-    #filter for ones with nonempty reviews;
+
+    # filter for ones with nonempty reviews;
     #  process each feild according to spec or pass value if spec not defined
-    reviewed = [{k: field_parser.get(k,lambda mv: mv)(v) for k,v in pr.items()}
-                for pr in json_output if pr['latestReviews']]
-    
+    reviewed = [
+        {k: field_parser.get(k, lambda mv: mv)(v) for k, v in pr.items()} for pr in json_output if pr["latestReviews"]
+    ]
 
     # apply all filters and keep only the ones that pass all filters
-    if filter_mode =='filter':
+    if filter_mode == "filter":
         # list of prs where all filters are true
-        filtered_prs = [pr for pr in reviewed 
-                    if npprod([filter_fx[f](pr) for f in filter_list])]
-    
-    if filter_mode == 'grouped':
+        filtered_prs = [pr for pr in reviewed if npprod([filter_fx[f](pr) for f in filter_list])]
+
+    if filter_mode == "grouped":
         # dict with keys per filter, value is list of prs that match that filter
-        filtered_prs = {f:[pr for pr in reviewed  if filter_fx[f](pr)] 
-                        for f in filter_list}
-    
+        filtered_prs = {f: [pr for pr in reviewed if filter_fx[f](pr)] for f in filter_list}
 
     # return version requested
     if numbered:
-        return {pr['number']:pr['title'] for pr in filtered_prs}
-    
+        return {pr["number"]: pr["title"] for pr in filtered_prs}
+
     if titles_only:
-        return [pr['title'] for pr in filtered_prs]
+        return [pr["title"] for pr in filtered_prs]
 
     return filtered_prs
 
-block_template = '''
+
+block_template = """
 # {type}
-''' 
-
-
+"""
