@@ -11,7 +11,8 @@ supported_dates_re = [
     re.compile('20[2-9][0-9]-[0-1][0-9]-[0-3][0-9]'), # YYYY-DD-MM
     re.compile('(\d{1,2})-(\d{1,2})-(\d{2})'), # MM-DD-YY and M-DD-YY
     re.compile('(\d{4})\s(\d{2})\s(\d{2})'), # YYYY MM DD (Space separated)
-    re.compile('(\d{1,2})/(\d{1,2})/(\d{2})') # M/DD/YY
+    re.compile('(\d{1,2})/(\d{1,2})/(\d{2})'), # M/DD/YY
+    re.compile('(\d{1,2})/(\d{1,2})'),  # M/D?D, will work on 11/04 or 11/4
     # Add other regex expressions as needed
 ]
 
