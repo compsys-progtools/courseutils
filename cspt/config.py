@@ -2,12 +2,17 @@ from datetime import datetime
 from datetime import date as dt
 from datetime import timedelta
 # UPDATE: update this each semester
-REPO = 'http://compsys-progtools.github.io/fall2025/'
-BASE_URL = 'https://raw.githubusercontent.com/compsys-progtools/fall2025/main/_'
-GLOSSARY_URL = 'https://compsys-progtools.github.io/fall2025/glossary/#term-'
+REPO = 'http://compsys-progtools.github.io/spring2026/'
+BASE_URL = 'https://raw.githubusercontent.com/compsys-progtools/spring2026/main/_'
+GLOSSARY_URL = 'https://compsys-progtools.github.io/spring2026/glossary/#term-'
 
-GH_APPROVERS = ['AymanBx','brownsarahm','thomaspeck11']
-EARLY_BIRD_DEADLINE_STR = '2025-09-25'
+# REPO = 'http://compsys-progtools.github.io/fall2025/'
+# BASE_URL = 'https://raw.githubusercontent.com/compsys-progtools/fall2025/main/_'
+# GLOSSARY_URL = 'https://compsys-progtools.github.io/fall2025/glossary/#term-'
+
+
+GH_APPROVERS = ['brownsarahm','kingrichard20']
+EARLY_BIRD_DEADLINE_STR = '2026-02-13'
 EARLY_BIRD_DEADLINE= datetime.fromisoformat(EARLY_BIRD_DEADLINE_STR)
 
 def expand_range(first_day,last_day=None,days_of_week=[]):
@@ -27,18 +32,18 @@ class CourseDates():
     lab_hour = 14
     # -------semester settings from academic calender 
     #  https://web.uri.edu/academic-calendars/
-    first_day = dt(2025,9,4)
-    last_day = dt(2025,12,10)
+    first_day = dt(2026,1,21)
+    last_day = dt(2026,4,29)
 
     #  add any skipped days or ranges (without makeup)
     # single days must be  tuple, (have a ,)
-    no_class_ranges = [(dt(2025,10,13),),
-                       (dt(2025,11,11),),
-                       (dt(2025,11,26),dt(2025,11,30)),]
+    no_class_ranges = [(dt(2026,2,16),),
+                       (dt(2026,3,16),dt(2026,3,22)),]
     
     
+                    #    (dt(2025,11,11),),
     # classes "cancelled" on keys, running on value instead
-    date_substitutes = {}# {dt(2025,2,17):dt(2025,2,19)}
+    date_substitutes = {dt(2026,2,16):dt(2026,2,18)}
     # instructor choices
     penalty_free_end = first_day + timedelta(days=21)
     early_bird_deadline = first_day + timedelta(days=21)
