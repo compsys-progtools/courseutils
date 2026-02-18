@@ -33,7 +33,9 @@ def cspt_cli():
 @click.option('--prepare',is_flag=True)
 @click.option('--review',is_flag=True)
 @click.option('--practice',is_flag=True)
-def getbadgedate(assignment_type=None,prepare=False,review=False,practice=False):
+@click.option('-d','--reference-date',help='date to use')
+def getbadgedate(assignment_type=None,prepare=False,
+                 review=False,practice=False,reference_date=None):
     '''
     cli for calculate badge date
     '''
@@ -48,7 +50,7 @@ def getbadgedate(assignment_type=None,prepare=False,review=False,practice=False)
         if practice:
             assignment_type='practice'
     
-    click.echo(calculate_badge_date(assignment_type))
+    click.echo(calculate_badge_date(assignment_type,reference_date))
 
 
 @cspt_cli.command()
@@ -69,7 +71,6 @@ def getassignment(date, assignment_type = 'prepare'):
     
     md_activity = fetch_to_checklist(date, assignment_type)
     click.echo( md_activity)
-
 
 @cspt_cli.command()
 @click.option('-p', '--path', 
