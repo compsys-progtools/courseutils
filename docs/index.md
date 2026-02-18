@@ -29,7 +29,21 @@ how to make a badge issue for a specific date
 
 ## Install 
 
-You can install after cloning to work locally or directly from github. 
+You can directly or clone first.  
+
+
+### Direct install 
+
+you can also install without cloning first with 
+
+```
+pip install git+https://github.com/compsys-progtools/courseutils.git
+```
+
+Optionally, you can specify a branch to install, by default it installs main. 
+
+To update in this case, use the same command
+
 
 ### By clone
 
@@ -52,18 +66,6 @@ pip install -e courseutils
 
 To update, pull and install again. 
 
-
-### Direct install 
-
-you can also install without cloning first with 
-
-```
-pip install git+https://github.com/compsys-progtools/courseutils.git
-```
-
-Optionally, you can specify a branch to install, by default it installs main. 
-
-To update in this case, use the same command
 
 
 ## Usage 
