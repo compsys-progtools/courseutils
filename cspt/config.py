@@ -11,7 +11,7 @@ GLOSSARY_URL = 'https://compsys-progtools.github.io/spring2026/glossary/#term-'
 # GLOSSARY_URL = 'https://compsys-progtools.github.io/fall2025/glossary/#term-'
 
 
-GH_APPROVERS = ['brownsarahm','kingrichard20']
+GH_APPROVERS = ['brownsarahm','kingrichard20','zmongeau']
 EARLY_BIRD_DEADLINE_STR = '2026-02-13'
 EARLY_BIRD_DEADLINE= datetime.fromisoformat(EARLY_BIRD_DEADLINE_STR)
 
