@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='syscourseutils',
-    version='1.0.8',
+    version='1.0.9',
     py_modules=['cspt','cspt.activities','cspt.badges','cspt.cli',
                 'cspt.config','cspt.lesson','cspt.notes','cspt.prep',
                 'cspt.sitetools','cspt.tasktracking','cspt.grade_calculation',
