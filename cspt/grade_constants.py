@@ -1,13 +1,13 @@
 import pandas as pd
 
-exp_thresh = 22
-rp_thresh =18
+exp_thresh = 20
+rp_thresh =16
 learning_weights = {'experience' :2, 'lab': 2, 
                     'review': 3,'practice': 6,'explore': 9,'build' :36}
 community_weights = {'experience_replace' :3,  'review_replace': 4,'practice_replace': 7, 'review_upgrade': 3,}
-bonus_participation = 18
-bonus_lab = 18
-bonus_breadth = 32
+bonus_participation = 22
+bonus_lab = 22
+bonus_breadth = 46
 bonus_early = 9
 
 default_badges = {'experience' :0, 
@@ -24,7 +24,7 @@ default_badges = {'experience' :0,
                   'question':0 }
 
 bonus_criteria = {'participation_bonus': lambda r: int(r['experience'] >=exp_thresh),
-                  'lab_bonus':  lambda r: int(r['lab'] >=12),
+                  'lab_bonus':  lambda r: int(r['lab'] >=10),
                    'breadth_bonus': lambda r: int(r['review'] + r['practice']>=rp_thresh),
                  'community_bonus': lambda r: int(r['community']>=10),
                  'unstuck_bonus': lambda r: r['unstuck'],
