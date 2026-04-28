@@ -17,7 +17,7 @@ On Windows, use GitBash for the clone and then Anaconda Prompt for install
 ## To install direct
 
 ```
-pip install git+ https://github.com/compsys-progtools/courseutils
+pip install git+https://github.com/compsys-progtools/courseutils
 
 ```
 
