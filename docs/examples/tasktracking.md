@@ -60,3 +60,13 @@ cspt getassignment --type prepare | gh issue create --title $pretitle --label pr
    :commands:
 
 ```
+
+
+
+## Problems with getting progress report
+
+```
+gh repo set-default compsys-progtools/[REPO NAME]
+
+```
+
